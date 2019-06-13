@@ -1,0 +1,7 @@
+cur.dir = file.path(PROJECT_DIR, "SCRIPTS/MA/filtering_pax")
+source(file.path(cur.dir, "filter_samples.config.r"))
+source(file.path(cur.dir, "filter_samples.call.r"))
+source(file.path(cur.dir, "filter_gene_iqr.config.r"))
+source(file.path(cur.dir, "filter_gene.call.r"))
+source(file.path(cur.dir, "filter_gene_all.config.r"))
+source(file.path(cur.dir, "filter_gene.call.r"))

@@ -1,0 +1,13 @@
+PID	PBMC	PAX	Name
+1	Gb01	GbWB02	Monocytes and TLR activation
+2	Gb05	GbWB09	NK cells
+3	Gb06	GbWB08	B cells
+4	Gb11	GbWB10	Platelets and cell adhesion
+5	Gb13	GbWB11	Type I Interferon and antiviral
+6	Gb15	GbWB12	Activated CD4+ T cells and cell cycle
+7	Gb18	GbWB15	Chromosome Y linked
+8	Gb19	GbWB18	Generic
+9	Gb21		Generic and neutrophils
+10		GbWB17	"B cells, immunoglobulins"
+11	Gb14		PAX3 targets
+12		GbWB04	Monocytes and TLR activation

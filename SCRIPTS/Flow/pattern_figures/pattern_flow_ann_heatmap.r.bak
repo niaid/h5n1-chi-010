@@ -1,0 +1,31 @@
+library(ComplexHeatmap)
+library(circlize)
+
+dn.in = file.path(PROJECT_DIR, "RESULTS/Flow_10c/")
+fn = "DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_CPs.txt"
+df = fread(file.path(dn.in, fn)) %>% 
+  mutate(CP_desc = sprintf("ID%g: %s", CP_code, CP_desc)) %>% 
+  select(-CP_code)
+mat  = df %>% 
+  tibble::column_to_rownames("CP_desc") %>% 
+  data.matrix()
+
+ro = hclust(dist(mat, method = "man"), method = "comp")$order
+
+df.tidy = df %>%
+  gather("Pattern", "value", -CP_desc) %>% 
+  mutate(value = ifelse(value==0, NA, value) %>% factor()) %>% 
+  mutate(CP_desc = factor(CP_desc, levels=df$CP_desc[ro]))
+
+ggplot(df.tidy, aes(Pattern, CP_desc, fill=value)) +
+  geom_tile() +
+  scale_fill_manual(values = palette(), guide=F) +
+  scale_y_discrete(position = "right") +
+  xlab("") + ylab("") +
+  theme_bw() +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_text(angle=90, colour = palette()), 
+        panel.grid = element_blank())
+
+fn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_patterns_annot_heatmap.png")
+ggsave(fn.fig, w=4, h=4)

@@ -1,3 +1,9 @@
+# Folders
+DATA_ORIGINAL
+DATA_PROCESSED
+FIGURES
+RESULTS
+
 # History files
 .Rhistory
 .Rapp.history

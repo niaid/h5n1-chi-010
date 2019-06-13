@@ -1,0 +1,5 @@
+cur.dir = file.path(PROJECT_DIR, "SCRIPTS/MA/filtering_pbmc/samples.all_genes.iqr")
+# source(file.path(cur.dir, "filter_samples.config.r"))
+# source(file.path(cur.dir, "../filter_samples.call.r"))
+source(file.path(cur.dir, "filter_gene.config.r"))
+source(file.path(cur.dir, "../filter_gene.call.r"))
