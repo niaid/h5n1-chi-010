@@ -86,6 +86,68 @@ Input data:
 ```
 source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pbmc.r") # Sourcing this file SCRIPTS/functions/factor.date.r
 ```
-
 Output data:  
 * `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData`
+
+# Pattern discovery in post-vaccination profiles of gene expression
+
+## Profiles clustering with DIANA
+
+*Note: before running this script create the relevant folders by `mkdir RESULTS/Microarrays/PBMC/pattern_discovery/`*
+
+Input data:  
+* `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData`
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_discovery.r")
+```
+Output data:  
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.cc.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana.object.abs.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana_dendrogram.png`
+  
+## Cut the dendrogram tree at different levels and detect stable clusters
+
+Input data:  
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana.object.abs.rds`
+```
+source("SCRIPTS/MA/pattern_discovery/patterns_cutTree_stable.r")
+```
+Output data:  
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana_data.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/z.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/zl.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns.txt`
+  
+## Filter the patterns
+Input data:  
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.cc.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns.txt`
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_filter.r")
+```
+Output data:  
+* `/RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+  
+## Summarize patterns stats
+Input data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.rds`
+* `/RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+```
+source("SCRIPTS/MA/pattern_discovery/patterns_stats.r")
+```
+Output data:
+* `/RESULTS/Microarrays/PBMC/pattern_discovery/df.cl.stat.rds`
+* `/RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+  
+## Figure 2B - patterns profile plot
+Input data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cl.stat.rds`
+```
+source("SCRIPTS/MA/pattern_discovery/plot_patterns.r")
+```
+Output data:
+* `FIGURES/GE_patterns_profiles.png`
+* `FIGURES/GE_patterns_profiles_2col.png`
+* `FIGURES/GE_patterns_profiles_horiz.png`
