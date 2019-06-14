@@ -4,30 +4,30 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - r-base=3.6.0
+  - r-base=3.5
   - rstudio
-  - snakemake=5.5.0
-  - r-tidyverse=1.2.1
-  - r-feather=0.3.2
-  - r-logging=0.7_103
-  - r-venndiagram=1.6.20
-  - r-tmod=0.40
-  - r-biocmanager=1.30
-  - bioconductor-biobase=2.42
-  - r-logging=0.9_107
-  - r-jsonlite=1.5
-  - r-circlize=0.4.6
-  - r-cluster=2.0.7_1
-  - r-data.table=1.11.4 
-  - r-ggdendro=0.1_20
-  - r-gplots=3.0.1.1
-  - r-gridextra=2.3
-  - r-lazyeval=0.2.1
-  - r-plyr=1.8.4
-  - r-proc=1.12.1
-  - r-wgcna=1.67
-  - bioconductor-affy=1.60.0
-  - bioconductor-complexheatmap=2.0.0
-  - bioconductor-genefilter=1.64.0
-  - bioconductor-geoquery=2.50.5 
-  - bioconductor-mygene=1.18.0
+  - snakemake
+  - r-tidyverse
+  - r-feather
+  - r-logging
+  - r-venndiagram
+  - r-tmod
+  - r-biocmanager
+  - bioconductor-biobase
+  - r-logging
+  - r-jsonlite
+  - r-circlize
+  - r-cluster
+  - r-data.table 
+  - r-ggdendro
+  - r-gplots
+  - r-gridextra
+  - r-lazyeval
+  - r-plyr
+  - r-proc
+  - r-wgcna
+  - bioconductor-affy
+  - bioconductor-complexheatmap
+  - bioconductor-genefilter
+  - bioconductor-geoquery
+  - bioconductor-mygene

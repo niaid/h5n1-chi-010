@@ -24,7 +24,7 @@ Quantile normalization implement in RMA-sketch algorithm uses random subset of d
 
 Input data:  
 * `DATA_ORIGINAL/Microarrays/PBMC/sample_info.txt` from the original data files. 
-* `DATA_PROCESSED/Microarrays/PBMC/rma-sketch.summary.txt` from the previous procedure.
+* `DATA_PROCESSED/Microarrays/PBMC/rma-sketch.summary.txt` copied Yuri's pre-computed for reproducibility. This file was supposed to be generated in the previous step.
 
 ```
 source("SCRIPTS/MA/processing_pbmc/eset.config.r")
@@ -151,3 +151,58 @@ Output data:
 * `FIGURES/GE_patterns_profiles.png`
 * `FIGURES/GE_patterns_profiles_2col.png`
 * `FIGURES/GE_patterns_profiles_horiz.png`
+  
+## Expand list of pattern signature genes
+Input data: 
+* `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData`
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_filter_expanded.r")
+```
+Output data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_{sum(gi)}g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_{sum(gi)}g.rds`
+
+## Compute correlations and clean up the genes
+Input data for the first script:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+
+Input data for the second script:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
+
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_cor.r")
+source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_clean.r")
+```
+Output data from the first script:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_%dg.rds",n_genes`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_%dg.rds`
+
+Output data from the second script:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patterns_correlations__q%.2f_%dg.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patterns_correlations_p__q%.2f_%dg.txt`
+* `FIGURES/pattern_correlations/pattern_%d.%d_cor_km2_heatmap.png`
+  
+## Compute subject scores for each pattern
+```
+source("SCRIPTS/MA/pattern_discovery/patterns_to_subjects.r")
+```
+
+## Output the table of genes (with annotations) for each pattern
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_genes_output.r")
+```
+
+## BTM enrichment in patterns genes. Figure 2C
+```
+source("SCRIPTS/MA/pattern_discovery/pattern_BTM_enrichment.r")
+```
+
+## Add data for subject s10 and update the score matrix
+```
+source("SCRIPTS/MA/pattern_discovery/s10_peaks_assessment.r")
+source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
+```
