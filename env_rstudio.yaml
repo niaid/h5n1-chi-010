@@ -5,6 +5,7 @@ channels:
   - conda-forge
 dependencies:
   - r-base=3.5.1
+  - rstudio
   - snakemake=5.5.0
   - r-tidyverse=1.2.1
   - r-feather=0.3.2
