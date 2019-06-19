@@ -5,6 +5,22 @@ H5N1
 
 *Note: Output folders need to be created manually, therefore, read the output data text to create appropriate directory structure. TODO: probably add a feature in the scripts to check and create directories before writing files. Or write a master shell script that creates the appropriate directories for the entire project.*
 
+## Setup the Environment
+
+**Note: use env.yaml on HPC and env_rstudio.yaml on Laptop to create the conda environment for this project.**
+
+**Activate the conda environment**  
+```
+conda activate h5n1
+```
+
+**Invoke R and initialize the environment**
+```
+# Enter the project directory.
+# R
+source("SCRIPTS/0_initialize.r")
+```
+
 # Gene Expression PBMC data processing
 
 *Note: I did not repeat these steps as they seem to compute intensive and also stochastic in nature.*
@@ -187,22 +203,54 @@ Output data from the second script:
 * `FIGURES/pattern_correlations/pattern_%d.%d_cor_km2_heatmap.png`
   
 ## Compute subject scores for each pattern
+Input data:  
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patt.genes.clean.rds`
 ```
 source("SCRIPTS/MA/pattern_discovery/patterns_to_subjects.r")
+# Sources another script. 
 ```
+Output data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.txt`
 
 ## Output the table of genes (with annotations) for each pattern
+Input data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patt.genes.clean.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
 ```
 source("SCRIPTS/MA/pattern_discovery/pattern_genes_output.r")
 ```
+Ouput data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/GE_pattern_%02d_gene.sig.contr_ann.txt`
 
 ## BTM enrichment in patterns genes. Figure 2C
+Input data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/GE_pattern_%02d_gene.sig.contr_ann.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/df_6672g.rds`
 ```
 source("SCRIPTS/MA/pattern_discovery/pattern_BTM_enrichment.r")
 ```
+Ouput data:
+* `FIGURES/GE_pattern_BTM_enrichment_heatmap_{mset}.pdf`
+* `FIGURES/E_pattern_BTM_enrichment_heatmap_{mset}.png`
 
 ## Add data for subject s10 and update the score matrix
+Input data:
+* `DATA_PROCESSED/Microarrays/PBMC/samples.all_genes.iqr/eset.genes.filtered.RData`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patt.genes.clean.rds`
 ```
 source("SCRIPTS/MA/pattern_discovery/s10_peaks_assessment.r")
+# Script above sources another script.
 source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
 ```
+Output data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/s10_pattern_scores.rds`
