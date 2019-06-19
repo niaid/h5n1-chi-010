@@ -20,7 +20,9 @@ conda activate h5n1
 # R
 source("SCRIPTS/0_initialize.r")
 ```
+## Original Data Files (Yuri's)
 
+`/hpcdata/sg/sg_data/CHI/PROJECTS/H5N1/PAPER`
 # Gene Expression PBMC data processing
 
 *Note: I did not repeat these steps as they seem to compute intensive and also stochastic in nature.*
@@ -254,3 +256,60 @@ source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
 ```
 Output data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/s10_pattern_scores.rds`
+
+# Gene Expression PAXgene data processing
+## Data post processing
+### We found that two samples were switched. This is to correct it.
+
+**TODO: I don't have the scripts in the workflow that generates "DATA_PROCESSED/Microarrays/PAXgene/eset.apt.RData". For now I will just copy it from Yuri's**
+```
+source("SCRIPTS/MA/filtering_pax/switch.samples/switch.samples.call.r")
+```
+
+### Apply different filtering to samples and genes. The probesets mapped to genes.
+```
+source("SCRIPTS/MA/filtering_pax/filtering.r")
+```
+
+### Calculate fold change from day 0
+```
+source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pax.r")
+```
+
+# Baseline Data Analysis
+## Preparing PBMC day 0 samples
+```
+source("SCRIPTS/MA/baseline_pbmc/d0_filter.r")
+```
+
+## WGCNA clustering of PBMC samples
+```
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna.r")
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_output.r")
+```
+
+## BTM enrichment analysis of data from PBMC samples
+```
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_BTM_enrichment.r")
+```
+
+## Preparing whole blood (PAXgene) day 0 samples
+```
+source("SCRIPTS/MA/baseline_pax/d0_filter_pax.r")
+```
+
+## WGCNA clustering of whole blood samples
+```
+source("SCRIPTS/MA/baseline_pax/d0_wgcna.r")
+source("SCRIPTS/MA/baseline_pax/d0_wgcna_output.r")
+```
+
+## BTM enrichment analysis of data from whole blood samples
+```
+source("SCRIPTS/MA/baseline_pax/d0_wgcna_BTM_enrichment.r")
+```
+
+## FIgure 4A. Combining BTM enrichment results from PBMC and whole blood samples
+```
+source("SCRIPTS/MA/baseline/plot_BTM_pbmc_pax.r")
+```
