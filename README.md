@@ -1,16 +1,23 @@
-# h5n1
-H5N1 
+# H5N1 Data Analysis Workflow
 
-# Workflow
+*Note: For some of the scripts the output folders need to be created manually, therefore, read the output data text to create appropriate directory structure. TODO: probably add a feature in the scripts to check and create directories before writing files. Or write a master shell script that creates the appropriate directories for the entire project.*
 
-*Note: Output folders need to be created manually, therefore, read the output data text to create appropriate directory structure. TODO: probably add a feature in the scripts to check and create directories before writing files. Or write a master shell script that creates the appropriate directories for the entire project.*
+# Table of Content
 
-## Setup the Environment
+1. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
+2. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
+3. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
+4. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
+5. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
 
-**Note: use env.yaml on HPC and env_rstudio.yaml on Laptop to create the conda environment for this project.**
+# Environment Setup
 
-**Activate the conda environment**  
+## Build and Activate Conda Environment
+
+**Note: use env.yaml on HPC and env_rstudio.yaml (installs rstudio also) on Laptop to create Conda environment(s) for this project.**
+
 ```
+conda env create --file=env.yaml
 conda activate h5n1
 ```
 
@@ -18,11 +25,23 @@ conda activate h5n1
 ```
 # Enter the project directory.
 # R
-source("SCRIPTS/0_initialize.r")
+source("SCRIPTS/0_initialize.r") # You might want to make changes to this script
+if you are running it inside RStudio.
 ```
+
 ## Original Data Files (Yuri's)
 
 `/hpcdata/sg/sg_data/CHI/PROJECTS/H5N1/PAPER`
+
+## Yuri's Singularity container
+```
+$ module load Singularity
+$ cd /hpcdata/sg/sg_data/singularity/test
+$ singularity shell -B \
+    /hpcdata/sg/sg_data/CHI/PROJECTS/H5N1/PAPER/:/var/workflow1 \
+    h5n1_image_180410.img
+```
+
 # Gene Expression PBMC data processing
 
 *Note: I did not repeat these steps as they seem to compute intensive and also stochastic in nature.*
@@ -34,7 +53,6 @@ source("SCRIPTS/MA/processing_pbmc/apt.call.r")
 ```
 
 Quantile normalization implement in RMA-sketch algorithm uses random subset of data to decrease memory usage. Because of this at different runs the algorithm may generates slightly different results. For reproducibility we recommend using precomputed APT output located in DATA_PROCESSED/Microarrays/PBMC/apt_summary.txt. *(this seem to be wrong because apt_summary.txt is produced by the scripts in the section immediately below. On the other hand rma-sketch.summary.txt file seem to be the optout of this procedure and input to ones below. I copied rma-sketch.summary.txt file over.)*
-
 
 ## Create ExpressionSet from APT output
 
@@ -76,6 +94,7 @@ source("SCRIPTS/MA/annotation/generate_ps2gene_map.call.r") # It calls a functio
 ```
 
 ## Data post processing
+
 ### We found that two samples were switched. This is to correct it.
 
 Input data:  
@@ -257,8 +276,10 @@ source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
 Output data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/s10_pattern_scores.rds`
 
-# Gene Expression PAXgene data processing
-## Data post processing
+# Gene Expression PAXgene Data Processing
+
+## Data Post Processing
+
 ### We found that two samples were switched. This is to correct it.
 
 **TODO: I don't have the scripts in the workflow that generates "DATA_PROCESSED/Microarrays/PAXgene/eset.apt.RData". For now I will just copy it from Yuri's**
@@ -277,6 +298,7 @@ source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pax.r")
 ```
 
 # Baseline Data Analysis
+
 ## Preparing PBMC day 0 samples
 ```
 source("SCRIPTS/MA/baseline_pbmc/d0_filter.r")
@@ -295,7 +317,7 @@ source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_BTM_enrichment.r")
 
 ## Preparing whole blood (PAXgene) day 0 samples
 ```
-source("SCRIPTS/MA/baseline_pax/d0_filter_pax.r")
+source("SCRIPTS/MA/baseline_pax/d0_filter.r") # File name changed
 ```
 
 ## WGCNA clustering of whole blood samples
