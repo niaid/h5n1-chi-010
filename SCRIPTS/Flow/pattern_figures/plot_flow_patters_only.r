@@ -1,9 +1,9 @@
 # was plot_flow_patters_only_171123.r
 
-dn.in = file.path(PROJECT_DIR, "RESULTS/Flow_10c/")
+dn.in = file.path(PROJECT_DIR)
 
 # Flow modules
-fn = "DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_Modules.txt"
+fn = "RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_Modules.txt"
 patt.flow = read.csv(file.path(dn.in, fn), row.names=1, stringsAsFactors = F)
 patt.flow = t(patt.flow)
 rownames(patt.flow) = sub("Module.","Fp", rownames(patt.flow))

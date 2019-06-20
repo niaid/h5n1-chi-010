@@ -1,6 +1,6 @@
 # was plot_flow_patters_only_171123.r
 
-dn.in = file.path(PROJECT_DIR, "RESULTS/Flow_10c/")
+dn.in = file.path(PROJECT_DIR, "RESULTS/Flow_10c")
 
 # Flow modules
 fn = "DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_Modules_v2.txt"

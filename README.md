@@ -276,6 +276,50 @@ source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
 Output data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/s10_pattern_scores.rds`
 
+# Pattern discovery in post-vaccination profiles of flow cytometry data
+TODO: No script available to generate flow processed data. I copied processed data from Yuri's folder for downstream analysis.
+
+## Generate Trajectory Matrix
+TODO: I don't know which one of these were used. I ran all of them
+```
+source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_v2.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_v3.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_new.R")
+```
+
+## Genetrate Trajectory Clusters
+```
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v2.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v3.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_new.R")
+```
+
+## Figure 2D (use Julian’s data)
+```
+source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
+```
+
+## Figure 2E (use Julian’s data)
+
+## Supplemental Figure 1D
+
+## Add data for subject s10
+
+## Figure 2F (partially use Julian’s data)
+
+## Supplemental Figure 2B
+
+# Emory data analysis blindly predicting adjuvant status
+
+## Supplemental Figure 2C
+
+## Supplemental Figure 2D
+
+## Supplemental Figure 2E
+
+
 # Gene Expression PAXgene Data Processing
 
 ## Data Post Processing

@@ -18,7 +18,8 @@ ro = match(id.order, df$ID) %>% rev()
 
 # ro = hclust(dist(mat, method = "man"), method = "comp")$order
 
-fn.ann = file.path(PROJECT_DIR, "DATA_ORIGINAL/Flow_10c/Flow_10c_ann.txt")
+# fn.ann = file.path(PROJECT_DIR, "DATA_ORIGINAL/Flow_10c/Flow_10c_ann.txt")
+fn.ann = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/Flow_10c_ann.txt")
 df.ann = fread(fn.ann) %>% 
   mutate(Annot = paste0(ID, ": ", Name2))
 
