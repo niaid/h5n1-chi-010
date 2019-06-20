@@ -4,6 +4,10 @@ DATA_PROCESSED
 FIGURES
 RESULTS
 
+# Tmp and Swp files
+*._*
+*~*
+
 # History files
 .Rhistory
 .Rapp.history
