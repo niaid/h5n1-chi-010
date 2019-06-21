@@ -4,6 +4,10 @@ DATA_PROCESSED
 FIGURES
 RESULTS
 
+# Singularity Image Files
+*.img
+*.simg
+
 # Tmp and Swp files
 *._*
 *~*
