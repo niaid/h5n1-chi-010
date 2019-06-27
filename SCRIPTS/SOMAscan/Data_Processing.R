@@ -1,8 +1,8 @@
 library(calibrate)
 
-rm(list=ls())
+# rm(list=ls())
 
-PROJECT_DIR = "/Users/candiajm/ACTIVE/H5N1/WORKFLOW"
+# PROJECT_DIR = "/Users/candiajm/ACTIVE/H5N1/WORKFLOW"
 
 setwd(file.path(PROJECT_DIR,"DATA_PROCESSED","SOMAscan"))
 

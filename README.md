@@ -4,17 +4,18 @@
 
 # Table of Content
 
-1. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
-2. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
-3. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
-4. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
-5. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
-6. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
-7. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
-8. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
-9. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
-10. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
-11. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
+1. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
+2. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
+3. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
+4. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
+5. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
+6. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
+7. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
+8. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
+9. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
+10. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
+11. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
+
 
 # Environment Setup
 
@@ -25,6 +26,9 @@
 ```
 conda env create --file=env.yaml
 conda activate h5n1
+
+# Install eNetXlporer through install.packages()
+install.packages("eNetXplorer")
 ```
 
 **Invoke R and initialize the environment**
@@ -47,6 +51,32 @@ $ singularity shell -B \
     /hpcdata/sg/sg_data/CHI/PROJECTS/H5N1/PAPER/:/var/workflow1 \
     h5n1_image_180410.img
 ```
+# Titers
+
+## Figure 1B
+```R
+source("SCRIPTS/titers/mn_titer_profiles.r")
+```
+Output data:
+* `FIGURES/titers/MN_titer_profiles_all_subjects.pdf`
+
+## Supplemental Figure 1(FIGURES/titers):
+```R
+source("SCRIPTS/titers/titer_response_rate.r")
+source("SCRIPTS/titers/hai_titer_profiles.r")
+source("SCRIPTS/titers/mn_titer_peak.r")
+```
+
+# Pattern profiles of clinical CBC data and Luminex
+## Figures 1 C,D,E (FIGURES/profiles/)
+```
+source("SCRIPTS/profiles/Monocytes_figure.r")
+source("SCRIPTS/profiles/Neutrophils_figure.r")
+source("SCRIPTS/profiles/IP10_figure.r") # Copy Luminex data to DATA_PROCESSED
+```
+
+## Pattern simulation
+source("SCRIPTS/pattern_sim/pattern_simulation.r")
 
 # Gene Expression PBMC data processing
 
@@ -371,7 +401,9 @@ Julian’s scripts for elastic net models
 ## Figure 3B
 
 ## Figure 3C
-
+```R
+source("SCRIPTS/adjuvant_prediction/2peaks_pca_2clusters.r")
+```
 ## Figure 3E
 
 ## Figure 3F and 3G
@@ -465,16 +497,4 @@ Figure 7D
 
 Figure 7E
 
-# Titers
 
-## Figure 1B
-```R
-source("SCRIPTS/titers/mn_titer_profiles.r")
-```
-
-## Supplemental Figure 1C
-```R
-source("SCRIPTS/titers/mn_titer_peak.r")
-```
-
-TOD: DATA_ORIGINAL/HAI/H5N1 serology.txt' missing that is required for two scripts related to titer figures.

@@ -4,7 +4,7 @@ df.demo = fread(fn.demo, data.table = F) %>%
   # mutate(Sample.ID = sub("H5N1-0","", `Subject ID`) %>% as.numeric())
   select(subject=`Subject ID`, Adjuvant)
 
-fn.hai = file.path(PROJECT_DIR, "DATA_ORIGINAL", "HAI", "H5N1 serology.txt")
+fn.hai = file.path(PROJECT_DIR, "DATA_ORIGINAL", "HAI", "H5N1_serology.txt")
 df.hai = read.table(fn.hai, sep="\t", 
                       header=T, row.names=NULL, stringsAsFactors=F) %>% 
   mutate_at(-(1), function(x) sub("<10","5",x) %>% as.numeric()) %>% 
