@@ -6,16 +6,17 @@
 
 1. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
 2. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
-3. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
-4. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
-5. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
-6. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
-7. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
-8. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
-9. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
-10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
-11. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
-12. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
+3. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
+4. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
+5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
+6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
+7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
+8. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
+9. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
+10. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
+11. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
+12. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
+13. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
 
 
 # Environment Setup
@@ -52,6 +53,9 @@ $ singularity shell -B \
     /hpcdata/sg/sg_data/CHI/PROJECTS/H5N1/PAPER/:/var/workflow1 \
     h5n1_image_180410.img
 ```
+```
+singularity shell -B /hpcdata/sg/sg_data/users/farmerr2/sandbox/projects/h5n1:/var/workflow1 h5n1_image_180410.img
+```
 # Titers
 
 ## Figure 1A
@@ -73,14 +77,16 @@ source("SCRIPTS/titers/mn_titer_peak.r")
 
 # Pattern profiles of clinical CBC data and Luminex
 ## Figures 1 C,D,E (FIGURES/profiles/)
-```
+```R
 source("SCRIPTS/profiles/Monocytes_figure.r")
 source("SCRIPTS/profiles/Neutrophils_figure.r")
 source("SCRIPTS/profiles/IP10_figure.r") # Copy Luminex data to DATA_PROCESSED
 ```
 
-## Pattern simulation
+# Pattern simulation (Figure 2A)
+```R
 source("SCRIPTS/pattern_sim/pattern_simulation.r")
+```
 
 # Gene Expression PBMC data processing
 
@@ -400,17 +406,51 @@ source("SCRIPTS/Emory/adjuvant_prediction.r")
 ```
 
 # Find signature for adjuvant status prediction
-Julian’s scripts for elastic net models
+Elastic net models
+
+## Generate input data:
+```
+source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
+source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
+source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
+```
+## Run eNetXplorer:
+```
+source("SCRIPTS/eNetXplorer/eNetXplorer_R1_180530.R")
+source("SCRIPTS/eNetXplorer/eNetXplorer_R2_180530.R")
+source("SCRIPTS/eNetXplorer/eNetXplorer_R3_180530.R")
+```
 
 ## Figure 3B
+```
+source("SCRIPTS/eNet_figures/enet_plots_R1.r")
+```
 
 ## Figure 3C
-```R
+```
 source("SCRIPTS/adjuvant_prediction/2peaks_pca_2clusters.r")
 ```
+
+## Figure 3D
+```
+source("SCRIPTS/adjuvant_prediction/ip10_2clusters_compare.r")
+```
+
+## Supplemental Figure 4B
+```
+source("SCRIPTS/adjuvant_prediction/cytokines_2clusters_compare.r")
+```
+
 ## Figure 3E
+```
+source("SCRIPTS/adjuvant_prediction/2peaks_pca_final_heamap.r")
+```
 
 ## Figure 3F and 3G
+```
+source("SCRIPTS/eNet_figures/enet_plots_R3.r")
+source("SCRIPTS/eNet_figures/enet_plots_R2.r")
+```
 
 
 # Gene Expression PAXgene Data Processing
