@@ -4,10 +4,10 @@
 
 # Table of Content
 
-1. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
-2. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
-3. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
-4. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
+1. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
+2. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
+3. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
+4. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
 5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
 6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
 7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
@@ -85,7 +85,7 @@ source("SCRIPTS/profiles/IP10_figure.r") # Copy Luminex data to DATA_PROCESSED
 
 # Pattern simulation (Figure 2A)
 ```R
-source("SCRIPTS/pattern_sim/pattern_simulation.r")
+source("SCRIPTS/pattern_sim/pattern_simulation.r") # TODO: This script throws error if run as whole, but runs fine in interactive mode. Results seems to be stochastic and are not identical to what we have in the paper.
 ```
 
 # Gene Expression PBMC data processing
@@ -321,23 +321,23 @@ Output data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/s10_pattern_scores.rds`
 
 # Pattern discovery in post-vaccination profiles of flow cytometry data
-TODO: No script available to generate flow processed data. I copied processed data from Yuri's folder for downstream analysis.
+FlowJo software was used to export flow data, therefore copy processed data from Yuri's folder for further analysis.
 
 ## Generate Trajectory Matrix
 TODO: I don't know which one of these were used. I ran all of them
 ```R
-source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix.R")
+# source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix.R")
 source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_v2.R")
 source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_v3.R")
-source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_new.R")
+# source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_new.R")
 ```
 
 ## Genetrate Trajectory Clusters
 ```R
-source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster.R")
+# source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster.R")
 source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v2.R")
 source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v3.R")
-source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_new.R")
+# source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_new.R")
 ```
 
 ## Figure 2D (use Julian’s data)
@@ -414,6 +414,8 @@ source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
 source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
 source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
 ```
+TODO: the sripts above require `RESULTS/Adjuvant_prediction/adjuvant_predicted_subjects.txt` which none of the previous scripts seems to produce.
+
 ## Run eNetXplorer:
 ```
 source("SCRIPTS/eNetXplorer/eNetXplorer_R1_180530.R")
@@ -509,36 +511,61 @@ source("SCRIPTS/MA/baseline_pax/d0_wgcna_BTM_enrichment.r")
 ```
 
 ## FIgure 4A. Combining BTM enrichment results from PBMC and whole blood samples
+Also Suppl. Figure 6A
 ```
 source("SCRIPTS/MA/baseline/plot_BTM_pbmc_pax.r")
 ```
 
-Julian’s scripts for elastic net models
+## Elastic net models for baseline prediction
+Generate input data:
+```R
+source("SCRIPTS/eNetXplorer/eNet_input_r6.r")
+```
+
+Run eNetXplorer:
+```R
+source("SCRIPTS/eNetXplorer/eNetXplorer_R6_181022.R")
+```
 
 Figure 4B
+```R
+source("SCRIPTS/eNet_figures/enet_plots_all.r")
+```
+
+# Unblinding results (Figure 5, suppl. Figure 5)
+## Figure 5A
+Drawn in Illustrator
+
+## Figure 5B
+```R
+source("SCRIPTS/adjuvant_prediction/pattern_gene_time_score_sel.subject.r")
+source("SCRIPTS/adjuvant_prediction/pattern_flow_time_score_sel.subject.r")
+source("SCRIPTS/adjuvant_prediction/IP10_time_score_sel.subject.r")
+```
+
+## Figure 5C (FIGURES/IFN_signature).
+```R
+source("SCRIPTS/MA/baseline/GbWB11.d0_vs_MN.d28.r")
+```
 
 
-Figure 5A
+# Tfh cells data analysis (Figure 6)
+## Figure 6A
 
-Figure 5B
+## Figure 6B
 
+## Figure 6C
 
-# SOMAscan data analysis
+## Figure 6D
+
+## Supp. Figure 7
+
+# SOMAscan data analysis (Figure 7)
 Julian’s scripts for elastic net models
 
-Figure 6A
+## Figure 7A
 
-Figure 6B
+## Figure 7B
 
-# Tfh cells data analysis
-Figure 7A
-
-Figure 7B
-
-Figure 7C
-
-Figure 7D
-
-Figure 7E
 
 

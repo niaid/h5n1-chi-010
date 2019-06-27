@@ -109,9 +109,6 @@ dev.off()
 
 run_select = 1 # we select the first set of clustering parameters
 clust_id = clust_id[[run_select]]
-clust_out = data.frame(node = cellpop_donor$V4, cluster=clust_id)
-write.table(clust_out, file=paste(path_outfile,"/DeltaThr",thres,"_DonorThr",donor_thres,"_",measure_type,"_",method,"_",clustering_method,"_clusters.txt",sep=""),
-            sep="\t", col.names=T, row.names=F, quote = F)
 n_clust = max(clust_id)
 delta_median = matrix(rep(0,n_clust*n_TP),ncol=n_TP)
 delta_mad = matrix(rep(0,n_clust*n_TP),ncol=n_TP)
@@ -243,10 +240,9 @@ for (i_clust in 1:n_clust) {
     }
 }
 
-i_cp_filt = apply(module,1,sum)>0
-module = module[i_cp_filt,] # to remove CPs that don't participate from any module
+rownames(module) = cellpop_labels2n
+module = module[apply(module,1,sum)>0,] # to remove CPs that don't participate from any module
 module2 = module
-rownames(module2) = cellpop_labels2n[i_cp_filt]
 heatmap.2(module2, scale="none", Rowv=T, Colv=F, col=0:n_clust,
 dendrogram = "none", margins=c(10,20), cexRow=0.5, labCol=F,trace="none", key=F,
 add.expr=mtext(side = 1, text = colnames(module2), at = 1:ncol(module2), las = 2, line = 0.5,col = 1:ncol(module2), cex = 0.8))
@@ -294,7 +290,7 @@ for (i_clust in 1:n_clust) {
 # we plot the trajectory clusters by median/mad
 range_y = range(c(delta_median-delta_mad,delta_median+delta_mad))
 ncol = min((n_clust+1)%/%2,3)
-nrow = ceiling(n_clust/ncol)
+nrow = n_clust%/%ncol+1
 par(mfrow=c(nrow,ncol),oma=c(0,0,5,0))
 for (i_clust in 1:n_clust) {
     leftmost_col = i_clust%%ncol==1
@@ -327,7 +323,7 @@ title(title,outer=T)
 
 # we plot the trajectory clusters by median/mad (filtered by CP/donor)
 ncol = min((n_clust+1)%/%2,3)
-nrow = ceiling(n_clust/ncol)
+nrow = n_clust%/%ncol+1
 par(mfrow=c(nrow,ncol))
 for (i_clust in 1:n_clust) {
     # each plot is independently rescaled

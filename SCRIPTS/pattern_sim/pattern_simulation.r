@@ -1,3 +1,4 @@
+library(tidyverse)
 Ng = 100
 Nd = 10
 Nt = 8
@@ -59,7 +60,7 @@ K = 4
 hm = Heatmap(dat, name="hm1", cluster_columns = F, cluster_rows = T, km = K, 
              col = colorRamp2(c(-1, 0, 1), c("blue","white","red")),
              show_row_names = F, show_column_names = F, show_heatmap_legend = F,
-             show_row_dend = F, km_title = "p%i",
+             show_row_dend = F, #km_title = "p%i",
              gap = unit(1, "mm"),
              # rect_gp = gpar(fill = "transparent", lwd=0),
              row_title = "", column_title = "",

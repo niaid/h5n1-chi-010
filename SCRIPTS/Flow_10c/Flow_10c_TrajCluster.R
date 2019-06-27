@@ -106,6 +106,9 @@ dev.off()
 
 run_select = 1 # we select the first set of clustering parameters
 clust_id = clust_id[[run_select]]
+clust_out = data.frame(node = cellpop_donor$V4, cluster=clust_id)
+write.table(clust_out, file=paste(path_outfile,"/DeltaThr",thres,"_DonorThr",donor_thres,"_",measure_type,"_",method,"_",clustering_method,"_clusters.txt",sep=""),
+            sep="\t", col.names=T, row.names=F, quote = F)
 n_clust = max(clust_id)
 delta_median = matrix(rep(0,n_clust*n_TP),ncol=n_TP)
 delta_mad = matrix(rep(0,n_clust*n_TP),ncol=n_TP)
@@ -155,10 +158,10 @@ abline(h=0,col="black",lty=3)
 
 # we clean up cluster IDs
 remove = clust_id==0
-if (sum(remove)>0) {
+# if (sum(remove)>0) {
     clust_id = clust_id[!remove]
     cellpop_donor2 = cellpop_donor[!remove,]
-}
+# }
 cellpop2 = unique(cellpop_donor2[,2])
 n_cellpop2 = length(cellpop2)
 cellpop_labels2 = rep("",n_cellpop2)
@@ -322,7 +325,7 @@ title(title,outer=T)
 
 # we plot the trajectory clusters by median/mad (filtered by CP/donor)
 ncol = min((n_clust+1)%/%2,3)
-nrow = n_clust%/%ncol+1
+nrow = ceiling(n_clust/ncol)
 par(mfrow=c(nrow,ncol))
 for (i_clust in 1:n_clust) {
     # each plot is independently rescaled

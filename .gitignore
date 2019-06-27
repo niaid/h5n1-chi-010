@@ -4,6 +4,10 @@ DATA_PROCESSED
 FIGURES
 RESULTS
 
+# Figures that are generated outside the FIGURES folder
+*.png
+*.pdf
+
 # Singularity Image Files
 *.img
 *.simg
