@@ -349,7 +349,6 @@ source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
 ```R
 source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did not work
 ```
-## Supplemental Figure 1D
 
 ## Add data for subject s10
 
