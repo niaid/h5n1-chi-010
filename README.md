@@ -11,12 +11,12 @@
 5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
 6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
 7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
-8. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
-9. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
-10. [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
-11. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
-12. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
-13. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
+8. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
+9.  [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
+10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
+11. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
+12. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
+13. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
 
 
 # Environment Setup
@@ -357,76 +357,7 @@ source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did no
 
 ## Supplemental Figure 2B
 
-# Emory data analysis blindly predicting adjuvant status
-
-## Process Data to Generate Espression Set
-Input data:
-* `DATA_ORIGINAL/Emory/T H - Vax010_RMA_CHI.txt.zip`
-* `DATA_ORIGINAL/Emory/T H - Vax010_RMA_CHI/Vax010_RMA_CHI.txt`
-* `DATA_ORIGINAL/Emory/Vax010_demographics_wAge.txt`
-```R
-source("SCRIPTS/Emory/emory_data.r")
-```
-Output data:
-* `DATA_PROCESSED/Emory/eset.rds`
-
-## Get Annotations
-Input data:
-* `DATA_ORIGINAL/Emory/GPL13158.annot.gz`
-```R
-source("SCRIPTS/Emory/get_ann.r")
-```
-Output data:
-* `DATA_PROCESSED/Emory/GPL13158.ann.txt`
-
-## Map Probes to Genes
-Input data:
-* `DATA_PROCESSED/Emory/eset.rds`
-* `DATA_PROCESSED/Emory/GPL13158.ann_PC1.txt`
-```R
-source("SCRIPTS/Emory/probe2gene.r")
-```
-Output daa:
-* `DATA_PROCESSED/Emory/eset.gene.rds`
-
-## Claculate 2 Peak Scores
-```R
-source("SCRIPTS/Emory/2peak_scores.r")
-```
-
-## Supplemental Figure 2C
-
-## Supplemental Figure 2D
-
-## Supplemental Figure 2E
-
-## Supplemental Figure 5D
-```R
-source("SCRIPTS/Emory/adjuvant_prediction.r")
-```
-
 # Find signature for adjuvant status prediction
-Elastic net models
-
-## Generate input data:
-```
-source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
-source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
-source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
-```
-TODO: the sripts above require `RESULTS/Adjuvant_prediction/adjuvant_predicted_subjects.txt` which none of the previous scripts seems to produce.
-
-## Run eNetXplorer:
-```
-source("SCRIPTS/eNetXplorer/eNetXplorer_R1_180530.R")
-source("SCRIPTS/eNetXplorer/eNetXplorer_R2_180530.R")
-source("SCRIPTS/eNetXplorer/eNetXplorer_R3_180530.R")
-```
-
-## Figure 3B
-```
-source("SCRIPTS/eNet_figures/enet_plots_R1.r")
-```
 
 ## Figure 3C
 ```
@@ -445,15 +376,36 @@ source("SCRIPTS/adjuvant_prediction/cytokines_2clusters_compare.r")
 
 ## Figure 3E
 ```
+source("SCRIPTS/adjuvant_prediction/ip10_2peak_scores.r")
 source("SCRIPTS/adjuvant_prediction/2peaks_pca_final_heamap.r")
 ```
+## Elastic net models
 
-## Figure 3F and 3G
+### Generate input data:
+```
+source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
+source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
+source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
+```
+TODO: the sripts above require `RESULTS/Adjuvant_prediction/adjuvant_predicted_subjects.txt` which none of the previous scripts seems to produce.
+
+### Run eNetXplorer:
+```
+source("SCRIPTS/eNetXplorer/eNetXplorer_R1_180530.R") # TODO: update conda environment with library missForest
+source("SCRIPTS/eNetXplorer/eNetXplorer_R2_180530.R")
+source("SCRIPTS/eNetXplorer/eNetXplorer_R3_180530.R")
+```
+
+### Figure 3B
+```
+source("SCRIPTS/eNet_figures/enet_plots_R1.r")
+```
+
+### Figure 3F and 3G
 ```
 source("SCRIPTS/eNet_figures/enet_plots_R3.r")
 source("SCRIPTS/eNet_figures/enet_plots_R2.r")
 ```
-
 
 # Gene Expression PAXgene Data Processing
 
@@ -548,6 +500,53 @@ source("SCRIPTS/adjuvant_prediction/IP10_time_score_sel.subject.r")
 source("SCRIPTS/MA/baseline/GbWB11.d0_vs_MN.d28.r")
 ```
 
+# Emory data analysis blindly predicting adjuvant status
+
+## Process Data to Generate Espression Set
+Input data:
+* `DATA_ORIGINAL/Emory/T H - Vax010_RMA_CHI.txt.zip`
+* `DATA_ORIGINAL/Emory/T H - Vax010_RMA_CHI/Vax010_RMA_CHI.txt`
+* `DATA_ORIGINAL/Emory/Vax010_demographics_wAge.txt`
+```R
+source("SCRIPTS/Emory/emory_data.r")
+```
+Output data:
+* `DATA_PROCESSED/Emory/eset.rds`
+
+## Get Annotations
+Input data:
+* `DATA_ORIGINAL/Emory/GPL13158.annot.gz`
+```R
+source("SCRIPTS/Emory/get_ann.r")
+```
+Output data:
+* `DATA_PROCESSED/Emory/GPL13158.ann.txt`
+
+## Map Probes to Genes
+Input data:
+* `DATA_PROCESSED/Emory/eset.rds`
+* `DATA_PROCESSED/Emory/GPL13158.ann_PC1.txt`
+```R
+source("SCRIPTS/Emory/probe2gene.r")
+```
+Output daa:
+* `DATA_PROCESSED/Emory/eset.gene.rds`
+
+## Claculate 2 Peak Scores
+```R
+source("SCRIPTS/Emory/2peak_scores.r")
+```
+
+## Supplemental Figure 2C
+
+## Supplemental Figure 2D
+
+## Supplemental Figure 2E
+
+## Supplemental Figure 5D
+```R
+source("SCRIPTS/Emory/adjuvant_prediction.r")
+```
 
 # Tfh cells data analysis (Figure 6)
 ## Figure 6A
