@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/enrichment_test.r"))
 
 # import data
@@ -9,7 +10,7 @@ fn = glue::glue("{stype}_ADJ_RSPO3_bySex.txt")
 input = read.csv(file.path(dn, fn), sep="\t", row.names = 1)
 
 dn.out = file.path(PROJECT_DIR, "RESULTS/SOMAscan/BTM")
-dir.create(dn.out, showWarnings = F)
+dir.create(dn.out, recursive = T,  showWarnings = F)
 fn.out = file.path(dn.out, fn)
 
 for (mset in c("LI","DC")) {

@@ -1,0 +1,388 @@
+---
+title: "H5N1 Workflow - R Notebook"
+output: html_notebook
+---
+
+The following pipeline is used to analyze all data in our paper and generate the figures.
+
+_Try executing the pieces of R codes by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file)._
+
+The recommended way to run the pipeline is using our Singularity container. In this the versions of R and all R packages that we used will be preserved.
+
+If you are using Singularity on NIAID HPC, follow these steps to start the container:
+<pre>
+$ module load Singularity
+$ cd /hpcdata/sg/sg_data/singularity/test
+$ singularity shell -B \
+    /hpcdata/sg/sg_data/PROJECTS/baseline/workflow/:/var/workflow1 \
+    h5n1_image.img
+</pre>
+
+<br>
+If Singularity is not available, it is possible to use standalone R.  Our pipeline requires the following R packages:
+
+```{r, eval=FALSE}
+# CRAN:
+install.packages(c("circlize", "cluster", "data.table", "ggdendro", "gplots", 
+  "gridExtra", "lazyeval", "missForest", "plyr", "pROC", "rlang", "tidyverse", 
+  "tmod", "WGCNA"))
+
+# Bioconductor 3.4:
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+biocLite(c("affy", "Biobase", "ComplexHeatmap", "genefilter", "GEOquery", "mygene"))
+
+# Github
+devtools::install_github("juliancandia/eNetXplorer")
+```
+You may need to install additional libraries required by the packages.
+\newline  
+
+In the beginning of each session cd to workflow directory and run 
+```{r setup}
+source("SCRIPTS/0_initialize.r")
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+to initialize required variables and load commonly used libraries
+\newline  
+
+
+##Gene Expression PBMC data processing
+
+First, the CEL files were processed with Affymetrix Power Tools RNA-sketch algorithm. 
+```{r, eval=FALSE}
+# source("SCRIPTS/MA/processing_pbmc/apt.config.r")
+# source("SCRIPTS/MA/processing_pbmc/apt.call.r")
+```
+Quantile normalization implemented in RMA-sketch algorithm uses random subset of data to decrease memory usage. Because of this at different runs the algorithm may generates slightly different results. For reproducibility we recommend using precomputed APT output located in **DATA_PROCESSED/Microarrays/PBMC/apt_summary.txt**.
+
+###Create ExpressionSet from APT output
+```{r}
+source("SCRIPTS/MA/processing_pbmc/eset.config.r")
+source("SCRIPTS/MA/processing_pbmc/eset.call.r")
+```
+
+###Probesets to genes mapping
+Input data: 
+HuGene-2_1-st-v1.na35.hg19.transcript.csv file downloaded from Affymetrix web site
+
+Convert the table to probeset-gene mapping
+```{r}
+source("SCRIPTS/MA/annotation/affy_hugene-2_1-st_annotation.r")
+```
+
+Select the best probeset for a gene
+```{r}
+source("SCRIPTS/MA/annotation/generate_ps2gene_map.config.r")
+source("SCRIPTS/MA/annotation/generate_ps2gene_map.call.r")
+```
+
+###Data post processing
+We found that two samples were switched. This is to correct it.
+```{r}
+source("SCRIPTS/MA/filtering_pbmc/switch.samples/switch.samples.call.r")
+```
+
+Apply different filtering to samples and genes. The probesets mapped to genes.
+```{r}
+source("SCRIPTS/MA/filtering_pbmc/samples.clean_genes.all/filtering.r")
+source("SCRIPTS/MA/filtering_pbmc/samples.clean_genes.iqr/filtering.r")
+source("SCRIPTS/MA/filtering_pbmc/samples.all_genes.all/filtering.r")
+source("SCRIPTS/MA/filtering_pbmc/samples.all_genes.iqr/filtering.r")
+```
+
+Calculate fold change from day 0
+```{r}
+source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pbmc.r")
+```
+
+
+##Gene Expression whole blood (PAXgene) data processing
+
+First, the CEL files were processed with Affymetrix Power Tools RNA-sketch algorithm. 
+```{r}
+# source("SCRIPTS/MA/processing_pax/apt.config.r")
+# source("SCRIPTS/MA/processing_pax/apt.call.r")
+```
+Quantile normalization implemented in RMA-sketch algorithm uses random subset of data to decrease memory usage. Because of this at different runs the algorithm may generates slightly different results. For reproducibility we recommend using precomputed APT output located in **DATA_PROCESSED/Microarrays/PAXgene/apt_summary.txt**.
+
+###Create ExpressionSet from APT output
+```{r}
+source("SCRIPTS/MA/processing_pax/eset.config.r")
+source("SCRIPTS/MA/processing_pax/eset.call.r")
+```
+
+###Probesets to genes mapping
+The mapping file produced from PBMC data was used for PAXgene data as well: 
+**DATA_PROCESSED/Microarrays/annotation/affy_hugene-2_1-st_unique_PC1.txt**
+
+###Data post processing
+We found that two samples were switched. This is to correct it.
+```{r}
+source("SCRIPTS/MA/filtering_pax/switch.samples/switch.samples.call.r")
+```
+
+Apply different filtering to samples and genes. The probesets mapped to genes.
+```{r}
+source("SCRIPTS/MA/filtering_pax/filtering.r")
+```
+
+Calculate fold change from day 0
+```{r}
+source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pax.r")
+```
+
+
+
+##Pattern discovery in post-vaccination profiles of gene expression
+
+![CAUTION: long time calculation!](longtimes.png)   Profiles clustering with DIANA
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_discovery.r")
+```
+
+Cut the dendrogram tree at different levels and detect stable clusters
+```{r}
+source("SCRIPTS/MA/pattern_discovery/patterns_cutTree_stable.r")
+
+```
+
+Filter the patterns
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_filter.r")
+```
+
+Summarize patterns stats
+```{r}
+source("SCRIPTS/MA/pattern_discovery/patterns_stats.r")
+```
+
+Figure 2B - patterns profile plot
+```{r}
+source("SCRIPTS/MA/pattern_discovery/plot_patterns.r")
+```
+
+Expand list of pattern signature genes
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_filter_expanded.r")
+```
+
+![CAUTION: long time calculation!](longtimes.png)
+Compute correlations and clean up the genes
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_cor.r")
+source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_clean.r")
+```
+
+Compute subject scores for each pattern
+```{r}
+source("SCRIPTS/MA/pattern_discovery/patterns_to_subjects.r")
+```
+
+Output the table of genes (with annotations) for each pattern
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_genes_output.r")
+```
+
+BTM enrichment in patterns genes. Figure 2C
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_BTM_enrichment.r")
+```
+
+Add data for subject s10 and update the score matrix
+```{r}
+source("SCRIPTS/MA/pattern_discovery/s10_peaks_assessment.r")
+source("SCRIPTS/MA/pattern_discovery/pattern_scores_in_samples_GE_incl.s10.r")
+```
+
+
+##Pattern discovery in post-vaccination profiles of flow cytometry data
+
+```{r}
+source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix.R")
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster.R")
+```
+
+Plot pattern profiles from flow cytometry data
+```{r}
+source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
+```
+
+Plot the heatmap of features defining the flow patterns
+```{r}
+source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r")
+```
+
+Plot gene expression and flow pattern scores for subjects together with titer and sex information 
+```{r}
+source("SCRIPTS/MA/pattern_discovery/pattern_scores_GE_flow_heatmap.r")
+```
+
+
+##Find signature for adjuvant status prediction based on response pattenrs
+
+Prepare data from eNetXplorer
+```{r}
+source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
+```
+
+![CAUTION: long time calculation!](longtimes.png)
+Run eNetExplorer to predict titer response using GE and flow pattern scores for all subjects
+```{r}
+# source("SCRIPTS/eNetXplorer/eNetXplorer_R1.R")
+```
+
+Plot prediction model from eNetExplorer run using GE and flow pattern scores for  all subjects
+```{r}
+source("SCRIPTS/eNet_figures/enet_plots_R1.r")
+```
+
+Principal Component Analysis of all subjects using features selected by eNetExplorer revealed two clusters
+```{r}
+source("SCRIPTS/adjuvant_prediction/2peaks_pca_2clusters.r")
+```
+
+Calculate and plot two-peak scores for IP-10 and other selected cytokines data from Luminex platform
+```{r}
+source("SCRIPTS/Luminex/import_luminex.r")
+source("SCRIPTS/adjuvant_prediction/ip10_2peak_scores.r")
+source("SCRIPTS/adjuvant_prediction/ip10_2clusters_compare.r")
+source("SCRIPTS/adjuvant_prediction/cytokines_2clusters_compare.r")
+```
+
+Plot scores for selected patterns from gene expression, flow pattern and IP-10 together with titer and sex information. All scores were scaled to center around 0 with SD = 1.
+```{r}
+source("SCRIPTS/adjuvant_prediction/2peaks_pca_final_heamap.r")
+```
+
+Prepare data from eNetXplorer adding blinded prediction of adjuvant status.
+```{r}
+source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
+source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
+```
+
+Run eNetExplorer to predict titer response using GE and flow pattern scores 
+separately for subjects with predicted NEGative or POSitive adjuvant status
+```{r}
+# source("SCRIPTS/eNetXplorer/eNetXplorer_R2.R")
+# source("SCRIPTS/eNetXplorer/eNetXplorer_R3.R")
+```
+
+Plot prediction model from eNetExplorer run for adjuvant predicted NEG and POS subjects
+```{r}
+source("SCRIPTS/eNet_figures/enet_plots_R2.r")
+source("SCRIPTS/eNet_figures/enet_plots_R3.r")
+```
+
+
+### Validation of adjuvant status prediction signature with Emory data
+
+Data preparation. Input - probesets x subjects matrix with demographics data table. Received from Emory University. 
+
+Read the data and create ExpressionSet object
+```{r}
+source("SCRIPTS/Emory/emory_data.r")
+```
+
+Generate mapping using GEO platform information in GPL13158
+```{r}
+source("SCRIPTS/Emory/get_ann.r")
+```
+Convert probesets to genes
+```{r}
+source("SCRIPTS/Emory/probe2gene.r")
+```
+
+Calculate and plot two-peak scores and output adjuvant status prediction
+```{r}
+source("SCRIPTS/Emory/2peak_scores.r")
+source("SCRIPTS/Emory/adjuvant_prediction.r")
+```
+
+
+##Analysis of baseline states
+
+![CAUTION: long time calculation!](longtimes.png)
+Select samples collected at baseline (day 0) time point. For PBMC samples we have duplicated samples at day 0 to we can compute inter-subject variation (ISV) using one-way ANOVA model. 
+Then we select genes with ISV greated than 0.7.
+For PBMC we select the same genes as in PBMC.
+```{r}
+source("SCRIPTS/MA/baseline_pbmc/d0_filter.r")
+source("SCRIPTS/MA/baseline_pax/d0_filter.r")
+```
+
+Run WGCNA analysis. Output modules genes and subject scores.
+```{r}
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna.r")
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_output.r")
+source("SCRIPTS/MA/baseline_pax/d0_wgcna.r")
+source("SCRIPTS/MA/baseline_pax/d0_wgcna_output.r")
+```
+
+Enrichment analysis of BTMs in WGCNA modules
+```{r}
+source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_BTM_enrichment.r")
+source("SCRIPTS/MA/baseline_pax/d0_wgcna_BTM_enrichment.r")
+```
+
+
+Figure 4A. Combining BTM enrichment results from PBMC and whole blood samples
+```{r}
+source("SCRIPTS/MA/baseline/plot_BTM_pbmc_pax.r")
+```
+
+
+Prepare data from eNetXplorer.
+```{r}
+source("SCRIPTS/eNetXplorer/eNet_input_r6.r")
+```
+
+Run eNetExplorer for titer prediction using gene expression modules and flow data from adjuvant-negative subjects at baseline
+```{r}
+# source("SCRIPTS/eNetXplorer/eNetXplorer_R6.R")
+```
+
+Plot prediction model from eNetExplorer run for titer prediction using gene expression modules and flow data from adjuvant-negative subjects at baseline
+```{r}
+source("SCRIPTS/eNet_figures/enet_plots_R6.r")
+```
+
+
+
+
+## Analysis of Tfh cell populations from flow cytometry 
+
+Plot profiles of counts for total Tfh together with Lymphocytes and Neutrophils. Counts for Lymphocytes and Neutrophils are from CBC data. Counts for total Tfh were computed from percent of total Tfh cells out of parent CD3+CD+ T cell population. 
+```{r}
+source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2.r")
+source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2_supp.r")
+```
+
+Plot proportions of CXCR3+ and CXCR3- Tfh cells out of toal Tfh cells
+```{r}
+source("SCRIPTS/Flow/Tfh/Tfh_CXCR3_proportion_bar.r")
+```
+
+Plot profiles of activated CXCR3+ and CXCR3- Tfh cells as change from baseline
+```{r}
+source("SCRIPTS/Flow/Tfh/Tfh_activated_profiles.r")
+```
+
+
+## Analysis of SOMAscan data
+
+Prepare data from eNetXplorer
+```{r}
+source("SCRIPTS/eNetXplorer/eNet_input_r8.r")
+```
+
+Run eNetXplorer
+```{r}
+source("SCRIPTS/eNetXplorer/eNetXplorer_R8.r")
+```
+
+Plot prediction model from eNetExplorer run for adjuvant predicted NEG and POS subjects
+```{r}
+source("SCRIPTS/eNet_figures/enet_plots_R8.r")
+```

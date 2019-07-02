@@ -1,6 +1,7 @@
-dn.enet = file.path(PROJECT_DIR, "RESULTS/eNetXplorer")
+source("SCRIPTS/0_initialize.r")
+dn.enet = file.path(PROJECT_DIR, "RESULTS/eNet")
 run.id = "R8"
-run.ver = "v2"
+run.ver = "v1"
 fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
 
 load(fn.run, verbose = T)
@@ -117,4 +118,4 @@ library(gridExtra)
 mg = grid.arrange(arrangeGrob(g0), arrangeGrob(g1,g2, nrow=1), nrow=1)#, width=c(0.5, 0.5))
 fn.fig = file.path(dn.fig, sprintf("eNet_%s_%s_%s_selected", run.id, run.ver, albl))
 ggsave(file=paste0(fn.fig, ".png"), plot=mg, w=9, h=3)
-ggsave(file=paste0(fn.fig, ".pdf"), plot=mg, w=9, h=3)
+qgsave(file=paste0(fn.fig, ".pdf"), plot=mg, w=9, h=3)

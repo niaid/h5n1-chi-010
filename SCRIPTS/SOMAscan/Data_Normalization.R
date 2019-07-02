@@ -1,6 +1,6 @@
-rm(list=ls())
-
-PROJECT_DIR = "/Users/candiajm/ACTIVE/H5N1/WORKFLOW"
+# rm(list=ls())
+source("SCRIPTS/0_initialize.r")
+# PROJECT_DIR = "/Users/candiajm/ACTIVE/H5N1/WORKFLOW"
 path_infile = file.path(PROJECT_DIR,"DATA_ORIGINAL","SOMAscan")
 path_outfile = file.path(PROJECT_DIR,"DATA_PROCESSED","SOMAscan")
 

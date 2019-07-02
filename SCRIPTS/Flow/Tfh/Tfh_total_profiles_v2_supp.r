@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/CXCR3_freq.txt")
 tfh = fread(fn.tfh, data.table=F, header = T) %>% 
   rename(subject=`PATIENT ID`, time=`SAMPLE ID`) %>% 

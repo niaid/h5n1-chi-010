@@ -1,5 +1,5 @@
 # DEMOGRAPHICS
-
+source("SCRIPTS/0_initialize.r")
 fn.demo = file.path(PROJECT_DIR, "DATA_ORIGINAL", "Clinical", "clinical_info_adj.txt")
 df.demo = fread(fn.demo) %>% 
   mutate(donor_short = sub("H5N1-0", "s", `Subject ID`)) %>% 

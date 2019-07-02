@@ -1,6 +1,6 @@
 ### read and process 15-color flow
-
-fn.tfh15 = file.path(PROJECT_DIR, "DATA_ORIGINAL/Flow_15c/H5N1-all-T4 021518.txt")
+source("SCRIPTS/0_initialize.r")
+fn.tfh15 = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_15c/H5N1-all-T4 021518.txt")
 tfh15 = fread(fn.tfh15, data.table=F) %>% 
   filter(!Sample %in% c("Mean","StdDev"))
 tfh15$Sample = tfh15$`$FIL`

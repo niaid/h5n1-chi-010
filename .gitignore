@@ -4,6 +4,9 @@ DATA_PROCESSED
 FIGURES
 RESULTS
 
+# Random Files
+core.20727
+
 # Figures that are generated outside the FIGURES folder
 *.png
 *.pdf

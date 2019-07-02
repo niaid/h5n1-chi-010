@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/CXCR3_freq.txt")
 tfh = fread(fn.tfh, data.table=F, header = T) %>% 
   rename(subject=`PATIENT ID`, time=`SAMPLE ID`) %>% 
@@ -29,7 +30,7 @@ fn.btris = file.path(PROJECT_DIR, "DATA_ORIGINAL/Clinical/H5N1_BTRIS.txt")
 btris = read.table(fn.btris, sep="\t", header=T, row.names=NULL, stringsAsFactors = F)
 df.t = btris %>% 
   select(subject=assay, time=Timepoint, T_CD3CD4_count=CD4_CD3_count, 
-         T_CD3_count=CD3_count, B_count=CD19_count, Lymphocytes_count=Lymphocytes_Absolute,
+         q_CD3_count=CD3_count, B_count=CD19_count, Lymphocytes_count=Lymphocytes_Absolute,
          Neutrophils_count=Neutrophils_Absolute, Monocytes_count=Monocytes_Absolute) %>% 
   mutate_at(vars(Lymphocytes_count:Monocytes_count), `*`, 1000) %>%
   mutate(NL_ratio = Neutrophils_count/Lymphocytes_count) %>% 

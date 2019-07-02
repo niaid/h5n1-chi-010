@@ -548,22 +548,51 @@ source("SCRIPTS/Emory/adjuvant_prediction.r")
 ```
 
 # Tfh cells data analysis (Figure 6)
+
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_activated_profiles.r") # TODO: Even after changing DATA_ORIGINAL to DATA_PROCESSED the script is throwing errors through out.
+```
 ## Figure 6A
 
 ## Figure 6B
 
 ## Figure 6C
-
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2.r")
+```
 ## Figure 6D
-
-## Supp. Figure 7
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_CXCR3_proportion_bar.r")
+```
+## Supp. Figure 7 D
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2_supp.r")
+```
 
 # SOMAscan data analysis (Figure 7)
-Julian’s scripts for elastic net models
 
+## DATA Preparation
+```R
+source("SCRIPTS/SOMAscan/Data_Processing.R")
+source("SCRIPTS/SOMAscan/Data_Normalization.R")
+```
+Prepare data from eNetXplorer
+```R
+source("SCRIPTS/eNetXplorer/eNet_input_r8.r")
+```
+Run eNetXplorer
+```R
+source("SCRIPTS/eNetXplorer/eNetXplorer_R8.r")
+```
 ## Figure 7A
-
+```R
+source("SCRIPTS/eNet_figures/enet_plots_R8.r") # TODO: worked in interactive mode, but not upon source.
+```
 ## Figure 7B
 
-
+```R
+source("SCRIPTS/SOMAscan/soma_BTM_enrichment.r") # TODO: error
+source("SCRIPTS/SOMAscan/soma_enrichment_heatmap.r") # TODO: error
+```
+TODO: No such file /RESULTS/SOMAscan/pbmc_ADJ_RSPO3_bySex.txt
 

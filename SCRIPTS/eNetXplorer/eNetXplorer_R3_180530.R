@@ -1,4 +1,4 @@
-rm(list=ls())
+# rm(list=ls())
 source(file.path("SCRIPTS/0_initialize.r"))
 library(missForest)
 library(eNetXplorer)
@@ -7,7 +7,7 @@ version = "v4"
 
 path_infile = file.path(PROJECT_DIR, "DATA_PROCESSED/eNet")
 path_outfile = file.path(PROJECT_DIR, "RESULTS/eNet", version)
-dir.create(path_outfile, showWarnings = F)
+dir.create(path_outfile, recursive = T, showWarnings = F)
 
 data = read.table(file.path(path_infile,"eNet_InputData_r3.txt"), header=T, stringsAsFactors=F, sep="\t")
 run_index = 3 # integer value in the 1:9 range
@@ -121,9 +121,10 @@ y = y[donor_select]
 #################################################################
 
 label = paste0("R",run_index)
-result = eNetXplorer(x=x,y=y,family="gaussian",alpha=seq(0,1,by=0.1),
-seed=123,nlambda.ext=1000,n_run=1000, n_perm_null=250)
+result = eNetXplorer(x=x,y=y,family="gaussian",alpha=seq(0,1,by=0.1),seed=123) #,nlambda.ext=1000,n_run=1000, n_perm_null=250)
+                                                                               # Comment
+# these parameters to use default options.
 save(result,file=file.path(path_outfile, paste0(label,"_",version,".Robj")))
-pdf.summary(result,path=path_outfile,filename=paste0(label,"_",version,".pdf"))
+summaryPDF(result,path=path_outfile,filename=paste0(label,"_",version,".pdf"))
 
 

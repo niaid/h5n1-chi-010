@@ -1,8 +1,9 @@
+source("SCRIPTS/0_initialize.r")
 library(Matrix)
 
-dn.enet = file.path(PROJECT_DIR, "RESULTS/eNetXplorer")
+dn.enet = file.path(PROJECT_DIR, "RESULTS/eNet")
 run.id = "R3"
-run.ver = "v2"
+run.ver = "v4"
 fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
 
 load(fn.run, verbose = T)
