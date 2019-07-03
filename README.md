@@ -6,17 +6,24 @@
 
 1. [Environment Setup](https://github.niaid.nih.gov/chi/h5n1#environment-setup)
 2. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
+   1. [Figure 1A](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
+   2. [Figure 1B](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
 3. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
 4. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
 5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
 6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
 7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
+   1. [Figure 2D](https://github.niaid.nih.gov/chi/h5n1#figure-2d)
+   2. [Figure 2E](https://github.niaid.nih.gov/chi/h5n1#figure-2e)
+   3. [Figure 2F](https://github.niaid.nih.gov/chi/h5n1#figure-2f)
 8. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
 9.  [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
 10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
 11. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
 12. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
-13. [SOMAscan data analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
+13. [SOMAscan Data Analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
+    1.  [Figure 7A](https://github.niaid.nih.gov/chi/h5n1#figure-7a)
+    2.  [Figure 7B](https://github.niaid.nih.gov/chi/h5n1#figure-7b)
 
 
 # Environment Setup
@@ -340,19 +347,21 @@ source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v3.R")
 # source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_new.R")
 ```
 
-## Figure 2D (use Julian’s data)
+## Figure 2D
 ```R
 source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
 ```
 
-## Figure 2E (use Julian’s data)
+## Figure 2E
 ```R
-source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did not work
+source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did not work; error: object Name2 not found
 ```
 
+## Figure 2F
+```R
+source("SCRIPTS/MA/pattern_discovery/pattern_scores_GE_flow_heatmap.r")
+```
 ## Add data for subject s10
-
-## Figure 2F (partially use Julian’s data)
 
 ## Supplemental Figure 2B
 
@@ -480,7 +489,8 @@ source("SCRIPTS/eNetXplorer/eNetXplorer_R6_181022.R")
 
 Figure 4B
 ```R
-source("SCRIPTS/eNet_figures/enet_plots_all.r")
+source("SCRIPTS/eNet_figures/enet_plots_R6.r")
+# NOTE: adapted from enet_plots_all.r
 ```
 
 # Unblinding results (Figure 5, suppl. Figure 5)
@@ -569,30 +579,34 @@ source("SCRIPTS/Flow/Tfh/Tfh_CXCR3_proportion_bar.r")
 source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2_supp.r")
 ```
 
-# SOMAscan data analysis (Figure 7)
+# SOMAscan Data Analysis
 
 ## DATA Preparation
 ```R
 source("SCRIPTS/SOMAscan/Data_Processing.R")
 source("SCRIPTS/SOMAscan/Data_Normalization.R")
 ```
-Prepare data from eNetXplorer
+
+## Figure 7A
+**Data preparation for eNetXplorer**  
 ```R
 source("SCRIPTS/eNetXplorer/eNet_input_r8.r")
 ```
-Run eNetXplorer
+**Run eNetXplorer**  
 ```R
 source("SCRIPTS/eNetXplorer/eNetXplorer_R8.r")
 ```
-## Figure 7A
+**Plot eNetXplorer results**  
+**NOTE:** worked in interactive mode, but not upon source.
 ```R
-source("SCRIPTS/eNet_figures/enet_plots_R8.r") # TODO: worked in interactive mode, but not upon source.
+source("SCRIPTS/eNet_figures/enet_plots_R8.r") 
 ```
-## Figure 7B
 
+## Figure 7B
+**NOTE:** Files `/RESULTS/SOMAscan/[pbmc,pax]_ADJ_RSPO3_bySex.txt` are required by `SCRIPTS/SOMAscan/soma_BTM_enrichment.r`. Yuri and I couldn't find any script that generate these files. Yuri got them from Julian.
 ```R
-source("SCRIPTS/SOMAscan/soma_BTM_enrichment.r") # TODO: error
-source("SCRIPTS/SOMAscan/soma_enrichment_heatmap.r") # TODO: error
+source("SCRIPTS/SOMAscan/soma_BTM_enrichment.r")
+source("SCRIPTS/SOMAscan/soma_enrichment_heatmap.r")
 ```
-TODO: No such file /RESULTS/SOMAscan/pbmc_ADJ_RSPO3_bySex.txt
+ 
 
