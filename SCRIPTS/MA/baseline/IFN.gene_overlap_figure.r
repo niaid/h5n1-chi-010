@@ -1,5 +1,5 @@
 # was IFN.gene_overlap_figure_171208.r
-
+source("SCRIPTS/0_initialize.r")
 library(tmod)
 data(tmod)
 mod.id = c("LI.M75","LI.M127","LI.M150","LI.M67","LI.M165")

@@ -28,6 +28,8 @@
 9.  [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
 10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
     1.  [Figure 4A](https://github.niaid.nih.gov/chi/h5n1#figure-4a-combining-btm-enrichment-results-from-pbmc-and-whole-blood-samples)
+    2.  [Figure 4B](https://github.niaid.nih.gov/chi/h5n1#figure-4b)
+    3.  [Figure 4C](https://github.niaid.nih.gov/chi/h5n1#figure-4c)
 11. [Unbliding Results](https://github.niaid.nih.gov/chi/h5n1#unblinding-results-figure-5-suppl-figure-5)
     1.  [Figure 5A](https://github.niaid.nih.gov/chi/h5n1#figure-5a)
     2.  [Figure 5B](https://github.niaid.nih.gov/chi/h5n1#figure-5b)
@@ -503,10 +505,14 @@ Run eNetXplorer:
 source("SCRIPTS/eNetXplorer/eNetXplorer_R6_181022.R")
 ```
 
-Figure 4B
+## Figure 4B
 ```R
 source("SCRIPTS/eNet_figures/enet_plots_R6.r")
 # NOTE: adapted from enet_plots_all.r
+```
+## Figure 4C
+```R
+source("SCRIPTS/MA/baseline/IFN.gene_overlap_figure.r")
 ```
 
 # Unblinding results (Figure 5, suppl. Figure 5)
