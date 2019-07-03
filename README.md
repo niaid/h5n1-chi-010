@@ -8,20 +8,37 @@
 2. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
    1. [Figure 1A](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
    2. [Figure 1B](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
+   3. [Figure 1C,D,E](https://github.niaid.nih.gov/chi/h5n1#figures-1-cde-figuresprofiles)
 3. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
 4. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
 5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
 6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
+   1. [Figure 2B](https://github.niaid.nih.gov/chi/h5n1#figure-2b---patterns-profile-plot)
+   2. [Figure 2C](https://github.niaid.nih.gov/chi/h5n1#btm-enrichment-in-patterns-genes-figure-2c)
 7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
    1. [Figure 2D](https://github.niaid.nih.gov/chi/h5n1#figure-2d)
    2. [Figure 2E](https://github.niaid.nih.gov/chi/h5n1#figure-2e)
    3. [Figure 2F](https://github.niaid.nih.gov/chi/h5n1#figure-2f)
 8. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
+   1. [Figure 3C](https://github.niaid.nih.gov/chi/h5n1#figure-3c)
+   2. [Figure 3D](https://github.niaid.nih.gov/chi/h5n1#figure-3d)
+   3. [Figure 3E](https://github.niaid.nih.gov/chi/h5n1#figure-3e)
+   4. [Figure 3B](https://github.niaid.nih.gov/chi/h5n1#figure-3b)
+   5. [Figure 3F&G](https://github.niaid.nih.gov/chi/h5n1#figure-3f-and-3g)
 9.  [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
 10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
-11. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
-12. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
-13. [SOMAscan Data Analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
+    1.  [Figure 4A](https://github.niaid.nih.gov/chi/h5n1#figure-4a-combining-btm-enrichment-results-from-pbmc-and-whole-blood-samples)
+11. [Unbliding Results](https://github.niaid.nih.gov/chi/h5n1#unblinding-results-figure-5-suppl-figure-5)
+    1.  [Figure 5A](https://github.niaid.nih.gov/chi/h5n1#figure-5a)
+    2.  [Figure 5B](https://github.niaid.nih.gov/chi/h5n1#figure-5b)
+    3.  [Figure 5C](https://github.niaid.nih.gov/chi/h5n1#figure-5c-figuresifn_signature)
+12. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
+13. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
+    1.  [Figure 6A](https://github.niaid.nih.gov/chi/h5n1#figure-6a)
+    2.  [Figure 6B](https://github.niaid.nih.gov/chi/h5n1#figure-6b)
+    3.  [Figure 6C](https://github.niaid.nih.gov/chi/h5n1#figure-6c)
+    4.  [Figure 6D](https://github.niaid.nih.gov/chi/h5n1#figure-6d)
+14. [SOMAscan Data Analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
     1.  [Figure 7A](https://github.niaid.nih.gov/chi/h5n1#figure-7a)
     2.  [Figure 7B](https://github.niaid.nih.gov/chi/h5n1#figure-7b)
 
@@ -361,7 +378,6 @@ source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did no
 ```R
 source("SCRIPTS/MA/pattern_discovery/pattern_scores_GE_flow_heatmap.r")
 ```
-## Add data for subject s10
 
 ## Supplemental Figure 2B
 
