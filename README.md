@@ -373,7 +373,7 @@ source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
 
 ## Figure 2E
 ```R
-source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r") # TODO: did not work; error: object Name2 not found
+source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r")
 ```
 
 ## Figure 2F
@@ -581,11 +581,12 @@ source("SCRIPTS/Emory/adjuvant_prediction.r")
 
 # Tfh cells data analysis (Figure 6)
 
-```R
-source("SCRIPTS/Flow/Tfh/Tfh_activated_profiles.r") # TODO: Even after changing DATA_ORIGINAL to DATA_PROCESSED the script is throwing errors through out.
-```
-## Figure 6A
 
+## Figure 6A
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_activated_profiles.r") 
+source("SCRIPTS/Flow/Tfh/Tfh_activated_profile.r") 
+```
 ## Figure 6B
 
 ## Figure 6C
