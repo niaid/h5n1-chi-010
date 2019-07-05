@@ -1,7 +1,6 @@
-source("SCRIPTS/0_initialize.r")
-fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/CXCR3_freq.txt")
+fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/H5N1_Thelper-Thelper_freq.V1.1_v3.txt")
 tfh = fread(fn.tfh, data.table=F, header = T) %>% 
-  rename(subject=`PATIENT ID`, time=`SAMPLE ID`) %>% 
+  rename(subject=V1, time=Timepoint) %>% 
   rename(T_CD3CD4 = `4.2`, T_CD3 = `1.2`, Tfh = `24`) %>% 
   filter(subject!="")
 
@@ -109,8 +108,9 @@ ggplot(DF.change.mean %>% filter(population %in% pop.in), aes(time, count.mean, 
 
 dn.fig = file.path(PROJECT_DIR, "FIGURES/Tfh")
 dir.create(dn.fig, showWarnings = F)
-
-ggsave(file.path(dn.fig, "LN_counts_change_average.png"), w=5.5, h=5)
+fn.fig = file.path(dn.fig, "LN_counts_change_average")
+ggsave(paste0(fn.fig, ".png"), w=5.5, h=5)
+ggsave(paste0(fn.fig, ".pdf"), w=5.5, h=5)
 
 DF.mean = DF %>% 
   group_by(time, population, Adjuvant) %>% 
@@ -125,5 +125,7 @@ ggplot(DF.mean %>% filter(population %in% pop.in), aes(time, count.mean, group=A
   ylab("Cell counts") +
   theme_bw() +
   theme(strip.background = element_blank())
-ggsave(file.path(dn.fig, "LN_counts_average.png"), w=5.5, h=5)
+fn.fig = file.path(dn.fig, "LN_counts_average")
+ggsave(paste0(fn.fig, ".png"), w=5.5, h=5)
+ggsave(paste0(fn.fig, ".pdf"), w=5.5, h=5)
 

@@ -588,7 +588,9 @@ source("SCRIPTS/Flow/Tfh/Tfh_activated_profiles.r")
 source("SCRIPTS/Flow/Tfh/Tfh_activated_profile.r") 
 ```
 ## Figure 6B
-
+```R
+source("SCRIPTS/Flow/Tfh/Tfh_activated_correlations.r")
+```
 ## Figure 6C
 ```R
 source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2.r")
