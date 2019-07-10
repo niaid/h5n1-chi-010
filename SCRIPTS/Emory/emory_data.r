@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 dn.in = file.path(PROJECT_DIR, "DATA_ORIGINAL/Emory/")
 fn.in = file.path(dn.in, "T H - Vax010_RMA_CHI.txt.zip")
 # dat = readr::read_tsv(fn)

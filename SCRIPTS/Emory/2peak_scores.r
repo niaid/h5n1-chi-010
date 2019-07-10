@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/get_score.r"))
 
 dn = file.path(PROJECT_DIR, "DATA_PROCESSED/Emory")

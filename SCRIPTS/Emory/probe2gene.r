@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 dn = file.path(PROJECT_DIR, "DATA_PROCESSED/Emory")
 eset = readRDS(file.path(dn, "eset.rds"))
 

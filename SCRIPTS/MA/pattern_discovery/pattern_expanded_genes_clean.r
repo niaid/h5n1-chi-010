@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 df.patt.cor = readRDS(file.path(dn.patt, "df.cor_6672g.rds"))
 df.patt.cor.p = readRDS(file.path(dn.patt, "df.cor.p_6672g.rds"))

@@ -1,5 +1,6 @@
 library(rlang)
 library(lazyeval)
+source("SCRIPTS/0_initialize.r")
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/color_functions.r"))
 
 pop10 = "CXCR3+"
@@ -10,7 +11,7 @@ dn.fig = file.path(PROJECT_DIR, "FIGURES/Tfh")
 dir.create(dn.fig, showWarnings = F)
 
 ### read and process 10-color flow
-fn.tfh = file.path(PROJECT_DIR, "DATA_ORIGINAL/Flow_10c/CXCR3_freq.txt")
+fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/CXCR3_freq.txt")
 tfh = fread(fn.tfh, data.table=F, header = T) %>% 
   rename(subject=`PATIENT ID`, time=`SAMPLE ID`) %>% 
   rename(T_CD3CD4 = `4.2`, T_CD3 = `1.2`, Tfh = `24`) %>% 
@@ -29,7 +30,7 @@ tfh = tfh %>%
   ))
 
 ### read and process 15-color flow
-fn.tfh15 = file.path(PROJECT_DIR, "DATA_ORIGINAL/Flow_15c/H5N1-all-T4 021518.txt")
+fn.tfh15 = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_15c/H5N1-all-T4 021518.txt")
 tfh15 = fread(fn.tfh15, data.table=F) %>% 
   filter(!Sample %in% c("Mean","StdDev"))
 tfh15$Sample = tfh15$`$FIL`

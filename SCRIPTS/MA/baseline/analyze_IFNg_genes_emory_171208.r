@@ -1,10 +1,10 @@
 library(ComplexHeatmap)
 library(circlize)
-source("functions/get_score.r")
-source("functions/color_functions.r")
-
+source("SCRIPTS/0_initialize.r")
+source("SCRIPTS/functions/get_score.r")
+source("SCRIPTS/functions/color_functions.r")
 # data
-eset.genes = readRDS("data/emory/eset.gene.rds")
+eset.genes = readRDS("DATA_PROCESSED/Emory/eset.gene.rds")
 
 
 dat = exprs(eset.genes)

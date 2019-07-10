@@ -1,6 +1,6 @@
 library(ComplexHeatmap)
 library(circlize)
-
+source("SCRIPTS/0_initialize.r")
 dn = file.path(PROJECT_DIR, "DATA_PROCESSED/Emory")
 df = readRDS(file.path(dn, "emory_GE_fc.rds"))
 mat.emory = df[,-1] %>% data.matrix()

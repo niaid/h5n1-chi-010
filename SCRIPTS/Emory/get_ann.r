@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 fn = file.path(PROJECT_DIR, "DATA_ORIGINAL/Emory/GPL13158.annot.gz")
 
 library(GEOquery)

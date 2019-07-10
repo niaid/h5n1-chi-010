@@ -1,3 +1,4 @@
+source("SCRIPTS/0_initialize.r")
 fn.pbmc = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/baseline/GE.pbmc_d0_WGCNA_ME_scores.txt")
 df.pbmc = fread(fn.pbmc) %>% 
   mutate(subject = sub("_", "-", subject)) %>% 

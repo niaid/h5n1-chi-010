@@ -8,23 +8,28 @@
 2. [Titers](https://github.niaid.nih.gov/chi/h5n1#titers)
    1. [Figure 1A](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
    2. [Figure 1B](https://github.niaid.nih.gov/chi/h5n1#figure-1a)
-   3. [Figure 1C,D,E](https://github.niaid.nih.gov/chi/h5n1#figures-1-cde-figuresprofiles)
+   3. [Supplemental Figure 1](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-1)
+   4. [Figure 1C,D,E](https://github.niaid.nih.gov/chi/h5n1#figures-1-cde-figuresprofiles)
 3. [Pattern profiles of clinical CBC data and Luminex](https://github.niaid.nih.gov/chi/h5n1#pattern-profiles-of-clinical-cbc-data-and-luminex)
 4. [Pattern simulation (Figure 2A)](https://github.niaid.nih.gov/chi/h5n1#pattern-simulation-figure-2A)
 5. [Gene Expression PBMC data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-pbmc-data-processing)
 6. [Pattern discovery in post-vaccination profiles of gene expression](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-gene-expression)
    1. [Figure 2B](https://github.niaid.nih.gov/chi/h5n1#figure-2b---patterns-profile-plot)
-   2. [Figure 2C](https://github.niaid.nih.gov/chi/h5n1#btm-enrichment-in-patterns-genes-figure-2c)
+   2. [Supplemental Figure 2A](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-2a)
+   3. [Figure 2C](https://github.niaid.nih.gov/chi/h5n1#btm-enrichment-in-patterns-genes-figure-2c)
 7. [Pattern discovery in post-vaccination profiles of flow cytometry data](https://github.niaid.nih.gov/chi/h5n1#pattern-discovery-in-post-vaccination-profiles-of-flow-cytometry-data)
    1. [Figure 2D](https://github.niaid.nih.gov/chi/h5n1#figure-2d)
    2. [Figure 2E](https://github.niaid.nih.gov/chi/h5n1#figure-2e)
    3. [Figure 2F](https://github.niaid.nih.gov/chi/h5n1#figure-2f)
+   4. [Supplemental Figure 3](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-3)
 8. [Find signature for adjuvant status prediction](https://github.niaid.nih.gov/chi/h5n1#find-signature-for-adjuvant-status-prediction)
    1. [Figure 3C](https://github.niaid.nih.gov/chi/h5n1#figure-3c)
    2. [Figure 3D](https://github.niaid.nih.gov/chi/h5n1#figure-3d)
-   3. [Figure 3E](https://github.niaid.nih.gov/chi/h5n1#figure-3e)
-   4. [Figure 3B](https://github.niaid.nih.gov/chi/h5n1#figure-3b)
-   5. [Figure 3F&G](https://github.niaid.nih.gov/chi/h5n1#figure-3f-and-3g)
+   3. [Supplemental Figure 4B](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-4b)
+   4. [Supplemental Figure 4C](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-4c)
+   5. [Figure 3E](https://github.niaid.nih.gov/chi/h5n1#figure-3e)
+   6. [Figure 3B](https://github.niaid.nih.gov/chi/h5n1#figure-3b)
+   7. [Figure 3F&G](https://github.niaid.nih.gov/chi/h5n1#figure-3f-and-3g)
 9.  [Gene Expression PAXgene data processing](https://github.niaid.nih.gov/chi/h5n1#gene-expression-paxgene-data-processing)
 10. [Baseline Data Analysis](https://github.niaid.nih.gov/chi/h5n1#baseline-data-analysis)
     1.  [Figure 4A](https://github.niaid.nih.gov/chi/h5n1#figure-4a-combining-btm-enrichment-results-from-pbmc-and-whole-blood-samples)
@@ -35,11 +40,13 @@
     2.  [Figure 5B](https://github.niaid.nih.gov/chi/h5n1#figure-5b)
     3.  [Figure 5C](https://github.niaid.nih.gov/chi/h5n1#figure-5c-figuresifn_signature)
 12. [Emory data analysis blindly predicting adjuvant status](https://github.niaid.nih.gov/chi/h5n1#emory-data-analysis-blindly-predicting-adjuvant-status)
+    1.  [Supplemental Figure 5D](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-5d)
 13. [Tfh cells data analysis](https://github.niaid.nih.gov/chi/h5n1#tfh-cells-data-analysis)
     1.  [Figure 6A](https://github.niaid.nih.gov/chi/h5n1#figure-6a)
     2.  [Figure 6B](https://github.niaid.nih.gov/chi/h5n1#figure-6b)
     3.  [Figure 6C](https://github.niaid.nih.gov/chi/h5n1#figure-6c)
     4.  [Figure 6D](https://github.niaid.nih.gov/chi/h5n1#figure-6d)
+    5.  [Supplemental Figure 7D](https://github.niaid.nih.gov/chi/h5n1#supplemental-figure-7d)
 14. [SOMAscan Data Analysis](https://github.niaid.nih.gov/chi/h5n1#somascan-data-analysis)
     1.  [Figure 7A](https://github.niaid.nih.gov/chi/h5n1#figure-7a)
     2.  [Figure 7B](https://github.niaid.nih.gov/chi/h5n1#figure-7b)
@@ -94,7 +101,7 @@ source("SCRIPTS/titers/mn_titer_profiles.r")
 Output data:
 * `FIGURES/titers/MN_titer_profiles_all_subjects.pdf`
 
-## Supplemental Figure 1(FIGURES/titers):
+## Supplemental Figure 1
 ```R
 source("SCRIPTS/titers/titer_response_rate.r")
 source("SCRIPTS/titers/hai_titer_profiles.r")
@@ -280,9 +287,10 @@ Input data for the second script:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
 
+### Supplemental Figure 2A
 ```R
 source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_cor.r")
-source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_clean.r")
+source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_clean.r") # Supplemental Figure 2A
 ```
 Output data from the first script:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_%dg.rds",n_genes`
@@ -381,12 +389,17 @@ source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r")
 source("SCRIPTS/MA/pattern_discovery/pattern_scores_GE_flow_heatmap.r")
 ```
 
-## Supplemental Figure 2B
+## Supplemental Figure 3
+
+```R
+source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_QM.R") 
+```
+
 
 # Find signature for adjuvant status prediction
 
 ## Figure 3C
-```
+```R
 source("SCRIPTS/adjuvant_prediction/2peaks_pca_2clusters.r")
 ```
 
@@ -396,8 +409,12 @@ source("SCRIPTS/adjuvant_prediction/ip10_2clusters_compare.r")
 ```
 
 ## Supplemental Figure 4B
-```
+```R
 source("SCRIPTS/adjuvant_prediction/cytokines_2clusters_compare.r")
+```
+## Supplemental Figure 4C
+```R
+source("SCRIPTS/MA/baseline/Gb13_vs_GbWB11.r")
 ```
 
 ## Figure 3E
@@ -599,9 +616,9 @@ source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2.r")
 ```R
 source("SCRIPTS/Flow/Tfh/Tfh_CXCR3_proportion_bar.r")
 ```
-## Supp. Figure 7 D
+## Supplemental Figure 7D
 ```R
-source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_v2_supp.r")
+source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_supp.r")
 ```
 
 # SOMAscan Data Analysis

@@ -1,4 +1,5 @@
-fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/H5N1_Thelper-Thelper_freq.V1.1_v3.txt")
+source("SCRIPTS/0_initialize.r")
+fn.tfh = file.path(PROJECT_DIR, "DATA_PROCESSED/Flow_10c/H5N1_Thelper-Thelper_freq.V1.1_v3")
 tfh = fread(fn.tfh, data.table=F, header = T) %>% 
   rename(subject=V1, time=Timepoint) %>% 
   rename(T_CD3CD4 = `4.2`, T_CD3 = `1.2`, Tfh = `24`) %>% 
