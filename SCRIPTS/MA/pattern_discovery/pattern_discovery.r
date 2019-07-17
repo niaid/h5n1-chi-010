@@ -1,15 +1,24 @@
+# PURPOSE: To determine patterns from the fold change data.
+
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
+library(gplots)
+library(ComplexHeatmap)
+library(circlize)
+library(cluster)
+
+# MAIN
+# Load fold change data
 dn = "DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr"
 fn = file.path(PROJECT_DIR, dn, "gexp_d0_fc.RData")
 load(file=fn, verbose = T)
 
-
 # source("plot_cluster_profile_lines.r")
-library(gplots)
-library(ComplexHeatmap)
-library(circlize)
 info.fc$time.point = factor(info.fc$time.point)
 
-fc.th = 1 # FC > 1
+# Select genes that have a fold change of greater than one in atleast 30% of
+# samples at any given time point.
+fc.th = 1 # threshold FC > 1
 q.th = 0.3 # in 30% of samples at any time point
 tp = unique(info.fc$time.point)
 # tp = c("d001")#,"d022")
@@ -41,6 +50,7 @@ df = as.data.frame(dat.fc[gi,]) %>%
 df.mat = as.matrix(df[,-(1:2)])
 rownames(df.mat) = paste(df$subject.id, df$gene, sep="__")
 
+# Calculate statistics.
 df.mean = apply(df.mat, 1, function(x) mean(abs(x),na.rm=T))
 df.median = apply(df.mat, 1, function(x) median(x,na.rm=T))
 df.sd = apply(df.mat, 1, function(x) sd(x,na.rm=T))
@@ -48,13 +58,14 @@ df.cv = df.sd/abs(df.mean)
 df.iqr = apply(df.mat, 1, function(x) IQR(x,na.rm=T))
 df.max = apply(df.mat, 1, function(x) max(abs(x),na.rm=T))
 
+# Calculate up and down regulated genes in the gene list as filtered above.
 gene.up = rownames(dat.fc)[gi][rowMeans(dat.fc[gi,],na.rm=T)>0]
 gene.dn = rownames(dat.fc)[gi][rowMeans(dat.fc[gi,],na.rm=T)<0]
 df.mat.up = df.mat[df$gene %in% gene.up,]
 df.mat.dn = df.mat[df$gene %in% gene.dn,]
 df.mat.all = df.mat
 
-# correlation and k-means clustering
+# Carry out correlation and k-means clustering.
 long.idx = c(rep(1,3),2:ncol(df.mat.all))
 df.mat.cc.all = cor(t(df.mat.all[,long.idx]), use = "pairwise.complete.obs")
 # df.mat.cc.up = cor(t(df.mat.up), use = "pairwise.complete.obs")
@@ -64,13 +75,19 @@ df.mat = df.mat.all
 df.mat.cc = df.mat.cc.all
 fc.dir = "all"
 
+# Save the data matrix and the correlation data matrix.
+## Check if the output directory exists.
 dn.out = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
-dir.create(dn.out, showWarnings = F)
+if(dir.exists(dn.out)){
+        print("Output directory exists.")
+}else {
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(dn.out, recursive = T, showWarnings = T)
+}
 saveRDS(df.mat, file.path(dn.out, "df.mat.rds"))
 saveRDS(df.mat.cc, file.path(dn.out, "df.mat.cc.rds"))
 
-
-library(cluster)
+# Carry out clustering through DIANA.
 # set.seed(123)
 ptm <- proc.time()
 dia = diana(1-df.mat.cc, diss=T, trace.lev = 1)
@@ -87,9 +104,12 @@ proc.time() - ptm
 # user  system elapsed 
 # 1397.47    2.29 1403.11 
 
+# Save clustering results from DIANA to a R datastructure file. 
 saveRDS(dia, file.path(dn.out, "diana.object.abs.rds")) # as on 161109
 # saveRDS(dia, "diana.object.abs.161004.rds")
 # dia = readRDS("diana.object.160927.rds")
+
+# Plot the dendrogram from DIANA.
 dia2 = dia
 dia2$order.lab = rep(NA,nrow(df.mat.cc))
 plot(dia2, which.plots = 2, hang=0)

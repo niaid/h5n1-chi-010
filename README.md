@@ -95,24 +95,50 @@ singularity shell -B /hpcdata/sg/sg_data/users/farmerr2/sandbox/projects/h5n1:/v
 URL to the Shinyapp that produces figure 1A `H5N1/MANUSCRIPT/Figures/Figure1_url_180322.txt`
 
 ## Figure 1B
+Purpose: To plot titer respose against time (Day 0, Day 21, Day 28, Day 100)
 ```R
 source("SCRIPTS/titers/mn_titer_profiles.r")
 ```
 Output data:
-* `FIGURES/titers/MN_titer_profiles_all_subjects.pdf`
+* `FIGURES/titers/MN_titer_profiles_all_subjects.png`
 
 ## Supplemental Figure 1
+Fig 1A. Purpose: To plot titer response rate against time.
+Input data:
+* `DATA_ORIGINAL/Clinical/clinical_info_adj.txt` file containing clinical information example subject id and adjuvant status.
+* `DATA_ORIGINAL/HAI/H5N1_serology.txt` file containing serology data.
 ```R
 source("SCRIPTS/titers/titer_response_rate.r")
+```
+Fig 1B. Purpose: To plot HAI titer profiles against time.
+Input data:
+* `DATA_ORIGINAL/HAI/H5N1_serology.txt` file containing serology data.
+```R
 source("SCRIPTS/titers/hai_titer_profiles.r")
+```
+Fig 1C. Purpose: To plot titer at peak.
+Input data:
+* `DATA_ORIGINAL/Titres/titre.txt` file containing titer data.
+* `DATA_ORIGINAL/Clinical/clinical_info_adj.txt` file containing clinical information example subject id and adjuvant status.
+```R
 source("SCRIPTS/titers/mn_titer_peak.r")
 ```
+Output data:
+* `RESULTS/titers/MN_titer_peak_time.txt` TSV file with information about peak time, titer value at peak, titer value after peak, and decline per subject. 
 
 # Pattern profiles of clinical CBC data and Luminex
 ## Figures 1 C,D,E (FIGURES/profiles/)
+Fig 1C, D. Purpose: To plot total monocyte vs time and neutorphils vs time.
+Input data:
+* `DATA_ORIGINAL/Clinical/H5N1_BTRIS.txt` file containing BTRIS data.
 ```R
 source("SCRIPTS/profiles/Monocytes_figure.r")
 source("SCRIPTS/profiles/Neutrophils_figure.r")
+```
+Fig 1E: Purpose: To plot IP-10 data.
+Input data:
+* `DATA_PROCESSED/Luminex/luminex_data.rds` R data structure file with the luminex processed data.
+```R
 source("SCRIPTS/profiles/IP10_figure.r") # Copy Luminex data to DATA_PROCESSED
 ```
 
@@ -195,13 +221,12 @@ source("SCRIPTS/MA/filtering_pbmc/samples.all_genes.iqr/filtering.r")
 ### Calculate fold change from day 0
 
 Input data:  
-* `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr`
-* `DATA_PROCESSED/Microarrays/PBMC/samples.all_genes.all/eset.genes.filtered.RData`
+* `DATA_PROCESSED/Microarrays/PBMC/samples.all_genes.all/eset.genes.filtered.RData` biobase object file containing expression data.
 ```R
 source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pbmc.r") # Sourcing this file SCRIPTS/functions/factor.date.r
 ```
 Output data:  
-* `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData`
+* `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData` matrix with genese on rows, and subject and time points on the columns. 
 
 # Pattern discovery in post-vaccination profiles of gene expression
 
@@ -216,9 +241,9 @@ source("SCRIPTS/MA/pattern_discovery/pattern_discovery.r")
 ```
 Output data:  
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.rds`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.cc.rds`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/diana.object.abs.rds`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/diana_dendrogram.png`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.cc.rds` correlation matrix.
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana.object.abs.rds` DIANA output.
+* `RESULTS/Microarrays/PBMC/pattern_discovery/diana_dendrogram.png` DIANA dendrogram image.
   
 ## Cut the dendrogram tree at different levels and detect stable clusters
 

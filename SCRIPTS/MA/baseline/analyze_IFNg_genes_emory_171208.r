@@ -1,5 +1,6 @@
 library(ComplexHeatmap)
 library(circlize)
+library(Biobase)
 source("SCRIPTS/0_initialize.r")
 source("SCRIPTS/functions/get_score.r")
 source("SCRIPTS/functions/color_functions.r")
@@ -28,7 +29,8 @@ dat = dat[,si]
 
 # fn.pbmc = "c:/Users/kotliary/Box/R/h5n1/wgcna/GE.pbmc_d0_WGCNA_M13_genes.txt"
 # df.pbmc = read.table(fn.pbmc, sep="\t", header=T, row.names=NULL, stringsAsFactors = F)
-fn.pax = "c:/Users/kotliary/Box/R/h5n1/PAX/wgcna/mod_data/GE.pax_d0_WGCNA_M11_genes.txt"
+# fn.pax = "c:/Users/kotliary/Box/R/h5n1/PAX/wgcna/mod_data/GE.pax_d0_WGCNA_M11_genes.txt"
+fn.pax = file.path(PROJECT_DIR, "RESULTS/Microarrays/PAXgene/baseline/GE.pax_d0_WGCNA_GbWB11_genes.txt")
 df.pax = read.table(fn.pax, sep="\t", header=T, row.names=NULL, stringsAsFactors = F)
 
 # test.genes = intersect(df.pax$gene, mod.genes); gset="intersect"
@@ -41,10 +43,10 @@ sum(gi)
 # read predicted
 df.pred = read.table("emory/emory_adjuvanted_subjects_predicted.txt", sep="\t", 
                      header=T, row.names=NULL, stringsAsFactors=F) %>% 
-  select(subject=Subject, predict="NEG16") 
-df.adj = read.table("data/emory/emory_subjects_adjuvant_status.txt", sep="\t",
+                     select(subject=Subject, predict="NEG16") 
+df.adj = read.table(file.path(PROJECT_DIR, "DATA_ORIGINAL/Emory/emory_subjects_adjuvant_status.txt"), sep="\t",
                     header=T, row.names=NULL, stringsAsFactors=F) %>% 
-  mutate(Adjuvant = ifelse(Adjuvant=="POS", "Adj", "NonAdj"))
+                    mutate(Adjuvant = ifelse(Adjuvant=="POS", "Adj", "NonAdj"))
 df.test = info %>% 
   select(subject, day) %>% 
   left_join(df.adj, by=(c("subject"="Subject"))) %>% 

@@ -1,8 +1,14 @@
+# PURPOSE: To calcualte fold change from day 0.
 # was calculate_d0_fc.160915.r
 
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
 library("Biobase")
+
+# FUNCTIONS
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/factor.date.r"))
 
+# MAIN
 dn = "DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr"
 fn = file.path(PROJECT_DIR, dn ,"eset.genes.filtered.RData")
 load(fn, verbose = T)
@@ -47,6 +53,8 @@ genes = dat.fc$gene
 dat.fc = as.matrix(dat.fc[,-1])
 rownames(dat.fc) = genes
 
+# Save matrix with the fold change data. Genes on rows, and subject id and time
+# point on columns. 
 fn.rda = file.path(PROJECT_DIR, dn, "gexp_d0_fc.RData")
 save(dat.fc, info.fc, file=fn.rda)
 
