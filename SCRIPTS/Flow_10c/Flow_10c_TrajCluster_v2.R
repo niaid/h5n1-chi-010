@@ -5,7 +5,7 @@ library(gridExtra)
 library(fpc)
 library(dynamicTreeCut)
 
-rm(list=ls())
+# rm(list=ls())
 
 source(file.path("SCRIPTS/0_initialize.r"))
 

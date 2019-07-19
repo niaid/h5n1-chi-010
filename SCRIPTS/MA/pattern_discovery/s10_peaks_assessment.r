@@ -1,3 +1,7 @@
+# PURPOSE: To add data for subject 10 and rescore the correlation matrix.
+
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 library(Biobase)
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/get_score.r"))
 library(ComplexHeatmap)

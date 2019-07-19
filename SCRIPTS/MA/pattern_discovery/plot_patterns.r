@@ -1,5 +1,11 @@
+# PURPOSE: To plot 14 response patterns as determined through clustering and
+# tree cutting procedure.
 # was plot_patterns_profiles_171123.r (part 2)
 
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
+
+# MAIN
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 # df.mat = readRDS(file.path(dn.patt, "df.mat.rds"))
 
@@ -27,7 +33,7 @@ df.n = as.data.frame(table(GE.patterns$pattern)) %>%
   dplyr::rename(ct=Var1) %>% 
   mutate(x=1,y=Inf,label=sprintf("%d",Freq))
 
-ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
+ge_plot1  <- ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
   # geom_errorbar(aes(ymin=mean-sd/2, ymax=mean+sd/2), width=0.2) +
   # scale_color_manual(values=cm) + ylab("log-FC") +
   geom_hline(yintercept = 0, lty=2) +
@@ -44,9 +50,9 @@ ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
         strip.text.y = element_text(size = 10, angle = 90),
         strip.background = element_blank())
 # 
-ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles.png"), h=14,w=2)
+ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles.png"), plot = ge_plot1, h=14,w=2)
 
-ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
+ge_plot2 <- ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
   # geom_errorbar(aes(ymin=mean-sd/2, ymax=mean+sd/2), width=0.2) +
   # scale_color_manual(values=cm) + ylab("log-FC") +
   geom_hline(yintercept = 0, lty=2) +
@@ -63,9 +69,9 @@ ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
         strip.text.y = element_text(size = 10, angle = 90),
         strip.background = element_blank())
 # 
-ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles_2col.png"), h=9,w=3)
+ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles_2col.png"), plot = ge_plot2, h=9,w=3)
 
-ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
+ge_plot3 <- ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
   # geom_errorbar(aes(ymin=mean-sd/2, ymax=mean+sd/2), width=0.2) +
   # scale_color_manual(values=cm) + ylab("log-FC") +
   geom_hline(yintercept = 0, lty=2) +
@@ -82,5 +88,5 @@ ggplot(df.cl.stat, aes(time, value, group=ct,col=ct)) + geom_line(size=1) +
         strip.text.y = element_text(size = 10, angle = 90),
         strip.background = element_blank())
 # 
-ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles_horiz.png"), h=3,w=10)
+ggsave(file.path(PROJECT_DIR, "FIGURES", "GE_patterns_profiles_horiz.png"), plot = ge_plot3, h=3,w=10)
 

@@ -1,5 +1,13 @@
+# PURPOSE: To calculate some statistics for each pattern selected in the
+# previous steps.
+
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
 # was plot_patterns_profiles_171123.r
 
+# MAIN
+
+# Load data.
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 df.mat = readRDS(file.path(dn.patt, "df.mat.rds"))
 
@@ -162,6 +170,7 @@ df.cl.stat = df.cl.stat %>%
   mutate(ct = sprintf("Gp%02d",ct)) %>% 
   mutate(ct = factor(ct, levels=unique(ct)))
 
+# Save stats data frame to an R data structure file. 
 saveRDS(df.cl.stat, file.path(dn.patt, "df.cl.stat.rds"))
 
 df.patt = df.cl.mean %>% 

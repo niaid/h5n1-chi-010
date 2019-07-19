@@ -1,7 +1,10 @@
+# PURPOSE: To plot heatmap of subjects scored per pattern of GE and flow data.
 source("SCRIPTS/0_initialize.r")
 library(ComplexHeatmap)
 library(circlize)
 
+# MAIN
+# Laod data.
 fn.g = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.incl.s10.rds")
 subj.patt.cor = readRDS(fn.g)
 K = ncol(subj.patt.cor)

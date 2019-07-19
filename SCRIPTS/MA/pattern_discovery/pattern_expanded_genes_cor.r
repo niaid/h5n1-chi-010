@@ -1,13 +1,22 @@
+# PURPOSE: To create a correlation matrix using the updated gene expression
+# data.
+
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
+
+# Load updated gene expression data.
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 df = readRDS(file.path(dn.patt, "df_6672g.rds"))
 df.mat.2 = readRDS(file.path(dn.patt, "df.mat.2_6672g.rds"))
 
+# Load file with the previously computed 14 patterns.
 GE.patterns = fread(file.path(dn.patt, "GE_patterns_filt.txt"))
 ct = GE.patterns$pattern %>% sub("Gp","",.) %>% as.numeric()
 names(ct) = GE.patterns$label
 ct.lev = sort(unique(GE.patterns$pattern))
 K=max(ct)
 
+# Read 14 X 14 matrix for 14 patterns and 14 time points. 
 df.patt.mat = readRDS(file.path(dn.patt, "df.patt.rds"))
 # patt.genes.clean = readRDS(sprintf("patt.genes.clean_%s_170202.rds",cl.methods))
 
@@ -27,6 +36,7 @@ for (j in 1:nrow(df.patt.mat)) {
   }
 }
 
+# Save the correlation matrix to an R data structure file.
 n_genes = length(unique(df$gene))
 saveRDS(df.patt.cor, file.path(dn.patt, sprintf("df.cor_%dg.rds",n_genes)))
 saveRDS(df.patt.cor.p, file.path(dn.patt, sprintf("df.cor.p_%dg.rds",n_genes)))

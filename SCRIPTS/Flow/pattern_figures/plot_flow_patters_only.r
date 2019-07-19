@@ -1,5 +1,9 @@
+# PURPOSE: To generate figure for flow patterns. 
+
 # was plot_flow_patters_only_171123.r
 
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 dn.in = file.path(PROJECT_DIR)
 
 # Flow modules
@@ -21,7 +25,7 @@ patt.flow.df = patt.flow %>% as.data.frame() %>%
   # mutate(Module = sub("M.","Fp0",Module)) %>% 
   mutate(Time = factor(Time, level=colnames(patt.flow)))
 
-ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
+plot1 <- ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
   geom_line(size=1) +
   facet_wrap(~Module, ncol=1, strip.position="right") +
   ylab("Score") + xlab("") +
@@ -35,10 +39,10 @@ ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
         strip.background = element_blank())
 
 fn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_patterns_profiles")
-ggsave(paste0(fn.fig, ".png"), h=8.5,w=2)
-ggsave(paste0(fn.fig, ".pdf"), h=8.5,w=2)
+ggsave(paste0(fn.fig, ".png"), plot = plot1, h=8.5,w=2)
+ggsave(paste0(fn.fig, ".pdf"), plot = plot1, h=8.5,w=2)
 
-ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
+plot2 <- ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
   geom_line(size=1) +
   facet_wrap(~Module, ncol=2, strip.position="top") +
   ylab("Score") + xlab("") +
@@ -52,10 +56,10 @@ ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
         strip.background = element_blank())
 
 fn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_patterns_profiles_2col")
-ggsave(paste0(fn.fig, ".png"), h=5,w=3)
-ggsave(paste0(fn.fig, ".pdf"), h=5,w=3)
+ggsave(paste0(fn.fig, ".png"), plot = plot2, h=5,w=3)
+ggsave(paste0(fn.fig, ".pdf"), plot = plot2, h=5,w=3)
 
-ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
+plot3 <- ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
   geom_line(size=1) +
   facet_wrap(~Module, nrow=1, strip.position="top") +
   ylab("Score") + xlab("") +
@@ -68,5 +72,5 @@ ggplot(patt.flow.df, aes(Time, Score, group=Module, col=Module)) +
         strip.text.y = element_text(size = 10, angle = 0),
         strip.background = element_blank())
 fn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_patterns_profiles_horiz.png")
-ggsave(fn.fig, h=1.7,w=10)
+ggsave(fn.fig, plot = plot3, h=1.7,w=10)
 

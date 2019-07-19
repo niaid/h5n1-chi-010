@@ -1,3 +1,7 @@
+# PURPOSE: To plot a heatmap with the type of cell populations found per pattern
+# in the flow data.
+
+# Initialize. 
 source("SCRIPTS/0_initialize.r")
 library(ComplexHeatmap)
 library(circlize)
@@ -32,7 +36,7 @@ df.tidy = df %>%
   mutate(value = ifelse(value==0, NA, value) %>% factor()) %>% 
   mutate(Annot = factor(Annot, levels=df$Annot[ro]))
 
-ggplot(df.tidy, aes(Pattern, Annot, fill=value)) +
+plot1 <- ggplot(df.tidy, aes(Pattern, Annot, fill=value)) +
   geom_tile() +
   scale_fill_manual(values = palette(), guide=F) +
   scale_y_discrete(position = "right") +
@@ -43,5 +47,5 @@ ggplot(df.tidy, aes(Pattern, Annot, fill=value)) +
         panel.grid = element_blank())
 
 fn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_patterns_annot_heatmap")
-ggsave(paste0(fn.fig, ".png"), w=4.8, h=2)
-ggsave(paste0(fn.fig, ".pdf"), w=4.8, h=2)
+ggsave(paste0(fn.fig, ".png"), plot = plot1,  w=4.8, h=2)
+ggsave(paste0(fn.fig, ".pdf"), plot = plot1, w=4.8, h=2)

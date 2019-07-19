@@ -1,4 +1,12 @@
+# PURPOSE: Cleaning step after adding extra genes to the 14 patterns.
+
+# Initialize the environment.
 source("SCRIPTS/0_initialize.r")
+library(ComplexHeatmap)
+library(circlize)
+
+# MAIN
+# Load correlation matrix created in the previous step.
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 df.patt.cor = readRDS(file.path(dn.patt, "df.cor_6672g.rds"))
 df.patt.cor.p = readRDS(file.path(dn.patt, "df.cor.p_6672g.rds"))
@@ -26,6 +34,7 @@ df.cor = df.cor %>%
   filter(ord==floor(max(ord)*pat.q.th)) %>%
   select(-subject) %>%
   spread(pattern, cor)
+
 df.cor.p = df.cor.p %>%
   filter(ord==floor(max(ord)*pat.q.th)) %>%
   select(-subject) %>%
@@ -47,14 +56,19 @@ names(patt.genes) = colnames(df.cor)[-(1:2)]
 sapply(patt.genes,length)
 
 
-library(ComplexHeatmap)
-library(circlize)
 # cm = rev(redblue(16)) # blue-white-red
 # if(sum(is.na(df.cor))>0) cm = c("#000000FF",cm)
 # mmx = min(abs(min(df.cor[-(1:2)],na.rm=T)),abs(max(df.mat,na.rm=T)))
 # col.br <- c(seq(-mmx/2,mmx/2,len=length(cm)+1)) 
+
+# Check if the output folder exists.
 dn.hm = file.path(PROJECT_DIR, "FIGURES/pattern_correlations")
-dir.create(dn.hm, showWarnings = F)
+if(dir.exists(dn.hm)){
+        print("Output folder already exists.")
+}else {
+        print("Output folder doesn't exists. Creating it now.")
+        dir.create(dn.hm, showWarnings = F)
+}
 hm = list()
 patt.n = colnames(df.cor)[-(1:2)]
 patt.genes.clean = patt.genes
@@ -94,5 +108,6 @@ for (k in 1:K) {
   patt.genes.clean[[k]] = patt.genes[[k]][ro[[k.sel]]]
 }
 
+# Save cleaned pattern genes to an R data structure file.
 saveRDS(patt.genes.clean, file=file.path(dn.patt, "patt.genes.clean.rds"))
 

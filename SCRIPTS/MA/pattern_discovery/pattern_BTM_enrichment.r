@@ -1,3 +1,7 @@
+# PORPOSE: To carry out GSEA of the genes per pattern using blood transcription modules.
+
+# Initialize
+source("SCRIPTS/0_initialize.r")
 library(tmod)
 library(ComplexHeatmap)
 library(circlize)

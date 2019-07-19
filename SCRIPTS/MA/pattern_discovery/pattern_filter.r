@@ -1,5 +1,9 @@
+# PURPOSE: To filter patterns after tree cutting. 
+
 # was dist_distribution_by_method_170126.r
 
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
 library(cluster)
 
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
@@ -53,5 +57,13 @@ repeat{
 idx = GE.patterns$label %in% df.cc.summ.f$subj_gene
 GE.patterns.f = GE.patterns[idx,]
 
+# Save filtered patterns to a TSV file.
+dn.out = file.path(PROJECT_DIR, "/RESULTS/Microarrays/PBMC/pattern_discovery")
+if(dir.exists(dn.out)){
+        print("Output directory exists")
+}else {
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(dn.out, recursive = T, showWarnings = T)
+}
 fwrite(GE.patterns.f, file.path(dn.out, "GE_patterns_filt.txt"), sep="\t")
 

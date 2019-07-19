@@ -223,7 +223,7 @@ source("SCRIPTS/MA/filtering_pbmc/samples.all_genes.iqr/filtering.r")
 Input data:  
 * `DATA_PROCESSED/Microarrays/PBMC/samples.all_genes.all/eset.genes.filtered.RData` biobase object file containing expression data.
 ```R
-source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pbmc.r") # Sourcing this file SCRIPTS/functions/factor.date.r
+source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pbmc.r")
 ```
 Output data:  
 * `DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr/gexp_d0_fc.RData` matrix with genese on rows, and subject and time points on the columns. 
@@ -249,6 +249,8 @@ Output data:
 
 Input data:  
 * `RESULTS/Microarrays/PBMC/pattern_discovery/diana.object.abs.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.cc.rds` correlation matrix.
 ```R
 source("SCRIPTS/MA/pattern_discovery/patterns_cutTree_stable.r")
 ```
@@ -266,18 +268,19 @@ Input data:
 source("SCRIPTS/MA/pattern_discovery/pattern_filter.r")
 ```
 Output data:  
-* `/RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt` TSV file with the first column containing the subject Id and gene names and the second column containing the pattern number to which they belong.
   
 ## Summarize patterns stats
+Calculate z-score etc. 
 Input data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.rds`
-* `/RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
 ```R
 source("SCRIPTS/MA/pattern_discovery/patterns_stats.r")
 ```
 Output data:
-* `/RESULTS/Microarrays/PBMC/pattern_discovery/df.cl.stat.rds`
-* `/RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cl.stat.rds` data frame containing pattern statistics. 
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds` 14 X 14 matrix for 14 patterns and 14 time points.
   
 ## Figure 2B - patterns profile plot
 Input data:
@@ -298,8 +301,8 @@ Input data:
 source("SCRIPTS/MA/pattern_discovery/pattern_filter_expanded.r")
 ```
 Output data:
-* `RESULTS/Microarrays/PBMC/pattern_discovery/df_{sum(gi)}g.rds`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_{sum(gi)}g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds` data frame with expression data after relaxing the selection criteria.
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_6672g.rds` data frame created above converted to matrix with some modifications. 
 
 ## Compute correlations and clean up the genes
 Input data for the first script:
@@ -313,13 +316,14 @@ Input data for the second script:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
 
 ### Supplemental Figure 2A
+Purpose: to add more genes to the patterns by relaxing the selection criteria.
 ```R
 source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_cor.r")
 source("SCRIPTS/MA/pattern_discovery/pattern_expanded_genes_clean.r") # Supplemental Figure 2A
 ```
 Output data from the first script:
-* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_%dg.rds",n_genes`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_%dg.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_6672g.rds",n_genes`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
 
 Output data from the second script:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/patterns_correlations__q%.2f_%dg.txt`
@@ -332,7 +336,7 @@ Input data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df_6672g.rds`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.mat.2_6672g.rds`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.patt.rds`
-* `RESULTS/Microarrays/PBMC/pattern_discovery/patt.genes.clean.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/patt.genes.clean.rds` dictionary (named list) with 14 pattern names as keys and list of genes per pattern as values. 
 ```R
 source("SCRIPTS/MA/pattern_discovery/patterns_to_subjects.r")
 # Sources another script. 
@@ -349,13 +353,15 @@ Input data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/GE_patterns_filt.txt`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor_6672g.rds`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/df.cor.p_6672g.rds`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.rds`
 ```R
 source("SCRIPTS/MA/pattern_discovery/pattern_genes_output.r")
 ```
 Ouput data:
-* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/GE_pattern_%02d_gene.sig.contr_ann.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/GE_pattern_%02d_gene.sig.contr_ann.txt` dataframe with annotated gene list.
 
 ## BTM enrichment in patterns genes. Figure 2C
+Purpose: To carry out GSEA of genes per pattern using blood transcription modules.
 Input data:
 * `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/GE_pattern_%02d_gene.sig.contr_ann.txt`
 * `RESULTS/Microarrays/PBMC/pattern_discovery/GE_pattern_genes/df_6672g.rds`
@@ -383,7 +389,7 @@ Output data:
 FlowJo software was used to export flow data, therefore copy processed data from Yuri's folder for further analysis.
 
 ## Generate Trajectory Matrix
-TODO: I don't know which one of these were used. I ran all of them
+TODO: These scripts are very complex to understand just by reading the code. 
 ```R
 # source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix.R")
 source("SCRIPTS/Flow_10c/Flow_10c_TrajMatrix_v2.R")
@@ -400,19 +406,36 @@ source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_v3.R")
 ```
 
 ## Figure 2D
+Input data:
+* `RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_Modules.txt`
 ```R
 source("SCRIPTS/Flow/pattern_figures/plot_flow_patters_only.r")
 ```
+Output data:
+* `FIGURES/Flow_patterns_profiles.png`
+* `FIGURES/Flow_patterns_profiles_2col.png`
+* `FIGURES/Flow_patterns_profiles_horiz.png`
 
 ## Figure 2E
+Purpose: To plot a heatmap with the type of cell population found per pattern in the flow data.
+Input data:
+* `RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_CPs.txt`
+* `DATA_ORIGINAL/Flow_10c/Flow_10c_ann.txt`
 ```R
 source("SCRIPTS/Flow/pattern_figures/pattern_flow_ann_heatmap.r")
 ```
 
 ## Figure 2F
+Input data:
+* `RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.incl.s10.rds` pattern correlation including subject 10. 
+* `RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_DonorScores.txt`
+* `DATA_ORIGINAL/Titres/titre.txt`
+* `DATA_ORIGINAL/Clinical/clinical_info_adj.txt`
 ```R
 source("SCRIPTS/MA/pattern_discovery/pattern_scores_GE_flow_heatmap.r")
 ```
+Output data:
+* `FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10.pdf[.png]`
 
 ## Supplemental Figure 3
 

@@ -1,7 +1,7 @@
 require(gplots)
 require(RColorBrewer)
 
-rm(list=ls())
+# rm(list=ls())
 
 source(file.path("SCRIPTS/0_initialize.r"))
 
@@ -9,7 +9,12 @@ ver = "_v2"
 
 path_infile = file.path(PROJECT_DIR,"DATA_PROCESSED","Flow_10c")
 path_outfile = file.path(PROJECT_DIR,"RESULTS","Flow_10c", ver)
-dir.create(path_outfile, showWarnings = F)
+if (dir.exists(path_outfile)){
+        print("Output directory already exists.")
+}else{
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(path_outfile, recursive = T,  showWarnings = T)
+}
 
 ################################
 measure_type = "PercentOfParent"

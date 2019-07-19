@@ -1,5 +1,9 @@
+# PURPOSE: To score each subject against each of the 14 patterns.
+
 # was in patterns_to_subjects_170202.r
 
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 source(file.path(PROJECT_DIR, "SCRIPTS/functions/get_score.r"))
 
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")

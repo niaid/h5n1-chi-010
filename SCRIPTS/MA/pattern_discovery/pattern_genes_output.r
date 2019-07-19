@@ -1,11 +1,16 @@
+# PURPOSE: Output a table of genes (with annotations) for each pattern.
 # was in patterns_genes_output_2_170320.r
 
+# Initialize.
+source("SCRIPTS/0_initialize.r")
+library(mygene)
+
+# MAIN
+# Load data.
 dn.patt = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery")
 df = readRDS(file.path(dn.patt, "df_6672g.rds"))
-
 df.patt.mat = readRDS(file.path(dn.patt, "df.patt.rds"))
 patt.genes.clean = readRDS(file.path(dn.patt, "patt.genes.clean.rds"))
-
 K = length(patt.genes.clean)
 
 GE.patterns = fread(file.path(dn.patt, "GE_patterns_filt.txt"))
@@ -14,9 +19,9 @@ names(cln) = GE.patterns$label
 ct.lev = sort(unique(GE.patterns$pattern))
 K=max(cln)
 
+subj.patt.cor <- readRDS(file.path(dn.patt, "subj.patt.cor.rds"))
 
-# lists of subjects for each cluster
-
+# Lists of subjects for each cluster.
 subj = vector("list", K)
 for (k in 1:K) {
   tmp = names(cln)[cln==k]
@@ -63,9 +68,14 @@ for(k in 1:K) {
   subj.pc1[,k] = pca$x[,1]
 }
 
-library(mygene)
+# Check if the output folder exists.
 dn.out = file.path(dn.patt, "GE_pattern_genes")
-dir.create(dn.out, showWarnings = F)
+if(dir.exists(dn.out)){
+        print("Output folder exists.")
+}else {
+        print("Output folder doesn't exists. Creating it now.")
+        dir.create(dn.out, recursive = T, showWarnings = T)
+}
 for(k in 1:K) {
   gt = gene.sig.list[[k]]
   gq = queryMany(gt$gene, scopes="symbol", species="human", fields=c("symbol","entrezgene","name"))

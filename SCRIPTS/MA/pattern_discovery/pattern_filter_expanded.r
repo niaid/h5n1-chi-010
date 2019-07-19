@@ -1,5 +1,13 @@
+# PURPOSE: To select more genes to add to the 14 patterns detected earlier.
+
+# Initialize the environment with PROJECT_DIR and some commonly used packages.
+source("SCRIPTS/0_initialize.r")
+
+# MAIN
+# Load fold change data
 load(file.path(PROJECT_DIR, "DATA_PROCESSED/Microarrays/PBMC/samples.clean_genes.iqr", "gexp_d0_fc.RData"), verbose = T)
 
+# Relaxing the criteria to fold change 0.5 in 20% above samples. 
 fc.th = 0.5
 q.th = 0.2
 tp = unique(info.fc$time.point)
@@ -32,6 +40,7 @@ df = as.data.frame(dat.fc[gi,]) %>%
 df.mat.2 = as.matrix(df[,-(1:2)])
 rownames(df.mat.2) = paste(df$subject.id, df$gene, sep="__")
 
+# Save the results to an R data structure file.
 dn.out = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/pattern_discovery/")
 saveRDS(df, file.path(dn.out, glue::glue("df_{sum(gi)}g.rds")))
 saveRDS(df.mat.2, file.path(dn.out, glue::glue("df.mat.2_{sum(gi)}g.rds")))
