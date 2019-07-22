@@ -1,5 +1,6 @@
 # was d0_wgcn.r
-
+# Initialize
+source("SCRIPTS/0_initialize.r")
 dn.in = file.path(PROJECT_DIR, "DATA_PROCESSED/Microarrays/PAXgene/baseline")
 dat0.in = readRDS(file.path(dn.in, "dat0.in_isv.0.7_7901g.rds"))
 info0.in = readRDS(file.path(dn.in, "info0.in.rds")) %>% 
@@ -7,7 +8,12 @@ info0.in = readRDS(file.path(dn.in, "info0.in.rds")) %>%
   tibble::column_to_rownames("subject.id")
 
 dn.fig = file.path(PROJECT_DIR, "FIGURES/Baseline_PAXgene")
-dir.create(dn.fig, showWarnings = F)
+if(dir.exists(dn.fig)){
+        print("Output folder exists.")
+}else{
+        print("Output folder doesn't exists. Creating it now.")
+        dir.create(dn.fig, recursive = T, showWarnings = T)
+}
 
 library(WGCNA)
 enableWGCNAThreads()

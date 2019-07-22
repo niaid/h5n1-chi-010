@@ -1,5 +1,7 @@
 # was import_luminex_ip10_170426.r
 
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 dn.in = file.path(PROJECT_DIR, "DATA_PROCESSED/Luminex/")
 df.lumi.long = readRDS(file.path(dn.in, "luminex_data.rds"))
 
@@ -23,6 +25,11 @@ df.ip10.score = df.ip10 %>%
   # mutate(subject = factor(subject, levels=unique(subject)[order(fc)]))
 
 dn.out = file.path(PROJECT_DIR, "RESULTS/Luminex/")
-dir.create(dn.out, showWarnings = F)
+if(dir.exists(dn.out)){
+        print("Output directory already exits.")
+}else{
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(dn.out, recursive = T, showWarnings = T)
+}
 saveRDS(df.ip10.score, file.path(dn.out, "ip10_2peak_score.rds"))
 fwrite(df.ip10.score, file.path(dn.out, "ip10_2peak_score.txt"), sep="\t")

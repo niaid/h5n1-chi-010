@@ -438,7 +438,7 @@ Output data:
 * `FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10.pdf[.png]`
 
 ## Supplemental Figure 3
-
+Purpose: Quality control of flow cytometry-based response patterns. (TODO: very long script hard to understand.)
 ```R
 source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_QM.R") 
 ```
@@ -447,33 +447,66 @@ source("SCRIPTS/Flow_10c/Flow_10c_TrajCluster_QM.R")
 # Find signature for adjuvant status prediction
 
 ## Figure 3C
+Purpose: Predicting Adjuvant signature using cellular and transcriptomic parameters. (C) Principal component analysis of patients using top selected patterns - Gp01, Gp02, Gp03, Fp01, Fp05. Color indicates two clusters of patients after k-mean clustering with k=2.  
+Input data:
+* `RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_DonorScores.txt`
+* `RESULTS/Microarrays/PBMC/pattern_discovery/subj.patt.cor.incl.s10.rds`
 ```R
 source("SCRIPTS/adjuvant_prediction/2peaks_pca_2clusters.r")
 ```
+Output data:
+* `FIGURES/2peak_patterns_PCA.png`
+* `RESULTS/Adjuvant_prediction/2peaks_patterns_PCA.txt`
 
 ## Figure 3D
+Purpose: (D) Testing difference in IP-10 change between subject in two clusters revealed by k-mean clustering of selected pattern scores. 
+Input data:
+* `DATA_PROCESSED/Luminex/luminex_data.rds`
+* `RESULTS/Adjuvant_prediction/2peaks_patterns_PCA.txt`
 ```
 source("SCRIPTS/adjuvant_prediction/ip10_2clusters_compare.r")
 ```
+Output data:
+* `FIGURES/Luminex/2peak_clusters_compare_{an}.png`
 
 ## Supplemental Figure 4B
+Input data:
+* `DATA_PROCESSED/Luminex/luminex_data.rds`
+* `RESULTS/Adjuvant_prediction/2peaks_patterns_PCA.txt`
 ```R
 source("SCRIPTS/adjuvant_prediction/cytokines_2clusters_compare.r")
 ```
+Output data:
+* `FIGURES/Luminex/2peak_clusters_compare_{an}.png`
+
 ## Supplemental Figure 4C
+Purpose: (C) Correlation between eigengene scores from two modules associated with type I interferon and antiviral response discovered at day 0 in PBMC (Gb13) and whole blood (GbWB11). A/Indonesia titers values at day 42 are represented by dot size, and subjects separated by gender with colors: male (blue) and female (red).  
+Input data:
+* `RESULTS/Microarrays/PBMC/baseline/GE.pbmc_d0_WGCNA_ME_scores.txt`
+* `RESULTS/Microarrays/PAXgene/baseline/GE.pax_d0_WGCNA_ME_scores.txt`
+* `DATA_ORIGINAL/Clinical/clinical_info.txt`
+* `DATA_ORIGINAL/Titres/titre.txt`
 ```R
 source("SCRIPTS/MA/baseline/Gb13_vs_GbWB11.r")
 ```
+Output data:
+* `FIGURES/Baseline/Gb13_vs_GbWB11.png`
 
 ## Figure 3E
-```
+Input data for the first script:
+*  `DATA_PROCESSED/Luminex/luminex_data.rds`
+
+```R
 source("SCRIPTS/adjuvant_prediction/ip10_2peak_scores.r")
-source("SCRIPTS/adjuvant_prediction/2peaks_pca_final_heamap.r")
+source("SCRIPTS/adjuvant_prediction/2peaks_pca_final_heamap.r") # TODO: long and complex to understand. 
 ```
+Output data for the first script:
+* `RESULTS/Luminex/ip10_2peak_score.rds`
+* `RESULTS/Luminex/ip10_2peak_score.txt`
 ## Elastic net models
 
 ### Generate input data:
-```
+```R
 source("SCRIPTS/eNetXplorer/eNet_input_r1.r")
 source("SCRIPTS/eNetXplorer/eNet_input_r2.r")
 source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
@@ -481,19 +514,19 @@ source("SCRIPTS/eNetXplorer/eNet_input_r3.r")
 TODO: the sripts above require `RESULTS/Adjuvant_prediction/adjuvant_predicted_subjects.txt` which none of the previous scripts seems to produce.
 
 ### Run eNetXplorer:
-```
+```R
 source("SCRIPTS/eNetXplorer/eNetXplorer_R1_180530.R") # TODO: update conda environment with library missForest
 source("SCRIPTS/eNetXplorer/eNetXplorer_R2_180530.R")
 source("SCRIPTS/eNetXplorer/eNetXplorer_R3_180530.R")
 ```
 
 ### Figure 3B
-```
+```R
 source("SCRIPTS/eNet_figures/enet_plots_R1.r")
 ```
 
 ### Figure 3F and 3G
-```
+```R
 source("SCRIPTS/eNet_figures/enet_plots_R3.r")
 source("SCRIPTS/eNet_figures/enet_plots_R2.r")
 ```
@@ -505,57 +538,65 @@ source("SCRIPTS/eNet_figures/enet_plots_R2.r")
 ### We found that two samples were switched. This is to correct it.
 
 **TODO: I don't have the scripts in the workflow that generates "DATA_PROCESSED/Microarrays/PAXgene/eset.apt.RData". For now I will just copy it from Yuri's**
-```
+```R
 source("SCRIPTS/MA/filtering_pax/switch.samples/switch.samples.call.r")
 ```
 
 ### Apply different filtering to samples and genes. The probesets mapped to genes.
-```
+```R
 source("SCRIPTS/MA/filtering_pax/filtering.r")
 ```
 
 ### Calculate fold change from day 0
-```
+```R
 source("SCRIPTS/MA/calculate_d0_fc/calculate_d0_fc_pax.r")
 ```
 
 # Baseline Data Analysis
 
 ## Preparing PBMC day 0 samples
-```
+```R
 source("SCRIPTS/MA/baseline_pbmc/d0_filter.r")
 ```
 
 ## WGCNA clustering of PBMC samples
-```
+Input data:
+* `DATA_PROCESSED/Microarrays/PBMC/baseline/dat0.in_isv.0.7_8144g.rds`
+* `DATA_PROCESSED/Microarrays/PBMC/baseline/info0.in.rds`
+```R
 source("SCRIPTS/MA/baseline_pbmc/d0_wgcna.r")
 source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_output.r")
 ```
+Output data:
+* `RESULTS/Microarrays/PBMC/baseline/dat0.in-networkConstruction-auto_power.%d.RData`
 
 ## BTM enrichment analysis of data from PBMC samples
-```
+```R
 source("SCRIPTS/MA/baseline_pbmc/d0_wgcna_BTM_enrichment.r")
 ```
 
 ## Preparing whole blood (PAXgene) day 0 samples
-```
+```R
 source("SCRIPTS/MA/baseline_pax/d0_filter.r") # File name changed
 ```
 
 ## WGCNA clustering of whole blood samples
-```
+Input data:
+* `DATA_PROCESSED/Microarrays/PAXgene/baseline/dat0.in_isv.0.7_7901g.rds`
+* `DATA_PROCESSED/Microarrays/PAXgene/baseline/info0.in.rds`
+```R
 source("SCRIPTS/MA/baseline_pax/d0_wgcna.r")
 source("SCRIPTS/MA/baseline_pax/d0_wgcna_output.r")
 ```
 
 ## BTM enrichment analysis of data from whole blood samples
-```
+```R
 source("SCRIPTS/MA/baseline_pax/d0_wgcna_BTM_enrichment.r")
 ```
 
 ## FIgure 4A. Combining BTM enrichment results from PBMC and whole blood samples
 Also Suppl. Figure 6A
-```
+```R
 source("SCRIPTS/MA/baseline/plot_BTM_pbmc_pax.r")
 ```
 
@@ -672,10 +713,18 @@ source("SCRIPTS/Flow/Tfh/Tfh_total_profiles_supp.r")
 # SOMAscan Data Analysis
 
 ## DATA Preparation
+Input data for the first script:
+* `DATA_PROCESSED/SOMAscan/Samples.txt`
+* `DATA_PROCESSED/SOMAscan/Somamers.txt`
+* `DATA_PROCESSED/SOMAscan/Hyb.Cal.MedNorm_RFU.txt`
 ```R
 source("SCRIPTS/SOMAscan/Data_Processing.R")
 source("SCRIPTS/SOMAscan/Data_Normalization.R")
 ```
+Output data from the first script:
+* `DATA_PROCESSED/SOMAscan/Final_RFU.txt`
+* `DATA_PROCESSED/SOMAscan/Final_Samples.txt`
+* `DATA_PROCESSED/SOMAscan/Final_Somamers.txt`
 
 ## Figure 7A
 **Data preparation for eNetXplorer**  

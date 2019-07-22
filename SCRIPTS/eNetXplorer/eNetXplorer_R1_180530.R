@@ -7,7 +7,12 @@ version = "v4"
 
 path_infile = file.path(PROJECT_DIR, "DATA_PROCESSED/eNet")
 path_outfile = file.path(PROJECT_DIR, "RESULTS/eNet", version)
-dir.create(path_outfile, recursive=T, showWarnings = F)
+if(dir.exists(path_outfile)){
+        print("Output folder already exists.")
+}else{
+        print("Output folder doesn't exists. Creating it now.")
+        dir.create(path_outfile, recursive=T, showWarnings = T)
+}
 
 data = read.table(file.path(path_infile,"eNet_InputData_r1.txt"), header=T, stringsAsFactors=F, sep="\t")
 run_index = 1 # integer value in the 1:9 range

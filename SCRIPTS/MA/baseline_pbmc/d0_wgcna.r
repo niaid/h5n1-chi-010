@@ -1,4 +1,7 @@
+
 # was d0_wgcna_170319.r
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 
 dn.in = file.path(PROJECT_DIR, "DATA_PROCESSED/Microarrays/PBMC/baseline")
 dat0.in = readRDS(file.path(dn.in, "dat0.in_isv.0.7_8144g.rds"))

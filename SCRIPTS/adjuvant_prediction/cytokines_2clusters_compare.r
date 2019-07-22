@@ -1,3 +1,5 @@
+# Initialize.
+source("SCRIPTS/0_initialize.r")
 dn.in = file.path(PROJECT_DIR, "DATA_PROCESSED/Luminex/")
 df.lumi.long = readRDS(file.path(dn.in, "luminex_data.rds"))
 
@@ -31,7 +33,7 @@ df.w = DF %>%
   mutate(x=0.5, y=max(DF$FC, na.rm=T), label=glue::glue("p = {format(p, digits=2)}"))
   
 
-ggplot(DF, aes(cluster, FC, fill=cluster)) +
+plot1 <- ggplot(DF, aes(cluster, FC, fill=cluster)) +
   geom_boxplot(alpha = 0.2) +
   geom_dotplot(binaxis = "y", stackdir = "center", fill = "black") +
   facet_wrap(~time) +
@@ -43,6 +45,11 @@ ggplot(DF, aes(cluster, FC, fill=cluster)) +
   theme(strip.background = element_blank(), legend.position="none")
 
 dn.fig = file.path(PROJECT_DIR, "FIGURES/Luminex")
-dir.create(dn.fig, showWarnings = F)
-ggsave(file.path(dn.fig, glue::glue("2peak_clusters_compare_{an}.png")), h=3, w=5)
+if(dir.exists(dn.fig)){
+        print("Output directory already exists.")
+}else{
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(dn.fig, recursive = T, showWarnings = T)
+}
+ggsave(file.path(dn.fig, glue::glue("2peak_clusters_compare_{an}.png")), plot = plot1, h=3, w=5)
 }

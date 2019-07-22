@@ -1,9 +1,13 @@
+# PURPOSE: Predicting Adjuvant signature using cellular and transcriptomic parameters. (C) Principal component analysis of patients using top selected patterns - Gp01, Gp02, Gp03, Fp01, Fp05. Color indicates two clusters of patients after k-mean clustering with k=2.
+
 # was 2peaks_pca_171208.r
 
 # plot subjects in PCA space (after scaling of individual parameters) of 
 # G2, G3, F1 (and we can also test adding F5 and IP-10 from Luminex) to see 
 # if we can finalize/tune how we call POS vs. NEG.
 
+# Initialize
+source("SCRIPTS/0_initialize.r")
 
 # flow
 fn.f = file.path(PROJECT_DIR, "RESULTS/Flow_10c/DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_DonorScores.txt")
@@ -62,6 +66,10 @@ fn.fig = file.path(PROJECT_DIR, "FIGURES", "2peak_patterns_PCA.png")
 ggsave(fn.fig, w=6,h=4)
 
 dn.pred = file.path(PROJECT_DIR, "RESULTS/Adjuvant_prediction")
-dir.create(dn.pred, showWarnings = F)
-fwrite(df.pc, file.path(dn.pred, "2peaks_patterns_PCA.txt"),
-       sep="\t")
+if(dir.exists(dn.pred)){
+        print("Output folder already exists.")
+}else{
+        print("Output folder doesn't exists. Creating it now.")
+        dir.create(dn.pred, recursive = T, showWarnings = T)
+}
+fwrite(df.pc, file.path(dn.pred, "2peaks_patterns_PCA.txt"), sep="\t")

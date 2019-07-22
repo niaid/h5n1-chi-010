@@ -1,3 +1,7 @@
+# PURPOSE: Quality control of flow cytometry-based response patterns
+
+# Initialize
+source(file.path("SCRIPTS/0_initialize.r"))
 require(gplots)
 require(RColorBrewer)
 library(grid)
@@ -7,13 +11,18 @@ library(dynamicTreeCut)
 library(ComplexHeatmap)
 # rm(list=ls())
 
-source(file.path("SCRIPTS/0_initialize.r"))
 path_infile1 = file.path(PROJECT_DIR,"DATA_PROCESSED","Flow_10c")
 path_infile2 = file.path(PROJECT_DIR,"RESULTS","Flow_10c")
 path_outfile = file.path(PROJECT_DIR,"RESULTS","Flow_10c")
 
 dn.fig = file.path(PROJECT_DIR, "FIGURES/Flow_QC")
-dir.create(dn.fig, showWarnings = F)
+if(dir.exists(dn.fig)){
+        print("Output directory already exists.")
+}else{
+        print("Output directory doesn't exists. Creating it now.")
+        dir.create(dn.fig, showWarnings = F)
+}
+
 
 ################################
 measure_type = "PercentOfParent"

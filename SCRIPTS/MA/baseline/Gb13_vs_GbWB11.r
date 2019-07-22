@@ -1,3 +1,9 @@
+# PURPOSE: (C)	Correlation between eigengene scores from two modules associated 
+# with type I interferon and antiviral response discovered at day 0 in PBMC 
+# (Gb13) and whole blood (GbWB11). A/Indonesia titers values at day 42 are 
+# represented by dot size, and subjects separated by gender with colors: 
+# male (blue) and female (red).
+
 source("SCRIPTS/0_initialize.r")
 fn.pbmc = file.path(PROJECT_DIR, "RESULTS/Microarrays/PBMC/baseline/GE.pbmc_d0_WGCNA_ME_scores.txt")
 df.pbmc = fread(fn.pbmc) %>% 
@@ -45,11 +51,11 @@ DF = inner_join(df.pax, df.pbmc, by="subject") %>%
   inner_join(df.mn, by="subject") %>% 
   inner_join(df.demo, by="subject")
 
-ggplot(DF, aes(Gb13, GbWB11, col=Gender, size=A.Indonesia)) +
+plot1 <- ggplot(DF, aes(Gb13, GbWB11, col=Gender, size=A.Indonesia)) +
   geom_point(alpha=0.8) +
   # scale_color_manual(values=c(Male="cyan",Female="pink")) +
   scale_size_continuous(range = c(2,10), breaks = c(20,80,320,1280, 5120)) +
   theme_bw() +
   theme(legend.position = c(0.85,0.4), legend.box.background = element_blank())
 fn.fig = file.path(PROJECT_DIR, "FIGURES/Baseline/Gb13_vs_GbWB11.png")
-ggsave(fn.fig, w=5, h=4)
+ggsave(fn.fig, plot = plot1, w=5, h=4)
