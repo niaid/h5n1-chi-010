@@ -8,6 +8,7 @@ UGE-output
 # Random Files
 core.*
 *.sif
+d0TOM.*
 
 # Figures that are generated outside the FIGURES folder
 *.png
