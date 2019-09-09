@@ -3,9 +3,11 @@ DATA_ORIGINAL
 DATA_PROCESSED
 FIGURES
 RESULTS
+UGE-output
 
 # Random Files
-core.20727
+core.*
+*.sif
 
 # Figures that are generated outside the FIGURES folder
 *.png

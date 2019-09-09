@@ -65,7 +65,7 @@ df.mat.up = df.mat[df$gene %in% gene.up,]
 df.mat.dn = df.mat[df$gene %in% gene.dn,]
 df.mat.all = df.mat
 
-# Carry out correlation and k-means clustering.
+# Carry out correlation.
 long.idx = c(rep(1,3),2:ncol(df.mat.all))
 df.mat.cc.all = cor(t(df.mat.all[,long.idx]), use = "pairwise.complete.obs")
 # df.mat.cc.up = cor(t(df.mat.up), use = "pairwise.complete.obs")

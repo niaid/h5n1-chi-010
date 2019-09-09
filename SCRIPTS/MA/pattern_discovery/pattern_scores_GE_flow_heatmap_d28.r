@@ -27,12 +27,12 @@ df.mn = df.mn %>%
   mutate(day = ifelse(day %in% c(29,31), 28, day) %>% factor()) %>% 
   mutate(subject = sprintf("s%02d",Sample.ID))
 
-mn.d42 = df.mn %>% filter(day==42) %>% 
+mn.d28 = df.mn %>% filter(day==28) %>% 
   dplyr::select(subject,A.Indonesia) %>% 
   tibble::column_to_rownames("subject") #%>% as.matrix()
 
-mn.ord = match(rownames(subj.patt.cor),rownames(mn.d42))
-mn.d42 = mn.d42[mn.ord,,drop=F]
+mn.ord = match(rownames(subj.patt.cor),rownames(mn.d28))
+mn.d28 = mn.d28[mn.ord,,drop=F]
 
 # read demographics
 fn.demo = file.path(PROJECT_DIR, "DATA_ORIGINAL", "Clinical", "clinical_info_adj.txt")
@@ -40,10 +40,10 @@ df.demo = fread(fn.demo) %>%
   dplyr::rename(subject=`Subject ID`) %>% 
   mutate(subject = sub("H5N1-0","s", subject)) %>% 
   mutate(Gender = ifelse(grepl("^F",Gender),"Female","Male"))
-sex.df = df.demo[match(rownames(mn.d42),df.demo$subject),"Gender",drop=F]
-rownames(sex.df) = rownames(mn.d42)
+sex.df = df.demo[match(rownames(mn.d28),df.demo$subject),"Gender",drop=F]
+rownames(sex.df) = rownames(mn.d28)
 
-hm.t = rowAnnotation(`A/Indonesia` = row_anno_barplot(log2(mn.d42$A.Indonesia), axis = T,
+hm.t = rowAnnotation(`A/Indonesia d28` = row_anno_barplot(log2(mn.d28$A.Indonesia), axis = T,
                                                       bar_width = 0.8,
                                                       gp = gpar(fill = "black", col=NA)),
                      # Vietnam = row_anno_barplot(log2(mn.d28$A.Vietnam), axis = T ),
@@ -69,14 +69,14 @@ hm.sex = Heatmap(sex.df$Gender, name="Gender", cluster_rows = F,
                  col=list(Male="cyan",Female="pink"),
                  show_column_names = F, width=unit(1,"cm"))
 
-fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1.pdf")
+fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28.pdf")
 pdf(fn.fig, width = 8.5, height = 11)
 set.seed(123)
 draw(hm+hm.t+hm.sex+hm.flow)#, heatmap_legend_side = "bottom")
 # draw(hm+hm.sex)
 dev.off()
 
-fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1.tiff")
+fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28.tiff")
 tiff(filename = fn.fig, width = 8.5, height = 11, units = "in", res = 300)
 # png(fn.fig, width=1000, height=800)
 set.seed(123)

@@ -8,10 +8,10 @@ library(circlize)
 
 dn.in = file.path(PROJECT_DIR, "RESULTS/Flow_10c/")
 fn = "DeltaThr0.5_DonorThr0.3_PercentOfParent_CORpearson_cutreeHybrid_deepSplit0_minClusterSize31_CPs.txt"
-df = fread(file.path(dn.in, fn)) %>% 
-  mutate(ID = paste0("ID", CP_code)) %>% 
+df = fread(file.path(dn.in, fn))  %>% 
+        mutate(ID = paste0("ID", CP_code)) %>% 
   # mutate(CP_desc = sprintf("ID%g: %s", CP_code, CP_desc)) %>% 
-  select(-CP_code, -CP_desc)
+        select(-CP_code, -CP_desc)
 
 # mat  = df %>% 
 #   tibble::column_to_rownames("CP_desc") %>% 

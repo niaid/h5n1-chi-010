@@ -10,10 +10,13 @@ df.demo = fread(fn.demo) %>%
 
 # ADJUAVNT PREDICTION
 
-fn.pred = file.path(PROJECT_DIR, "RESULTS/Adjuvant_prediction/adjuvant_predicted_subjects.txt")
+fn.pred = file.path(PROJECT_DIR, "DATA_ORIGINAL", "Clinical", "clinical_info_adj.txt")
 df.pred = fread(fn.pred)
+df.pred$subject = sub("H5N1-0", "s", df.pred$`Subject ID`) 
 si = match(df.demo$donor_short, df.pred$subject)
-df.demo$blinded_flag = df.pred$predict[si]
+df.demo$blinded_flag = df.pred$Adjuvant[si]
+df.demo = df.demo %>% mutate (blinded_flag = sub("NonAdj", "NEG", blinded_flag)) %>%
+        mutate (blinded_flag = sub("Adj", "POS", blinded_flag))
 
 # MN TITERS
 

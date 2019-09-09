@@ -2,12 +2,13 @@ source("SCRIPTS/0_initialize.r")
 dn.enet = file.path(PROJECT_DIR, "RESULTS/eNet")
 run.list = paste0("R",6)
 run.ver = "v1"
-run.a = c(1)#, 0.3, 0.3)
+run.a = c(0.3)#, 0.3, 0.3)
 names(run.a) = run.list
 
 # for(run.id in run.list) {
 run.id = run.list
-fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
+# fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
+fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}_noGbWB11.Robj"))
 
 load(fn.run, verbose = T)
 
@@ -35,7 +36,8 @@ DF.stat = rbind(DF.model, DF.null) %>%
   mutate(model = factor(model, levels=c("null","model"))) %>% 
   mutate(feature = factor(feature, levels=sort(unique(feature), decreasing=T)))
 
-dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet")
+# dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/")
+dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/noGbWB11")
 dir.create(dn.fig, showWarnings = F)
 
 ggplot(DF.stat, aes(coef.mean, freq.mean, label=feature)) +
