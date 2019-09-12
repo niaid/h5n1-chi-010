@@ -2,13 +2,13 @@ source("SCRIPTS/0_initialize.r")
 dn.enet = file.path(PROJECT_DIR, "RESULTS/eNet")
 run.list = paste0("R",6)
 run.ver = "v1"
-run.a = c(0.3)#, 0.3, 0.3)
+run.a = c(1.0)#, 0.3, 0.3)
 names(run.a) = run.list
 
 # for(run.id in run.list) {
 run.id = run.list
-# fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
-fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}_noGbWB11.Robj"))
+fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}.Robj"))
+# fn.run = file.path(dn.enet, run.ver, glue::glue("{run.id}_{run.ver}_noGbWB11.Robj"))
 
 load(fn.run, verbose = T)
 
@@ -36,8 +36,8 @@ DF.stat = rbind(DF.model, DF.null) %>%
   mutate(model = factor(model, levels=c("null","model"))) %>% 
   mutate(feature = factor(feature, levels=sort(unique(feature), decreasing=T)))
 
-# dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/")
-dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/noGbWB11")
+dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/QF/")
+# dn.fig = file.path(PROJECT_DIR, "FIGURES/eNet/noGbWB11")
 dir.create(dn.fig, showWarnings = F)
 
 ggplot(DF.stat, aes(coef.mean, freq.mean, label=feature)) +
@@ -64,6 +64,9 @@ ggsave(fn.fig, w=4, h=4)
 
 
 # scatter plot of predictin performance
+QF_r = formatC(result$model_QF_est[ai], digits = 2, format = "f")
+QF_p = formatC(result$QF_model_vs_null_pval[ai], digits = 2, format = "f")
+QF_text = paste("Pearson correlation: ", QF_r, " (","p = ",QF_p,")", sep="")
 DF.plot = data.frame(
   subject = rownames(result$predictor),
   measured = result$response,
@@ -77,6 +80,7 @@ p0 = ggplot(DF.plot, aes(measured, pred_mean)) +
   geom_text(aes(label=sub("s","",subject)), hjust=-0.3, size=3) +
   xlab("MN titer, measured at day 28") +
   ylab("MN titer, out-of-bag predicted") +
+  annotate("text", x=5, y=1.2, label= QF_text, size = 3)+
   theme_bw()
 
 # plots of selected features

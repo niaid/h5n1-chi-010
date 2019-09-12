@@ -52,31 +52,30 @@ hm.t = rowAnnotation(`A/Indonesia d28` = row_anno_barplot(log2(mn.d28$A.Indonesi
                      annotation_name_rot = 0,
                      width = unit(4, "cm"))
 hm = Heatmap(subj.patt.cor, cluster_rows = T, cluster_columns = F,
-             name = "GE", col = colorRamp2(c(-1.5, 0, 1.5), c("blue", "white", "red")), #DC143C")),
-             # top_annotation = ha, top_annotation_height = unit(4, "mm"), 
+             name = "GE", col = colorRamp2(c(-1.0, 0, 1.0), c("blue", "white", "#DC143C"), space = "RGB"),
              show_row_names = T, show_column_names = T,
-             column_names_gp = gpar(fontsize = 14))#, column_title=ttl)
+             column_names_gp = gpar(fontsize = 14))
 # hm.flow = Heatmap(subj.patt.cor.f[si,], cluster_rows = F, cluster_columns = F,
 #              name = "flow", col = colorRamp2(c(-1, 0, 1), c("blue", "white", "red")),
 # top_annotation = ha, top_annotation_height = unit(4, "mm"), 
 #              show_row_names = F, show_column_names = T,
 #              column_names_gp = gpar(fontsize = 20))#, column_title=ttl)
 hm.flow = Heatmap(as.matrix(subj.patt.cor.f[si,]), cluster_rows = F, cluster_columns = T,
-             name = "FC", col = colorRamp2(c(-1.5, 0, 1.5), c("purple", "white", "orange")), #FFD700")),
+             name = "FC", col = colorRamp2(c(-1.0, 0, 1.0), c("purple", "white", "#FF8C00"), space = "RGB"), #FFD700")),
              show_row_names = F, show_column_names = T,
              column_names_gp = gpar(fontsize = 14))#, column_title=ttl)
 hm.sex = Heatmap(sex.df$Gender, name="Gender", cluster_rows = F,
                  col=list(Male="cyan",Female="pink"),
                  show_column_names = F, width=unit(1,"cm"))
 
-fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28.pdf")
+fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28_RGB.pdf")
 pdf(fn.fig, width = 8.5, height = 11)
 set.seed(123)
 draw(hm+hm.t+hm.sex+hm.flow)#, heatmap_legend_side = "bottom")
 # draw(hm+hm.sex)
 dev.off()
 
-fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28.png")
+fn.fig = file.path(PROJECT_DIR, "FIGURES", "GE_subject_patterns_cor_flow_titers_sex.pred_incl.s10_1_d28_RGB.png")
 png(filename = fn.fig, width = 8.5, height = 11, units = "in", res = 300)
 # png(fn.fig, width=1000, height=800)
 set.seed(123)

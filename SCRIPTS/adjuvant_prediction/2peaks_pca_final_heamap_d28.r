@@ -57,12 +57,11 @@ cm2 = lighten(cm, 1.4)
 hm = Heatmap(dat2.sc, cluster_rows = T, cluster_columns = F, #km=2,
              clustering_distance_rows = "euclidean",
              clustering_method_rows = "average",
-             name = "Correlation", col = colorRamp2(c(-1.5, 0, 1.5), c("blue", "white", "red")),
-             # top_annotation = ha, top_annotation_height = unit(4, "mm"), 
+             name = "Correlation", col = colorRamp2(c(-1.0, 0, 1.0), c("blue", "white", "#DC143C"), space = "RGB"),
              show_row_names = T, show_column_names = T,
-             column_names_gp = gpar(fontsize = 20),
-             heatmap_legend_param = list(title_gp = gpar(fontsize = 18), 
-                                         labels_gp = gpar(fontsize = 14),
+             column_names_gp = gpar(fontsize = 14),
+             heatmap_legend_param = list(title_gp = gpar(fontsize = 14), 
+                                         labels_gp = gpar(fontsize = 12),
                                          color_bar = "continuous",
                                          legend_height = unit(4,"cm"),
                                          legend_direction="vertical"))
@@ -70,7 +69,6 @@ hm = Heatmap(dat2.sc, cluster_rows = T, cluster_columns = F, #km=2,
 hm.t = rowAnnotation(`A/Indonesia d28` = row_anno_barplot(log2(mn.d28$A.Indonesia), axis = T,
                                                           bar_width = 0.8,
                                                           gp = gpar(fill = "black", col=NA)),
-                     # annotation_name = "A/Indonesia",
                      show_annotation_name = T,
                      annotation_name_offset = unit(8, "mm"),
                      annotation_name_rot = 0,
@@ -79,23 +77,27 @@ hm.t = rowAnnotation(`A/Indonesia d28` = row_anno_barplot(log2(mn.d28$A.Indonesi
 hm.sex = Heatmap(df.sex$Gender, name="Gender", cluster_rows = F,
                  col=list(Male="cyan",Female="pink"),
                  show_column_names = F, width=unit(1,"cm"),
-                 heatmap_legend_param = list(title_gp = gpar(fontsize = 18), 
-                                             labels_gp = gpar(fontsize = 14),
+                 heatmap_legend_param = list(title_gp = gpar(fontsize = 14), 
+                                             labels_gp = gpar(fontsize = 12),
                                              legend_direction="horizontal"))
 hm.pred = Heatmap(adj.pred, name="Predicted", cluster_rows = F,
                   col=list(NEG=cm2[1],POS=cm2[2]),
-                  show_column_names = F, width=unit(1,"cm"))
+                  show_column_names = F, width=unit(1,"cm"),
+                  heatmap_legend_param = list(title_gp = gpar(fontsize = 14), 
+                                             labels_gp = gpar(fontsize = 12),
+                                             legend_direction="horizontal"))
+
 # hm.pred = Heatmap(pred.df$Predicted, name="predicted", cluster_rows = F,
 #                   show_column_names = F, width=unit(1,"cm"))
 # set.seed(122)
-fn.fig = file.path(PROJECT_DIR, "FIGURES/GE_subject_patterns_cor_flow_ip10_titers_sex.pred_incl.s10_d28.pdf")
+fn.fig = file.path(PROJECT_DIR, "FIGURES/GE_subject_patterns_cor_flow_ip10_titers_sex.pred_incl.s10_d28_RGB.pdf")
 pdf(fn.fig, width = 8.5, height = 11)
 draw(hm + hm.t + hm.sex + hm.pred, heatmap_legend_side = "right")
 decorate_heatmap_body("Correlation", {grid.lines(x=c(0,1), y=c(0.5, 0.5), gp = gpar(lwd = 2, lty=2))})
 dev.off()
 
-fn.fig = file.path(PROJECT_DIR, "FIGURES/GE_subject_patterns_cor_flow_ip10_titers_sex.pred_incl.s10_d28.png")
-png(fn.fig, width=700,height=800)
+fn.fig = file.path(PROJECT_DIR, "FIGURES/GE_subject_patterns_cor_flow_ip10_titers_sex.pred_incl.s10_d28_RGB.png")
+png(fn.fig, width=2550, height=3300, res=300, units="px")
 draw(hm + hm.t + hm.sex + hm.pred, heatmap_legend_side = "right")
 decorate_heatmap_body("Correlation", {grid.lines(x=c(0,1), y=c(0.5, 0.5), gp = gpar(lwd = 2, lty=2))})
 dev.off()
