@@ -59,7 +59,7 @@ ggsave(fn.fig, w=4, h=4)
 
 # scatter plot of predictin performance
 QF_r = formatC(result$model_QF_est[ai], digits = 2, format = "f")
-QF_p = formatC(result$QF_model_vs_null_pval[ai], digits = 2, format = "f")
+QF_p = formatC(result$QF_model_vs_null_pval[ai], digits = 2, format = "e")
 QF_text = paste("Pearson correlation: ", QF_r, " (","p = ",QF_p,")", sep="")
 
 DF.plot = data.frame(

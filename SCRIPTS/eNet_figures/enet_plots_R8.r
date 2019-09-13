@@ -91,7 +91,7 @@ features.in = unique(DF.stat$feature[fi])
 
 # Long somamer's name - have to cut. To be edited manually in final version
 DF.stat.2 = DF.stat %>% filter(feature %in% features.in) %>% 
-  mutate(feature = str_sub(feature, 1, 10))
+   mutate(feature = str_sub(feature, 1, 10))
 
 p1 = ggplot(DF.stat.2, aes(feature, freq.mean*100, fill=model)) +
   geom_col(position="dodge") +
