@@ -35,10 +35,10 @@ if(dir.exists(dn.fig)){
 print ("Plotting and saving figure.")
 plot_out  <- ggplot(df.mn, aes(day, log2(A.Indonesia), group=subject, col=subject)) +
   geom_line(position = position_jitter(width=0, height=0.1)) +
-  scale_y_continuous(name="MN titer", breaks=log2(yticks), labels = yticks) +
+  scale_y_continuous(name="MN titer (A/Indonesia)", breaks=log2(yticks), labels = yticks) +
   xlab("Time points") +
   theme_bw() + theme(legend.position = "none", panel.grid.minor=element_blank(),
                      axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) 
 
-ggsave(file.path(dn.fig, "MN_titer_profiles_all_subjects.png"), plot = plot_out, h=3.3, w=4)
+ggsave(file.path(dn.fig, "MN_titer_profiles_all_subjects_indonesia.png"), plot = plot_out, h=3.3, w=4)
 unlink(plot_out)
