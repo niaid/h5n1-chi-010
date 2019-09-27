@@ -92,7 +92,7 @@ singularity shell -B /hpcdata/sg/sg_data/users/farmerr2/sandbox/projects/h5n1:/v
 # Titers
 
 ## Figure 1A
-URL to the Shinyapp that produces figure 1A `H5N1/MANUSCRIPT/Figures/Figure1_url_180322.txt`
+URL to the Shinyapp that produces figure 1A `FIGURES/Figure1_url_180322.txt`
 
 ## Figure 1B
 Purpose: To plot titer respose against time (Day 0, Day 21, Day 28, Day 100)
