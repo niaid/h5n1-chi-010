@@ -1,7 +1,6 @@
 require(gplots)
 require(RColorBrewer)
 
-rm(list=ls())
 
 source(file.path("SCRIPTS/0_initialize.r"))
 path_infile = file.path(PROJECT_DIR,"DATA_PROCESSED","Flow_10c")

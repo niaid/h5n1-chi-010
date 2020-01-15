@@ -5,8 +5,6 @@ library(gridExtra)
 library(fpc)
 library(dynamicTreeCut)
 
-rm(list=ls())
-
 source(file.path("SCRIPTS/0_initialize.r"))
 path_infile1 = file.path(PROJECT_DIR,"DATA_PROCESSED","Flow_10c")
 path_infile2 = file.path(PROJECT_DIR,"RESULTS","Flow_10c")
