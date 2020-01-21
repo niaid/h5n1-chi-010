@@ -15,15 +15,15 @@ donor_pax = paste0("s",substr(sample_metadata_pax[,1],7,8))
 pbmc_data = readRDS(paste0(path_infile,"PBMC_dat0.in_isv.0.7_8144g_170216.rds")) # 41 x 8144 (s10 missing)
 # Remove subject 38.
 pbmc_rnames <- rownames(pbmc_data)
-pbmc_rnames <-  pbmc_rnames[!pbmc_rnames == "H5N1_038"]
+pbmc_rnames <-  pbmc_rnames[!pbmc_rnames == "H5N1_001"]
 pbmc_data <- pbmc_data[pbmc_rnames,]
 cat(paste0("Integrity check passed = ",sum(gene==colnames(pbmc_data))==n_gene),"\n")
 sample_metadata_pbmc = readRDS(paste0(path_infile,"PBMC_info0.in_170216.rds"))
 donor_pbmc = paste0("s",substr(sample_metadata_pbmc[,1],7,8))
-donor_pbmc <- donor_pbmc[!donor_pbmc == "s38"]
+donor_pbmc <- donor_pbmc[!donor_pbmc == "s01"]
 
 soma_data = read.table(paste0(path_infile,"SOMA.txt"),header=T,stringsAsFactors=F,sep="\t")
-soma_data <- soma_data[!soma_data$donor_short == "s38",]
+soma_data <- soma_data[!soma_data$donor_short == "s01",]
 
 sex = rep(0,nrow(soma_data))
 sex[soma_data[,"sex"]=="Male Gende"] = 1 # F=0, M=1
@@ -66,4 +66,6 @@ for (i_gene in 1:n_gene) {
     RES_ALL = rbind(RES_ALL,RES)
 }
 output = cbind(c("gene",gene),RES_ALL)
-write(t(output),ncol=ncol(output),file=paste0(path_outfile,"pbmc_ADJ_",target_soma,"_bySex_no_38.txt"),sep="\t")
+write(t(output),ncol=ncol(output),file=paste0(path_outfile,"pbmc_ADJ_",target_soma,"_bySex_no_01.txt"),sep="\t")
+
+
