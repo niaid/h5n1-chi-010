@@ -6,13 +6,6 @@ library(tidyverse)
 library(data.table)
 library(stringr)
 
-# load gene expression data
-# fn.ge = file.path("DATA_PROCESSED", "Baseline", "CHI_GE_matrix_gene.txt")
-# dat = fread(fn.ge, data.table = F) %>% 
-#   tibble::remove_rownames() %>% tibble::column_to_rownames("gene") %>% 
-#   data.matrix()
-
-
 # Load subject info and select adjuvanted subjects
 subject <- read.table(file.path("DATA_ORIGINAL","Clinical", "clinical_info_adj.txt"), header = TRUE, sep = "\t")
 subject <- subject[subject$Adjuvant == "Adj", c("Subject.ID")]
@@ -33,6 +26,14 @@ rspo3_soma <-  rspo3_soma[rspo3_soma$donor %in% subject,]
 
 # Match gene expression subject with SOMAScan subjects.
 pbmc_exp_data <-  pbmc_exp_data[, rspo3_soma$donor]
+
+# Gene stability.
+gene_stability <- read.table(file.path("SCRIPTS", "rspo3", "CHI_genes_stability.txt"), header = TRUE, sep = "\t")
+idx <- gene_stability$ISV >= 0.5
+tsm_gene <- gene_stability[idx, ]$gene
+
+# Fetch expression data for the TSM genes.
+pbmc_exp_data <- pbmc_exp_data[rownames(pbmc_exp_data) %in% tsm_gene,]
 
 # calculate robust regression removing ns samples --------
 ns = 2
@@ -66,6 +67,7 @@ df.out = data.frame(cor.ntop20 = cc.rob.ntop,
                     ) %>%
   tibble::rownames_to_column("gene")
 
-fn.cor = file.path("RESULTS", "rspo3","robust_corel_all_genes_2_test.txt")
+fn.cor = file.path("RESULTS", "rspo3","robust_corel_tsm_genes_2_test.txt")
 fwrite(df.out, fn.cor, sep="\t", quote=T)
+
 

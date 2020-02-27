@@ -1,10 +1,11 @@
 library(pROC)
 library(tidyverse)
 library(data.table)
+library(Biobase)
 
 source(file.path("SCRIPTS", "functions", "load_sig.r"))
 source(file.path("SCRIPTS", "functions", "get_score.r"))
-fn.cd38.cor = file.path("RESULTS", "rspo3", "robust_corel_all_genes.txt")
+fn.cd38.cor = file.path("RESULTS", "rspo3", "robust_corel_tsm_genes_2_test.txt")
 
 # Load subject info and select adjuvanted subjects
 subject <- read.table(file.path("DATA_ORIGINAL","Clinical", "clinical_info_adj.txt"), header = TRUE, sep = "\t")
@@ -36,23 +37,14 @@ d28_titre <- d28_titre[d28_titre$Sample.ID %in% subject, ]
 subject == d28_titre$Sample.ID # Spot check
 d28_titre$A.Indonesia <-  as.numeric(str_replace(d28_titre$A.Indonesia, "<", ""))
 
-# load gene expression data
-# fn.ge = file.path("DATA_PROCESSED", "Baseline",  "CHI_GE_matrix_gene.txt")
-# dat = fread(fn.ge, data.table = F) %>% 
-#   tibble::remove_rownames() %>% tibble::column_to_rownames("gene") %>% 
-#   data.matrix()
-# 
-# fn.si = file.path("DATA_PROCESSED", "Baseline", "CHI_sample_info_2.txt")
-# info = fread(fn.si)
-
-ng.max = 100
+ng.max = 200
 result_df = data.frame(matrix(nrow=0, ncol=3))
 
 for(top in 2:ng.max){
         gene.sig <- load_sig(fn.cd38.cor, "cor.mean.sd.ratio", ntop=top)
         gene_cut_exp <- pbmc_exp_data[gene.sig,]
 
-        # Day 100 correlation.
+        # Day 0 correlation.
         # Calculate the z-score for each subject using expression data for the short listed genes.
         subj_z_score <- data.frame(score = get_score(gene_cut_exp))
         subj_z_score <- rownames_to_column(subj_z_score, var = "Sample.ID")
@@ -75,57 +67,33 @@ for(top in 2:ng.max){
 plot_topn <- result_df %>%
         gather(key,value, spear_day0, spear_day100) %>%
         ggplot(aes(x=top_ng, y=value, colour=key)) +
-        geom_line()
-plot_name <- "topn_day0_day100.png"
+        geom_line() +
+        scale_y_continuous(name = "rho (z-score vs d28 titre)", breaks = seq(-1, 1, by = 0.1), limits = c(-1,1)) +
+        scale_x_continuous(name = "number of top genes", limits = c(0, 200), breaks = seq(0, 200, by = 10)) +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+plot_name <- "topn_day0_day100_tsm_test.png"
 ggsave(file.path("FIGURES","rspo3", plot_name), plot = plot_topn, device = "png", width = 6, height = 4)
+
+
+# Max correlation on day0.
+max_0 <-  result_df[result_df$spear_day0 == max(result_df$spear_day0), "top_ng"]
+# Genes at max correlation on day0.
+max_genes_0 <- load_sig(fn.cd38.cor, "cor.mean.sd.ratio", ntop=max_0)
+max_genes_0 <- data.frame(genes = max_genes_0)
+
+write.table(max_genes_0, file.path("RESULTS", "rspo3", "rspo3_signature_tsm_genes_test.txt"), sep = "\t", row.names = F)
+
+stop()
+
+all_genes <- read.table(file.path("RESULTS", "rspo3", "rspo3_signature_all_genes.txt"), sep = "\t", header = T)
+writeLines(as.character(all_genes$genes), file.path("RESULTS", "rspo3", "rspo3_signature_all_genes_line.txt"), sep = ",")
+tsm_genes <- read.table(file.path("RESULTS", "rspo3", "rspo3_signature_tsm_genes.txt"), sep = "\t", header = T)
+writeLines(as.character(tsm_genes$genes), file.path("RESULTS", "rspo3", "rspo3_signature_tsm_genes_line.txt"), sep = ",")
+
+common_genes <- intersect(all_genes$genes, tsm_genes$genes)
+
 
 stop()
 
 
-
-
-# for (tp in c(0,-7,70)) {
-# tp <- 0
-#    cat(tp,"")
-#   
-#   day.pt = paste0("day ",tp)
-# test signature
-#   for(ng in 2:ng.max) {
-#           ng <- 2
-# load CD38 signature genes
-#     gene.sig = load_sig(fn.cd38.cor, "cor.mean.sd.ratio", ntop=ng)
-# gi = toupper(rownames(dat)) %in% toupper(gene.sig)
-#     gi = toupper(rownames(pbmc_exp_data)) %in% toupper(gene.sig)
-#     sum(gi)
-#     
-#     iday = info$time==tp
-#     ihl = info$adjMFC_class[iday] %in% c(0,2)
-#     X = get_score(dat[gi,iday])[ihl]
-#     Y = info$adjMFC_class[iday][ihl]
-#     
-#     auc.ng = ci.auc(Y,X, direction="<", quiet=T) %>% matrix(nrow=1)
-#     colnames(auc.ng) = c("auc.ci95.min", "AUC", "auc.ci95.max")
-#     r.df = data.frame(day=day.pt, ng, as.data.frame(auc.ng))
-#     
-#     roc.df = rbind(roc.df, r.df)
-#   }
-# }
-
-
-# roc.df = roc.df %>% 
-#   mutate(day = factor(day, levels=c("day 0","day -7","day 70"))) %>% 
-#   mutate(ngx = ifelse(day=="day -7", ng-0.2, ifelse(day=="day 70", ng+0.2, ng)))
-# 
-# ggplot(roc.df, aes(ng, AUC, group=day, col=day)) + 
-# geom_linerange(aes(x=ngx, ymin=auc.ci95.min, ymax=auc.ci95.max)) +
-#         geom_ribbon(aes(ymin=auc.ci95.min, ymax=auc.ci95.max, fill=day), alpha=0.2, col=NA) +
-        #   geom_line(size=1) +
-        #   geom_point(size=1, shape=21, fill="white", stroke=1) +
-        #   scale_color_manual(values=c("grey65", "grey80","grey50")) +
-        #   xlab("No. of genes") + ylab("AUC") + theme_bw() + 
-        #   theme(legend.key = element_blank())
-        # 
-        # fn.fig = file.path(PROJECT_DIR, "figure_generation", 
-        #                    sprintf("CHI_CD38.2-%d.genes_AUC_ci95",ng.max))
-        # ggsave(paste0(fn.fig,".png"), w=5, h=4)
-        # ggsave(paste0(fn.fig,".pdf"), w=5, h=4)
