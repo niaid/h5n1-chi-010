@@ -100,7 +100,7 @@ data.frame(Sensitivity=r$sensitivities, Specificity=r$specificities) %>%
 ggsave(sprintf("IFN.gene_sd1-d0_Emory_roc_%s.genes_%s.png",gset, today()),w=3,h=3)
 
 
-# correlate with titer d28
+# correlate with titer d42
 fn.em.titer = "DATA_PROCESSED/Emory/Emory_Nonadj_MN_Indonesia.txt"
 em.titer = read.table(fn.em.titer, sep="\t", header=T) %>% 
   select(subject=Subject, titer=Day.42.MN)
@@ -108,6 +108,8 @@ em.titer = read.table(fn.em.titer, sep="\t", header=T) %>%
 df = df.test %>% 
   filter(day %in% "Day0", Adjuvant=="NonAdj") %>% 
   inner_join(em.titer, by="subject")
+
+cor_res <- cor.test(df$gene.score, log2(df$titer), method = "pearson")
 
 yticks = sort(unique(df$titer))
 # yticks = yticks[seq(2,length(yticks),2)]
