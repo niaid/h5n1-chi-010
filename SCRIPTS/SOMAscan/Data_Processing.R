@@ -36,8 +36,20 @@ RFU = tmp_RFU
 
 RFU = log10(RFU) # we log the RFUs
 
+stop()
 # We save the data for downstream analysis
 write(t(RFU),ncol=ncol(RFU),file="Final_RFU.txt",sep="\t")
 write(t(rbind(colnames(sample),sample)),ncol=ncol(sample),file="Final_Samples.txt",sep="\t")
 write(t(rbind(colnames(somamer),somamer)),ncol=ncol(somamer),file="Final_Somamers.txt",sep="\t")
 
+stop()
+# Merge the three files generated above into a single file to upload
+# it to the IMMPORT database. 
+library(tidyverse)
+final_samples <- data.frame(sample)
+final_somamer <- data.frame(somamer)
+
+final_rfu_t <- t(RFU)
+colnames(final_rfu_t) <- final_samples$SampleId
+df_soma <- cbind(final_somamer[,c("SomaId", "Target", "UniProt")], final_rfu_t[,order(colnames(final_rfu_t))])
+write_tsv(df_soma, "SOMAScan_data_for_IMMPORT.tsv")

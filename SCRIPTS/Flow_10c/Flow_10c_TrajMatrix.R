@@ -127,6 +127,7 @@ for (i_infile in 1:n_infile) {
     }
 }
 
+stop()
 # we save the trajectory matrix
 outfile = paste(path_outfile,"/TrajMatrix_AllCPs_",measure_type,".txt",sep="")
 write(t(traj_matrix_ALL),ncol=ncol(traj_matrix_ALL),file=outfile,sep="\t")
