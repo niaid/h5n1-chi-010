@@ -37,3 +37,12 @@ if (dir.exists(dn.fig)){
         dir.create(dn.fig, recursive = T, showWarnings = T)
 }
 ggsave(file.path(dn.fig, "HAI_titer_profiles_all_subjects.png"), plot = plot_hai, h=3.3, w=4)
+
+
+# Check subjects that never responded to the titer.
+# Find max of hai.max titer per subject and identify subjects that are =< 5.
+subj_no_resp <- df.hai3[is.finite(df.hai3$hai.max),] %>% group_by(subject) %>% 
+                                         summarize_at(vars("hai.max"), max) %>%
+                                         dplyr::filter(hai.max <= 5)
+
+write_tsv(subj_no_resp, file.path(dn.fig, "subjects_no_resp.tsv"))

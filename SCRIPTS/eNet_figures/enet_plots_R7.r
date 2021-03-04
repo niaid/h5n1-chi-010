@@ -1,3 +1,4 @@
+# PURPOSE: plot baseline profiles predict titer for NonAdj donors
 source("SCRIPTS/0_initialize.r")
 dn.enet = file.path(PROJECT_DIR, "RESULTS/eNet")
 run.list = paste0("R",7)
