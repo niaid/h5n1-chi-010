@@ -31,6 +31,7 @@ if(dir.exists(dn.fig)){
         dir.create(dn.fig, recursive = T, showWarnings = T)
 }
 
+stop()
 # Plot and save the figure file.
 print ("Plotting and saving figure.")
 plot_out  <- ggplot(df.mn, aes(day, log2(A.Indonesia), group=subject, col=subject)) +
@@ -42,3 +43,11 @@ plot_out  <- ggplot(df.mn, aes(day, log2(A.Indonesia), group=subject, col=subjec
 
 ggsave(file.path(dn.fig, "MN_titer_profiles_all_subjects_indonesia.png"), plot = plot_out, h=3.3, w=4)
 unlink(plot_out)
+
+# Check subjects that never responded to the titer.
+# Find max of hai.max titer per subject and identify subjects that are =< 5.
+subj_no_resp <- df.mn[is.finite(df.mn$A.Indonesia),] %>% group_by(subject) %>% 
+                                         summarize_at(vars("A.Indonesia"), max) %>%
+                                         dplyr::filter(A.Indonesia <= 10)
+
+write_tsv(subj_no_resp, file.path(dn.fig, "mn_subjects_no_resp.tsv"))

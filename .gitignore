@@ -4,6 +4,9 @@ DATA_PROCESSED
 FIGURES
 RESULTS
 UGE-output
+nvim
+data
+temp
 
 # Random Files
 core.*
