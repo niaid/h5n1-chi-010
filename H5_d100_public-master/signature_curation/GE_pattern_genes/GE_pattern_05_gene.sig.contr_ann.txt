@@ -1,0 +1,86 @@
+gene	entrezgene	name	PC1
+GBP5	115362	guanylate binding protein 5	0.154071756468517
+FGL2	10875	fibrinogen like 2	0.149051508665337
+LPCAT2	54947	lysophosphatidylcholine acyltransferase 2	0.148507831774235
+IDO1	3620	indoleamine 2,3-dioxygenase 1	0.145694461481515
+TNFAIP2	7127	TNF alpha induced protein 2	0.145229754427066
+CAPNS2	84290	calpain small subunit 2	0.145045324913894
+IL31RA	133396	interleukin 31 receptor A	0.142106210300047
+KCTD12	115207	potassium channel tetramerization domain containing 12	0.141676080027236
+RP11-638I2.8			0.139412291073004
+SLC31A2	1318	solute carrier family 31 member 2	0.139074755460736
+RBBP8	5932	RB binding protein 8, endonuclease	0.137925449136297
+KYNU	8942	kynureninase	0.137918154963632
+FAS	355	Fas cell surface death receptor	0.137384389694287
+SCARB2	950	scavenger receptor class B member 2	0.137189144405169
+IDH1	3417	isocitrate dehydrogenase (NADP(+)) 1, cytosolic	0.135034581360415
+IL15RA	3601	interleukin 15 receptor subunit alpha	0.134742124639439
+KIF13A	63971	kinesin family member 13A	0.134563073771529
+NMI	9111	N-myc and STAT interactor	0.134014879169714
+ASAP1-IT1	29065	ASAP1 intronic transcript 1	0.133144870436402
+FGD4	121512	FYVE, RhoGEF and PH domain containing 4	0.131696803774991
+CLEC12A	160364	C-type lectin domain family 12 member A	0.129482304764951
+ST8SIA4	7903	ST8 alpha-N-acetyl-neuraminide alpha-2,8-sialyltransferase 4	0.12857219039293
+DTNBP1	84062	dystrobrevin binding protein 1	0.127457245737073
+AC007556.3			0.126460302971545
+SLC27A3	11000	solute carrier family 27 member 3	0.123189842124522
+FAM20A	54757	FAM20A, golgi associated secretory pathway pseudokinase	0.122651452114592
+SPTLC2	9517	serine palmitoyltransferase long chain base subunit 2	0.122368431979782
+MNDA	4332	myeloid cell nuclear differentiation antigen	0.121545152151715
+IDO2	169355	indoleamine 2,3-dioxygenase 2	0.119832384731718
+TMEM106A	113277	transmembrane protein 106A	0.119196797933888
+OR52K2	119774	olfactory receptor family 52 subfamily K member 2	0.119179516312623
+DTX3L	151636	deltex E3 ubiquitin ligase 3L	0.118488069601664
+LINC00324	284029	long intergenic non-protein coding RNA 324	0.117233667761996
+TGM2	7052	transglutaminase 2	0.117027232019965
+CCR1	1230	C-C motif chemokine receptor 1	0.115477789461065
+BATF2	116071	basic leucine zipper ATF-like transcription factor 2	0.11542323817461
+NCF1B	654816	neutrophil cytosolic factor 1B pseudogene	0.113055834775594
+CMPK2	129607	cytidine/uridine monophosphate kinase 2	0.112456273976278
+MPP1	4354	membrane palmitoylated protein 1	0.112317664702562
+DOCK4	9732	dedicator of cytokinesis 4	0.111344138597269
+STAC3	246329	SH3 and cysteine rich domain 3	0.110789649785689
+SERPINB9	5272	serpin family B member 9	0.109944801778607
+RP11-115H15.2			0.109826151061384
+ATF5	22809	activating transcription factor 5	0.109619073064661
+CDCP1	64866	CUB domain containing protein 1	0.109190717953139
+IL6R	3570	interleukin 6 receptor	0.108426936299399
+GALNT3	2591	polypeptide N-acetylgalactosaminyltransferase 3	0.107659024796726
+SLC7A7	9056	solute carrier family 7 member 7	0.107195216279178
+ROGDI	79641	rogdi homolog	0.106278453049371
+SIGLEC1	6614	sialic acid binding Ig like lectin 1	0.102558304601607
+AC007620.3			0.10135651255709
+RN7SKP134	106479154	RNA, 7SK small nuclear pseudogene 134	0.0988275609938421
+AC091133.1			0.0980909822219679
+RP11-356M20.3			0.0976982989667849
+ASAP1-IT2	100507117	ASAP1 intronic transcript 2	0.0959881055656532
+ARHGAP31-AS1	100874246	ARHGAP31 antisense RNA 1	0.0925738289834693
+BATF3	55509	basic leucine zipper ATF-like transcription factor 3	0.0923586988980681
+C1QC	714	complement C1q C chain	0.0858288644592745
+RIPK3	11035	receptor interacting serine/threonine kinase 3	0.0853590604058424
+SPATS2L	26010	spermatogenesis associated serine rich 2 like	0.0839914836885467
+RP1-197B17.3			0.0811801498830999
+TMEM86B	255043	transmembrane protein 86B	0.0794661636253536
+MSRA	4482	methionine sulfoxide reductase A	0.0787802516367656
+LINC01347	731275	long intergenic non-protein coding RNA 1347	0.0760188536565901
+MRC1	4360	mannose receptor C-type 1	0.0753397613774587
+TICAM1	148022	toll like receptor adaptor molecule 1	0.0746023869849857
+RDX	5962	radixin	0.0714236912111827
+LGALS9B	284194	galectin 9B	0.0711988686996335
+ANXA3	306	annexin A3	0.0709074821083374
+WDR5B	54554	WD repeat domain 5B	0.069444971751086
+AC103828.1			0.0687494187058795
+CD163	9332	CD163 molecule	0.0687176747471144
+RP11-815J21.3			0.0685262943562135
+BRD8	10902	bromodomain containing 8	0.0679679463601714
+WIPI1	55062	WD repeat domain, phosphoinositide interacting 1	0.0672503622311699
+RASGEF1B	153020	RasGEF domain family member 1B	0.0655735072693063
+GPR33	2856	G protein-coupled receptor 33 (gene/pseudogene)	0.0655572349672199
+RP11-514F3.5			0.0654788933020905
+TAF13	6884	TATA-box binding protein associated factor 13	0.0652675471173976
+FAM129B	64855	family with sequence similarity 129 member B	0.0629236811563245
+RPP25	54913	ribonuclease P and MRP subunit p25	0.0607741417590373
+RNU6-359P	106479725	RNA, U6 small nuclear 359, pseudogene	0.0547754473032716
+MT1CP	441771	metallothionein 1C, pseudogene	0.0537121183906858
+DTL	51514	denticleless E3 ubiquitin protein ligase homolog	0.0510978054358656
+RARRES3	5920	retinoic acid receptor responder 3	0.0499707685524273

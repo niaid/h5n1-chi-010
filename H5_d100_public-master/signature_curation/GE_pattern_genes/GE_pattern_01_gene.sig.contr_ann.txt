@@ -1,0 +1,137 @@
+gene	entrezgene	name	PC1
+EPB41L3	23136	erythrocyte membrane protein band 4.1 like 3	0.116949611885725
+STAT2	6773	signal transducer and activator of transcription 2	0.110097619172358
+CRISPLD2	83716	cysteine rich secretory protein LCCL domain containing 2	0.109977849911982
+FGR	2268	FGR proto-oncogene, Src family tyrosine kinase	0.109884186640549
+CLEC6A	93978	C-type lectin domain containing 6A	0.109815113673273
+OAS1	4938	2'-5'-oligoadenylate synthetase 1	0.109713256225468
+SAMD9L	219285	sterile alpha motif domain containing 9 like	0.108940432293486
+FGD4	121512	FYVE, RhoGEF and PH domain containing 4	0.108819033603741
+SECTM1	6398	secreted and transmembrane 1	0.108048222236586
+FRMD3	257019	FERM domain containing 3	0.10737216053792
+GBP1	2633	guanylate binding protein 1	0.106898975252429
+PIK3AP1	118788	phosphoinositide-3-kinase adaptor protein 1	0.106618475291964
+STX11	8676	syntaxin 11	0.106386293118712
+THEMIS2	9473	thymocyte selection associated family member 2	0.10593903030035
+OASL	8638	2'-5'-oligoadenylate synthetase like	0.105617193138455
+MCTP1	79772	multiple C2 and transmembrane domain containing 1	0.105441292440347
+LPCAT2	54947	lysophosphatidylcholine acyltransferase 2	0.104539452944733
+SLC8A1	6546	solute carrier family 8 member A1	0.104302999393028
+KCNMB1	3779	potassium calcium-activated channel subfamily M regulatory beta subunit 1	0.103087795045217
+SPTLC2	9517	serine palmitoyltransferase long chain base subunit 2	0.102604355513343
+STAT1	6772	signal transducer and activator of transcription 1	0.102551799799514
+LILRA1	11024	leukocyte immunoglobulin like receptor A1	0.101727419306514
+MLKL	197259	mixed lineage kinase domain like pseudokinase	0.101348698514987
+OAS3	4940	2'-5'-oligoadenylate synthetase 3	0.101172195457419
+IRF1	3659	interferon regulatory factor 1	0.100202100776699
+CNTLN	54875	centlein	0.0994781771604308
+MX1	4599	MX dynamin like GTPase 1	0.0993609117049536
+TMEM150B	284417	transmembrane protein 150B	0.0988574762221114
+CYSLTR2	57105	cysteinyl leukotriene receptor 2	0.0987047884990705
+IRF7	3665	interferon regulatory factor 7	0.0982986044688588
+SKAP2	8935	src kinase associated phosphoprotein 2	0.0978961155806827
+GBP5	115362	guanylate binding protein 5	0.0977750091868586
+PRRG4	79056	proline rich and Gla domain 4	0.0976464056384729
+FCGR1B	2210	Fc fragment of IgG receptor Ib	0.0975585008542843
+IFI6	2537	interferon alpha inducible protein 6	0.0972522773794783
+CD300A	11314	CD300a molecule	0.0971280726129314
+VAMP5	10791	vesicle associated membrane protein 5	0.0968291245966138
+SLC11A1	6556	solute carrier family 11 member 1	0.0964800891354498
+CD300LF	146722	CD300 molecule like family member f	0.0958184869787033
+ALPK1	80216	alpha kinase 1	0.0957223339558576
+PLA2G4A	5321	phospholipase A2 group IVA	0.0956776732680608
+TRPM2	7226	transient receptor potential cation channel subfamily M member 2	0.0954499063843432
+ICAM1	3383	intercellular adhesion molecule 1	0.095072441432791
+LILRA5	353514	leukocyte immunoglobulin like receptor A5	0.0950111542371008
+IRAK3	11213	interleukin 1 receptor associated kinase 3	0.0944295471784663
+TEP1	7011	telomerase associated protein 1	0.092902608717881
+TRIM25	7706	tripartite motif containing 25	0.0927325329053888
+NPL	80896	N-acetylneuraminate pyruvate lyase	0.092502074990051
+KIAA0513	9764	KIAA0513	0.0920650435564441
+ARHGAP26	23092	Rho GTPase activating protein 26	0.0917167153849547
+PSMB9	5698	proteasome subunit beta 9	0.0911220895412099
+LILRB3	11025	leukocyte immunoglobulin like receptor B3	0.0910577960305016
+WDR49	151790	WD repeat domain 49	0.090727322536025
+CHMP5	51510	charged multivesicular body protein 5	0.0896945334295999
+LILRA6	79168	leukocyte immunoglobulin like receptor A6	0.0896185236038961
+SLC22A15	55356	solute carrier family 22 member 15	0.0895914424305363
+ADAP2	55803	ArfGAP with dual PH domains 2	0.0894657691197709
+SH2B2	10603	SH2B adaptor protein 2	0.0887075297840176
+BST2	684	bone marrow stromal cell antigen 2	0.0879318846982732
+GK-IT1	106480740	GK intronic transcript 1	0.087680373811131
+FLVCR2	55640	feline leukemia virus subgroup C cellular receptor family member 2	0.0876451242705356
+MAFB	9935	MAF bZIP transcription factor B	0.0872137417368887
+ATG3	64422	autophagy related 3	0.0869272316563771
+CLEC7A	64581	C-type lectin domain containing 7A	0.0865797983980552
+OR52K2	119774	olfactory receptor family 52 subfamily K member 2	0.0859349059909575
+TLR5	7100	toll like receptor 5	0.0857703225166569
+TSHZ3	57616	teashirt zinc finger homeobox 3	0.0850531650715065
+GPR84	53831	G protein-coupled receptor 84	0.0848959253863035
+ERLIN1	10613	ER lipid raft associated 1	0.0848281336258996
+CXCL9	4283	C-X-C motif chemokine ligand 9	0.0846160853301647
+NRBF2	29982	nuclear receptor binding factor 2	0.0838757222366519
+RP11-242C19.2			0.0837656176766826
+MXD1	4084	MAX dimerization protein 1	0.0836749850720369
+S100A8	6279	S100 calcium binding protein A8	0.0834874363745636
+GRINA	2907	glutamate ionotropic receptor NMDA type subunit associated protein 1	0.0828352883308868
+SESTD1	91404	SEC14 and spectrin domain containing 1	0.0827224793962141
+CD1D	912	CD1d molecule	0.0822978215353566
+GCA	25801	grancalcin	0.0818653688146247
+FOLR2	2350	folate receptor beta	0.0815526648348564
+RAB3D	9545	RAB3D, member RAS oncogene family	0.0811807575453382
+BATF2	116071	basic leucine zipper ATF-like transcription factor 2	0.0799238257411671
+CFP	5199	complement factor properdin	0.0794612627848387
+PLA2G4C	8605	phospholipase A2 group IVC	0.0791790183196207
+PARP12	64761	poly(ADP-ribose) polymerase family member 12	0.078152682479862
+RUFY4	285180	RUN and FYVE domain containing 4	0.0781275579969582
+MFSD2A	84879	major facilitator superfamily domain containing 2A	0.0777604927627477
+SCARF1	8578	scavenger receptor class F member 1	0.0774850589256016
+SLAMF7	57823	SLAM family member 7	0.0772818914948158
+KCNJ15	3772	potassium voltage-gated channel subfamily J member 15	0.077046021577216
+RP11-561P12.5			0.0767801428269906
+RTP4	64108	receptor transporter protein 4	0.0763034000989693
+P2RY14	9934	purinergic receptor P2Y14	0.0756075898362581
+DPYD-AS2	100873933	DPYD antisense RNA 2	0.0753781737464446
+MPP1	4354	membrane palmitoylated protein 1	0.0753729469523043
+HIST2H2BF	440689	histone cluster 2 H2B family member f	0.0753664016031936
+KMO	8564	kynurenine 3-monooxygenase	0.0746695085833845
+MBOAT7	79143	membrane bound O-acyltransferase domain containing 7	0.0738759266034163
+LOC145474	145474	uncharacterized LOC145474	0.0738748560474521
+SRC	6714	SRC proto-oncogene, non-receptor tyrosine kinase	0.0738737034698908
+C19orf35			0.0735419103045298
+RNU6-892P	106481460	RNA, U6 small nuclear 892, pseudogene	0.0734787456147228
+FCAR	2204	Fc fragment of IgA receptor	0.072963897599424
+CIITA	4261	class II major histocompatibility complex transactivator	0.0723297565851934
+GK-AS1	100873902	GK antisense RNA 1	0.0719574176709608
+TDRD9	122402	tudor domain containing 9	0.0717021313623988
+RP11-57H14.2			0.0712317283735145
+NAGK	55577	N-acetylglucosamine kinase	0.0705908364729462
+CCL2	6347	C-C motif chemokine ligand 2	0.0703979024232778
+C1QA	712	complement C1q A chain	0.0698250374818092
+HAL	3034	histidine ammonia-lyase	0.069762536054987
+KCNE3	10008	potassium voltage-gated channel subfamily E regulatory subunit 3	0.0696427854729087
+AC009542.2			0.069003486089592
+GCNT1	2650	glucosaminyl (N-acetyl) transferase 1, core 2	0.0681121840979888
+LMTK2	22853	lemur tyrosine kinase 2	0.0670113459038083
+FANCA	2175	Fanconi anemia complementation group A	0.0667734172771052
+NME8	51314	NME/NM23 family member 8	0.0665643193493547
+IL10RB-AS1		IL10RB antisense RNA 1 (head to head)	0.0661912254892198
+AP001610.5			0.0659623332725976
+C9orf66	157983	chromosome 9 open reading frame 66	0.0657658549496795
+AF124730.4			0.0648881185857225
+ARHGAP24	83478	Rho GTPase activating protein 24	0.0633827619433622
+XRCC4	7518	X-ray repair cross complementing 4	0.0606509624779111
+FBXO39	162517	F-box protein 39	0.0603855240659731
+LRRC4	64101	leucine rich repeat containing 4	0.0600016935736456
+C5AR1	728	complement C5a receptor 1	0.0596277573059862
+ARHGEF40	55701	Rho guanine nucleotide exchange factor 40	0.0591710492108835
+TNFSF15	9966	TNF superfamily member 15	0.0585453626409921
+DCUN1D3	123879	defective in cullin neddylation 1 domain containing 3	0.0581419120393413
+TREM1	54210	triggering receptor expressed on myeloid cells 1	0.0550027349737457
+ABCA1	19	ATP binding cassette subfamily A member 1	0.0542048723252387
+AC004540.4			0.0542019997711545
+HCAR2	338442	hydroxycarboxylic acid receptor 2	0.0525053152271896
+C1QC	714	complement C1q C chain	0.0514614975593175
+CMKLR1	1240	chemerin chemokine-like receptor 1	0.0513911022346843
+RP11-507J18.2			0.0507162870041367
+ETS2	2114	ETS proto-oncogene 2, transcription factor	0.0477232740271868

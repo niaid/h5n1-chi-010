@@ -6,7 +6,8 @@ RESULTS
 UGE-output
 nvim
 data
-temp
+temp*
+New
 
 # Random Files
 core.*

@@ -17,7 +17,7 @@ persist_pattern = gp[c(4,6:8, 10:12)]
 persist_genes = unlist(x = persist_pattern, use.names = FALSE) %>% unique()
 
 # expression dataframe 
-edf = readRDS(here("microarray_analysis_d100/generated_data/array_d0_d100_patterngenes_andmetadata_dataframe.rds"))
+edf = readRDS(here("microarray_analysis_d100/generated_data_V4/array_d0_d100_patterngenes_andmetadata_dataframe.rds"))
 met = read_delim(file = "data/metadata/clinical_info_adj.txt",delim = "\t")
 
 # gene indexes for tidy 
@@ -103,10 +103,12 @@ res = scglmmr::GetContrastResultsRaw(limma.fit.object.list = fitl,
                                      contrast.name = "day100fc")
 res = res$bulk
 
+stop()
 ## save results 
 saveRDS(res, file = paste0(datapath, 'formattedresults_d100_lme4model_array.rds'))
 saveRDS(fit, file = paste0(datapath, 'modelfit_d100_lme4model_array.rds'))
 
+stop()
 ###########################
 res = readRDS(here('microarray_analysis_d100/generated_data_V4/formattedresults_d100_lme4model_array.rds'))
 

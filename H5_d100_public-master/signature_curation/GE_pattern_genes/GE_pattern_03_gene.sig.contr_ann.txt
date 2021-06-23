@@ -1,0 +1,230 @@
+gene	entrezgene	name	PC1
+SERPING1	710	serpin family G member 1	0.0912671453049661
+ANKRD22	118932	ankyrin repeat domain 22	0.0891779841491528
+EPSTI1	94240	epithelial stromal interaction 1	0.086759845521621
+WARS	7453	tryptophanyl-tRNA synthetase	0.0858037172086327
+TCN2	6948	transcobalamin 2	0.0856556592919293
+RP11-10J5.1			0.085242090088922
+UBE2L6	9246	ubiquitin conjugating enzyme E2 L6	0.0844957277531177
+DYSF	8291	dysferlin	0.0844899406948284
+SLAMF8	56833	SLAM family member 8	0.0841561344944913
+ETV7	51513	ETS variant 7	0.0838747287867385
+MYOF	26509	myoferlin	0.0838134027805753
+GBP5	115362	guanylate binding protein 5	0.0835520267965795
+RP11-638I2.8			0.0831316749231493
+SMCO4	56935	single-pass membrane protein with coiled-coil domains 4	0.0830846675337657
+PARP14	54625	poly(ADP-ribose) polymerase family member 14	0.0826123328307729
+CLEC6A	93978	C-type lectin domain containing 6A	0.0824906942161526
+SECTM1	6398	secreted and transmembrane 1	0.0822251986835548
+GBP4	115361	guanylate binding protein 4	0.08160631118105
+IRF1	3659	interferon regulatory factor 1	0.0811983155829596
+OAS3	4940	2'-5'-oligoadenylate synthetase 3	0.0810904626269619
+EPB41L3	23136	erythrocyte membrane protein band 4.1 like 3	0.0809652167761537
+FBXO6	26270	F-box protein 6	0.080719252723893
+IFI44L	10964	interferon induced protein 44 like	0.0806438153888052
+FGL2	10875	fibrinogen like 2	0.0805062529851486
+IRF7	3665	interferon regulatory factor 7	0.0803904427511592
+IFIH1	64135	interferon induced with helicase C domain 1	0.0802599852245785
+SLC31A2	1318	solute carrier family 31 member 2	0.0796623982211412
+IL15RA	3601	interleukin 15 receptor subunit alpha	0.0796621661841543
+IDO1	3620	indoleamine 2,3-dioxygenase 1	0.0795861611185259
+TGM2	7052	transglutaminase 2	0.079407168258672
+TNFAIP6	7130	TNF alpha induced protein 6	0.0791343460316177
+IFIT2	3433	interferon induced protein with tetratricopeptide repeats 2	0.0789607073794578
+MX1	4599	MX dynamin like GTPase 1	0.0788513804682642
+APOL6	80830	apolipoprotein L6	0.0783024423170056
+IL15	3600	interleukin 15	0.0782722458781071
+TNFAIP2	7127	TNF alpha induced protein 2	0.0780977578437313
+LOC101930164			0.0778651699792686
+TFEC	22797	transcription factor EC	0.0776956964224442
+STX11	8676	syntaxin 11	0.0774386513865237
+WDFY1	57590	WD repeat and FYVE domain containing 1	0.0772808620977864
+PSMB9	5698	proteasome subunit beta 9	0.0772346652552907
+RP11-295G20.2			0.0771653921680024
+FRMD3	257019	FERM domain containing 3	0.0768600512284113
+KYNU	8942	kynureninase	0.0767938965087441
+ASPHD2	57168	aspartate beta-hydroxylase domain containing 2	0.076598226732384
+NOD2	64127	nucleotide binding oligomerization domain containing 2	0.0764468856434328
+TLR7	51284	toll like receptor 7	0.0762886789058822
+TJP2	9414	tight junction protein 2	0.0761344904779538
+CASP7	840	caspase 7	0.0759114065369523
+SLC8A1	6546	solute carrier family 8 member A1	0.0758722142468875
+PLSCR1	5359	phospholipid scramblase 1	0.0757944608218819
+SCIMP	388325	SLP adaptor and CSK interacting membrane protein	0.0752631190468319
+MCTP1	79772	multiple C2 and transmembrane domain containing 1	0.0751766867488239
+ICAM1	3383	intercellular adhesion molecule 1	0.0749922019682436
+SPTLC2	9517	serine palmitoyltransferase long chain base subunit 2	0.0748767017721817
+TLR1	7096	toll like receptor 1	0.0748563851248473
+IFIT1	3434	interferon induced protein with tetratricopeptide repeats 1	0.0747735175117069
+PDCD1LG2	80380	programmed cell death 1 ligand 2	0.0747513522811131
+GRAMD1B	57476	GRAM domain containing 1B	0.0746496171122641
+IL31RA	133396	interleukin 31 receptor A	0.0745369664593015
+KREMEN1	83999	kringle containing transmembrane protein 1	0.0740722815491588
+IFI44	10561	interferon induced protein 44	0.0737870498697421
+SAMD4A	23034	sterile alpha motif domain containing 4A	0.0737222056947139
+NADK	65220	NAD kinase	0.0730715433909374
+C3AR1	719	complement C3a receptor 1	0.0730094182049288
+ATF5	22809	activating transcription factor 5	0.0727615123855017
+RP4-620F22.2			0.0726489459243041
+DDX58	23586	DExD/H-box helicase 58	0.0725657849148609
+SNX27	81609	sorting nexin family member 27	0.0721481684606874
+SERPINB9	5272	serpin family B member 9	0.0721475827601318
+ACOT9	23597	acyl-CoA thioesterase 9	0.0720241450845376
+CD300E	342510	CD300e molecule	0.0719952895562232
+CLEC4D	338339	C-type lectin domain family 4 member D	0.0719908722659672
+GLT1D1	144423	glycosyltransferase 1 domain containing 1	0.0712941568666474
+ELF4	2000	E74 like ETS transcription factor 4	0.071281570115859
+HIATL1			0.0709618527447809
+SIGLEC1	6614	sialic acid binding Ig like lectin 1	0.0709557167793286
+LILRA6	79168	leukocyte immunoglobulin like receptor A6	0.0709386076497183
+MPZL2	10205	myelin protein zero like 2	0.0703846099890495
+VRK2	7444	vaccinia related kinase 2	0.0703387218437592
+LTBR	4055	lymphotoxin beta receptor	0.0700776787054969
+CXCL9	4283	C-X-C motif chemokine ligand 9	0.0700070856593057
+MTF1	4520	metal regulatory transcription factor 1	0.0698088515154114
+SCPEP1	59342	serine carboxypeptidase 1	0.0697725339111771
+MLKL	197259	mixed lineage kinase domain like pseudokinase	0.069750815767767
+FNIP2	57600	folliculin interacting protein 2	0.0695751331375266
+SCARB2	950	scavenger receptor class B member 2	0.06951229124101
+FKBP15	23307	FK506 binding protein 15	0.0695017251500904
+PVRL2			0.0692985485439537
+STAC3	246329	SH3 and cysteine rich domain 3	0.0692719157690576
+C4orf32			0.0690910523811911
+AGPAT3	56894	1-acylglycerol-3-phosphate O-acyltransferase 3	0.0690704192571954
+GBP3	2635	guanylate binding protein 3	0.0690325199408212
+NFIX	4784	nuclear factor I X	0.0689891510533682
+PARP12	64761	poly(ADP-ribose) polymerase family member 12	0.0688722689078074
+LHFPL2	10184	LHFPL tetraspan subfamily member 2	0.0688588109821767
+APOL2	23780	apolipoprotein L2	0.0686903921844074
+ITPRIPL2	162073	ITPRIP like 2	0.0684735594673851
+GRINA	2907	glutamate ionotropic receptor NMDA type subunit associated protein 1	0.0684360506407162
+APOL3	80833	apolipoprotein L3	0.0684043350180909
+KCNJ2	3759	potassium voltage-gated channel subfamily J member 2	0.0680201544614094
+CNTLN	54875	centlein	0.0680132025823916
+LRRK1	79705	leucine rich repeat kinase 1	0.0675921023556858
+B4GALT5	9334	beta-1,4-galactosyltransferase 5	0.0673277980381285
+CTSZ	1522	cathepsin Z	0.0671954176336147
+EIF2AK2	5610	eukaryotic translation initiation factor 2 alpha kinase 2	0.0671160157424977
+FFAR2	2867	free fatty acid receptor 2	0.0670409997987692
+SLC8A1-AS1	100128590	SLC8A1 antisense RNA 1	0.0667680311008416
+RN7SKP26	106479106	RNA, 7SK small nuclear pseudogene 26	0.0666694510235974
+MR1	3140	major histocompatibility complex, class I-related	0.0661744819492554
+RP11-242C19.2			0.0660731589292996
+TRPM2	7226	transient receptor potential cation channel subfamily M member 2	0.0660493254191368
+IFITM3	10410	interferon induced transmembrane protein 3	0.0655576959042868
+BST2	684	bone marrow stromal cell antigen 2	0.0654372667154749
+HIST2H2BF	440689	histone cluster 2 H2B family member f	0.0652535014539995
+HK3	3101	hexokinase 3	0.0651969078822176
+FOLR2	2350	folate receptor beta	0.0650667457785223
+RUFY3	22902	RUN and FYVE domain containing 3	0.0649662952255645
+CARD17	440068	caspase recruitment domain family member 17	0.0649033519727593
+SBNO2	22904	strawberry notch homolog 2	0.0648331685711365
+LPAR1	1902	lysophosphatidic acid receptor 1	0.0645656655900732
+CCL2	6347	C-C motif chemokine ligand 2	0.0642475506897973
+NDST1	3340	N-deacetylase and N-sulfotransferase 1	0.0641645863127699
+ST8SIA4	7903	ST8 alpha-N-acetyl-neuraminide alpha-2,8-sialyltransferase 4	0.0641458862575544
+FAM198B	51313	family with sequence similarity 198 member B	0.0639992450483687
+SH2B2	10603	SH2B adaptor protein 2	0.0637818433945154
+GCNT1	2650	glucosaminyl (N-acetyl) transferase 1, core 2	0.0637039662245597
+TPMT	7172	thiopurine S-methyltransferase	0.0636855425568709
+USP30-AS1	100131733	USP30 antisense RNA 1	0.0635314354005564
+TRPV4	59341	transient receptor potential cation channel subfamily V member 4	0.0635300189571077
+LRRC25	126364	leucine rich repeat containing 25	0.0629939890026814
+TMEM106A	113277	transmembrane protein 106A	0.0629025304545275
+AC008984.2			0.0627383199413519
+BAK1	578	BCL2 antagonist/killer 1	0.0626254552216174
+SLAMF7	57823	SLAM family member 7	0.0626170889803633
+DSC2	1824	desmocollin 2	0.0619421357258314
+CCDC149	91050	coiled-coil domain containing 149	0.0614848228821987
+MUC1	4582	mucin 1, cell surface associated	0.0613991251344805
+RP11-815J21.2			0.0613837688445489
+NLRC5	84166	NLR family CARD domain containing 5	0.0609591044334922
+CEACAM1	634	carcinoembryonic antigen related cell adhesion molecule 1	0.0607817823062451
+RP11-588L15.2			0.0607561153561535
+RP1-71H24.1			0.0607532270661347
+P2RY14	9934	purinergic receptor P2Y14	0.0606938461994703
+STX3	6809	syntaxin 3	0.0604062645154832
+NRBF2	29982	nuclear receptor binding factor 2	0.059823673757758
+SRC	6714	SRC proto-oncogene, non-receptor tyrosine kinase	0.0597149863856052
+BCL6	604	B cell CLL/lymphoma 6	0.0594916024531402
+NLN	57486	neurolysin	0.0593104154524699
+SESTD1	91404	SEC14 and spectrin domain containing 1	0.0592450434213635
+WDFY3-AS1	100874023	WDFY3 antisense RNA 1	0.0590408243477756
+S100A11	6282	S100 calcium binding protein A11	0.0590023816215596
+WDR41	55255	WD repeat domain 41	0.0589511843424113
+FGD6	55785	FYVE, RhoGEF and PH domain containing 6	0.0589481683675636
+CLCN5	1184	chloride voltage-gated channel 5	0.0589274273921593
+LY6E	4061	lymphocyte antigen 6 family member E	0.0588710213842065
+USP18	11274	ubiquitin specific peptidase 18	0.0586785811460853
+HK2	3099	hexokinase 2	0.0585293599078049
+NEXN	91624	nexilin F-actin binding protein	0.058402209002915
+BATF3	55509	basic leucine zipper ATF-like transcription factor 3	0.0583704555411479
+PSEN2	5664	presenilin 2	0.0583450817739944
+LILRA2	11027	leukocyte immunoglobulin like receptor A2	0.0580259733629149
+GIMAP8	155038	GTPase, IMAP family member 8	0.0578183047735593
+SIGLEC9	27180	sialic acid binding Ig like lectin 9	0.0577426089368011
+ST3GAL5	8869	ST3 beta-galactoside alpha-2,3-sialyltransferase 5	0.0577050331096446
+SMPDL3A	10924	sphingomyelin phosphodiesterase acid like 3A	0.0576964780794218
+RILP	83547	Rab interacting lysosomal protein	0.0576271293880139
+PANX1	24145	pannexin 1	0.0575895365617695
+RNU6-892P	106481460	RNA, U6 small nuclear 892, pseudogene	0.0575773503502242
+RP11-293M10.6			0.0575513835345476
+C19orf35			0.0573268728635244
+FAM49A	81553	family with sequence similarity 49 member A	0.0572545623682436
+FAM214B	80256	family with sequence similarity 214 member B	0.0572240651700436
+LGALS9B	284194	galectin 9B	0.0571888454726873
+GALNT3	2591	polypeptide N-acetylgalactosaminyltransferase 3	0.0570552916517914
+FES	2242	FES proto-oncogene, tyrosine kinase	0.0564302145799379
+SLFN11	91607	schlafen family member 11	0.055685531612821
+CD38	952	CD38 molecule	0.0556005698766828
+AC009542.2			0.0553430529462737
+MSR1	4481	macrophage scavenger receptor 1	0.0552864938181467
+SNX20	124460	sorting nexin 20	0.0549341186617749
+HSPA8P5	399988	heat shock protein family A (Hsp70) member 8 pseudogene 5	0.0546214246494098
+IL6R	3570	interleukin 6 receptor	0.0545034840752322
+MTVR2	246754	mouse mammary tumor virus receptor homolog 2	0.0537837166419206
+FAM111A	63901	family with sequence similarity 111 member A	0.0530891073412485
+ENTPD1	953	ectonucleoside triphosphate diphosphohydrolase 1	0.053075381208901
+CLEC12A	160364	C-type lectin domain family 12 member A	0.0529185068712193
+RNU6-691P			0.052469568110811
+HRH2	3274	histamine receptor H2	0.0521525968103556
+CFP	5199	complement factor properdin	0.051882922890712
+TOMM40L	84134	translocase of outer mitochondrial membrane 40 like	0.0518068430062082
+KLF4	9314	Kruppel like factor 4	0.0517717697358955
+MS4A7	58475	membrane spanning 4-domains A7	0.0517492012777534
+SOCS3	9021	suppressor of cytokine signaling 3	0.0511943999473549
+MIR4802	100616274	microRNA 4802	0.0510867575293267
+ANO5	203859	anoctamin 5	0.0510200170641782
+LOC100507209			0.0508865934615861
+RP11-351I24.1			0.0504830166334373
+APOA2	336	apolipoprotein A2	0.0504685931976119
+ZNF703	80139	zinc finger protein 703	0.0504260070057422
+SLC12A7	10723	solute carrier family 12 member 7	0.0503244066229094
+NRN1	51299	neuritin 1	0.0498004491168782
+RP1-50J22.4			0.0496217420339284
+F5	2153	coagulation factor V	0.0494337854989452
+TIFA	92610	TRAF interacting protein with forkhead associated domain	0.0491770234237357
+FCAR	2204	Fc fragment of IgA receptor	0.0490016501710188
+TMEM229B	161145	transmembrane protein 229B	0.0489633302916219
+ZNF800	168850	zinc finger protein 800	0.048480547617172
+LOC145474	145474	uncharacterized LOC145474	0.0482530258460854
+TBC1D30	23329	TBC1 domain family member 30	0.0477148401071641
+NFE2	4778	nuclear factor, erythroid 2	0.0474713077737945
+PHF23	79142	PHD finger protein 23	0.0471618617180361
+RIPK3	11035	receptor interacting serine/threonine kinase 3	0.047065421173666
+RNA5SP237	100873495	RNA, 5S ribosomal pseudogene 237	0.046916068950412
+PI3	5266	peptidase inhibitor 3	0.045927333254248
+UGGT2	55757	UDP-glucose glycoprotein glucosyltransferase 2	0.0455479907816313
+TNFSF15	9966	TNF superfamily member 15	0.0452815331986433
+LINC00937	389634	long intergenic non-protein coding RNA 937	0.0445261044400171
+MPZL1	9019	myelin protein zero like 1	0.0442440332795899
+PPP2R5B	5526	protein phosphatase 2 regulatory subunit B'beta	0.0439156429826412
+HYMAI	57061	hydatidiform mole associated and imprinted (non-protein coding)	0.04350543330898
+HIF1A-AS2	100750247	HIF1A antisense RNA 2	0.0419632833622001
+RNU6-748P	106481416	RNA, U6 small nuclear 748, pseudogene	0.0413066837698643
+CTD-2521M24.5			0.0411332778347219
+AP1S2	8905	adaptor related protein complex 1 sigma 2 subunit	0.0409459303983356
+ITPRIP	85450	inositol 1,4,5-trisphosphate receptor interacting protein	0.0395054234708213
+FCGR3B	2215	Fc fragment of IgG receptor IIIb	0.0393903925408954
+AC091133.1			0.039283729190014
+FAM114A1	92689	family with sequence similarity 114 member A1	0.0388009405454497
